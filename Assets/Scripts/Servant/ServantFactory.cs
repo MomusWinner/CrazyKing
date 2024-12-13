@@ -16,7 +16,7 @@ namespace Servant
         
         public void CreateKnight(Vector2 position)
         {
-            var knightObj = Resources.Load<GameObject>("Servants/Knight");
+            var knightObj = Resources.Load<GameObject>("Servants/Knight/Knight");
             _container.Instantiate(knightObj, position, Quaternion.identity);
         }
     }
