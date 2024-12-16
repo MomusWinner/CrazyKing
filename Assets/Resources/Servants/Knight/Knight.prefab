@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 0.3
-  _healthBar: {fileID: 5768747457491360074}
+  _healthData: {fileID: 5012305167229742227}
   _maxHealth: 100
   _rotationSpeed: 4
   _speed: 3.5
@@ -438,15 +438,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6bc503867d512843949eb0b49f4d109, type: 3}
---- !u!114 &5768747457491360074 stripped
+--- !u!114 &5012305167229742227 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6161067593919510502, guid: c6bc503867d512843949eb0b49f4d109, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4612107769730728511, guid: c6bc503867d512843949eb0b49f4d109, type: 3}
   m_PrefabInstance: {fileID: 400318349148155564}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f24553a81b3d124d822fe79ab230cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &6987074779518014722 stripped

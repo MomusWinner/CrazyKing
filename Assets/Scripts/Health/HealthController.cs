@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine.UI;
 
 namespace Health
@@ -6,17 +7,20 @@ namespace Health
     public class HealthController
     {
         public int Health => _health;
+        public int MaxHealth => _maxHealth;
         
-        private readonly int _maxHealth;
         private readonly Slider _healthBar;
+        private readonly TMP_Text _healthText;
         private readonly Action _onDeath;
+        private int _maxHealth;
         private int _health;
         private bool _isDead;
         
-        public HealthController(int maxHealth, Slider healthBar, Action onDeath)
+        public HealthController(int maxHealth, HealthUIData healthUIData, Action onDeath)
         {
             _maxHealth = maxHealth;
-            _healthBar = healthBar;
+            _healthBar = healthUIData.slider;
+            _healthText = healthUIData.healthText;
             _onDeath = onDeath;
             _health = maxHealth;
             _healthBar.maxValue = _maxHealth;
@@ -27,6 +31,7 @@ namespace Health
         {
             _health = value;
             _healthBar.value = value;
+            _healthText.text = $"{_health} / {_maxHealth}";
         }
 
         public bool Damage(int damage)
@@ -58,6 +63,13 @@ namespace Health
             }
             
             SetHealth(_health + health);
+        }
+
+        public void ChangeMaxHealth(int maxHealth)
+        {
+            _maxHealth = maxHealth;
+            _healthBar.maxValue = maxHealth;
+            _healthText.text = $"{_health} / {_maxHealth}";
         }
     }
 }
