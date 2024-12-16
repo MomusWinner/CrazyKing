@@ -1,19 +1,24 @@
 ﻿using Health;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace BaseEntity
 {
     public abstract class BaseEntityController : MonoBehaviour, IDamageable
     {
         public int Health => _healthController.Health;
+        
+        public int MaxHealth => _healthController.MaxHealth;
+        
         public Rigidbody2D RigidBody => _rigidBody;
+        
         public float Speed => _speed;
+        
         public Animator Animator => _animator;
+        
         public float Radius => _radius;
 
         [SerializeField] private float _radius;
-        [SerializeField] private Slider _healthBar;
+        [SerializeField] private HealthUIData _healthData;
         [SerializeField] private int _maxHealth;
         [SerializeField] private float _rotationSpeed;
         [SerializeField] private float _speed;
@@ -23,7 +28,7 @@ namespace BaseEntity
         
         protected virtual void Start()
         {
-            _healthController = new HealthController(_maxHealth, _healthBar, OnDead);
+            _healthController = new HealthController(_maxHealth, _healthData, OnDead);
             _rigidBody = GetComponent<Rigidbody2D>();
         }
         
@@ -43,7 +48,9 @@ namespace BaseEntity
                 Quaternion.Euler(new Vector3(0f,0f,angle)),
                 _rotationSpeed*Time.fixedDeltaTime));
         }
-        
+
+        public void ChangeMaxHealth(int maxHealth) => _healthController.ChangeMaxHealth(maxHealth);
+
         public bool Damage(int damage) => _healthController.Damage(damage);
 
         public void Heal(int health) => _healthController.Heal(health);
@@ -55,8 +62,5 @@ namespace BaseEntity
         }
 
         public virtual void OnDead() => Destroy(gameObject);
-        
-        
-        
     }
 }

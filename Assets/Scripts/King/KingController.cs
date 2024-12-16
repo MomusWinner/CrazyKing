@@ -1,8 +1,10 @@
-﻿using BaseEntity;
+﻿using System;
+using BaseEntity;
 using Health;
+using King.Upgrades;
+using King.Upgrades.Parameters;
 using Servant;
 using UnityEngine;
-using UnityEngine.UI;
 using VContainer;
 
 namespace King
@@ -10,6 +12,9 @@ namespace King
     [RequireComponent(typeof(CirclePointController))]
     public class KingController : BaseEntityController
     {
+        public KingParameterUpgradeController[] KingParameterUpgradeControllers => _kingParameterUpgradeControllers;
+        
+        private KingParameterUpgradeController[] _kingParameterUpgradeControllers;
         private ServantFactory _servantFactory;
         private CirclePointController _pointController;
         
@@ -18,6 +23,16 @@ namespace King
         {
             _servantFactory = servantFactory;
             _pointController = GetComponent<CirclePointController>();
+            _kingParameterUpgradeControllers = new KingParameterUpgradeController[]
+            {
+                new KingHealthParameterUpgradeController(this, new KingUpgrade[]
+                {
+                    new KingHealthParameter1Upgrade(),
+                    new KingHealthParameter1Upgrade(),
+                    new KingHealthParameter1Upgrade(),
+                    new KingHealthParameter1Upgrade(),
+                })
+            };
         }
         
         protected override void Start()

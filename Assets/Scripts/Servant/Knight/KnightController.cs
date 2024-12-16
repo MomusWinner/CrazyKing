@@ -22,8 +22,14 @@ namespace Servant.Knight
         protected override void Start()
         {
             base.Start();
-            _upgradeController = new KnightUpgradeController(this);
-            _upgradeController.Setup();
+            _upgradeController = new KnightUpgradeController(this, new IUpgradable<KnightController>[]
+            {
+                new Knight1Upgrade(),
+                new Knight2Upgrade(),
+                new Knight3Upgrade(),
+                new Knight4Upgrade(),
+                new Knight5Upgrade()
+            });
             _fsm.SetUp(this);
             _fsm.ChangeState<KnightFollowToKingState>();
         }

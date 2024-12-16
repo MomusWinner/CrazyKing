@@ -1,40 +1,64 @@
-﻿namespace Controllers.UpgradeController
+﻿using JetBrains.Annotations;
+
+namespace Controllers.UpgradeController
 {
-    public abstract class UpgradeController<TEntity>
+    public class UpgradeController<TEntity>
     {
+        [CanBeNull]
+        public IUpgradable<TEntity> CurrentUpgrade
+        {
+            get
+            {
+                if (_currentUpdateIndex < 0 || _currentUpdateIndex > upgradables.Length  - 1)
+                    return null;
+                return upgradables[_currentUpdateIndex];
+            }
+        }
+
+        [CanBeNull]
+        public IUpgradable<TEntity> NextUpgrade
+        {
+            get
+            {
+                int nextUpgrade = _currentUpdateIndex + 1;
+                if (nextUpgrade < 0 || nextUpgrade > upgradables.Length  - 1)
+                    return null;
+                return upgradables[nextUpgrade];
+            }
+        }
+        
+        public int CurrentUpdateIndex => _currentUpdateIndex;
+        
+        public int Length => (int)upgradables?.Length;
+
         protected TEntity entity;
         protected IUpgradable<TEntity>[] upgradables;
-        protected int currentUpdate = -1;
         
-        protected UpgradeController(TEntity entity)
+        private int _currentUpdateIndex = -1;
+
+        public UpgradeController(TEntity entity, IUpgradable<TEntity>[] upgradables)
         {
             this.entity = entity;
+            this.upgradables = upgradables;
         }
 
-        public void Setup()
+        public virtual bool Upgrade()
         {
-            upgradables = SetupUpgrades();
-        }
-
-        public bool Upgrade()
-        {
-            if (upgradables.Length - 1 == currentUpdate) return false;
-            currentUpdate++;
-            upgradables[currentUpdate].Upgrade(entity);
+            if (upgradables.Length - 1 == _currentUpdateIndex) return false;
+            _currentUpdateIndex++;
+            upgradables[_currentUpdateIndex].Upgrade(entity);
             return true;
         }
 
-        public bool Downgrade()
+        public virtual bool Downgrade()
         {
-            if (currentUpdate < 0) return false; 
-            upgradables[currentUpdate].Downgrade(entity);
-            currentUpdate--;
+            if (_currentUpdateIndex < 0) return false; 
+            upgradables[_currentUpdateIndex].Downgrade(entity);
+            _currentUpdateIndex--;
             return true;
         }
-
-        protected abstract IUpgradable<TEntity>[] SetupUpgrades();
     }
-
+    
     public interface IUpgradable<T>
     {
         void Upgrade(T entity);
