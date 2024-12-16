@@ -13,7 +13,7 @@ namespace Controllers
         public SceneLoader(string loadingScreenPath)
         {
             _loadingScreenPath = loadingScreenPath;
-            Debug.Log("Create Scene Loader");
+            Debug.Log("Initialize SceneLoader");
         }
         
         public void Start()

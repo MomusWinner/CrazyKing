@@ -1,5 +1,7 @@
-﻿using Controllers.UpgradeController;
+﻿using Controllers;
+using Controllers.UpgradeController;
 using JetBrains.Annotations;
+using UnityEngine;
 
 namespace King.Upgrades
 {
@@ -20,18 +22,24 @@ namespace King.Upgrades
         public int currentIndex => upgradeController.CurrentUpdateIndex;
 
         protected readonly KingUpgrade[] kingUpgrades;
+        private readonly CoinsController _coinsController;
         protected readonly UpgradeController<KingController> upgradeController;
         
-        public KingParameterUpgradeController(KingController entity, KingUpgrade[] kingUpgrades)
+        public KingParameterUpgradeController(
+            KingController entity,
+            KingUpgrade[] kingUpgrades,
+            CoinsController coinsController)
         {
             this.kingUpgrades = kingUpgrades;
+            _coinsController = coinsController;
             upgradeController = new UpgradeController<KingController>(entity, this.kingUpgrades);
         }
 
-        public bool Upgrade()
+        public bool TryUpgrade()
         {
-            // TODO check money
-            return upgradeController.Upgrade();
+            if (_coinsController.TryGetCoins(NextUpgradePrice))
+                return upgradeController.Upgrade();
+            return false;
         }
     }
 }

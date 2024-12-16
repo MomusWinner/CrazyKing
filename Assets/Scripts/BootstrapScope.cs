@@ -14,6 +14,7 @@ public class BootstrapScope : LifetimeScope
     
     protected override void Configure(IContainerBuilder builder)
     {
+        builder.RegisterInstance(new CoinsController()).AsImplementedInterfaces();
         builder.RegisterInstance(new SceneLoader(_loadingScreenObject)).AsImplementedInterfaces();
     }
 }

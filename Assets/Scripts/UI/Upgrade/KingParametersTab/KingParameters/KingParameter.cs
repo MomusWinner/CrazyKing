@@ -25,7 +25,7 @@ namespace UI.Upgrade.KingParameters
 
         public void Upgrade()
         {
-            _parameterController.Upgrade();
+            _parameterController.TryUpgrade();
             if (_parameterController.NextUpgrade is null)
             {
                 _progressBar.SetFullValue();

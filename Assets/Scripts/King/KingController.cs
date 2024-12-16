@@ -1,5 +1,6 @@
 ﻿using System;
 using BaseEntity;
+using Controllers;
 using Health;
 using King.Upgrades;
 using King.Upgrades.Parameters;
@@ -17,7 +18,9 @@ namespace King
         private KingParameterUpgradeController[] _kingParameterUpgradeControllers;
         private ServantFactory _servantFactory;
         private CirclePointController _pointController;
-        
+
+        [Inject] private CoinsController _coinsController;
+
         [Inject]
         public void Setup(ServantFactory servantFactory)
         {
@@ -27,11 +30,16 @@ namespace King
             {
                 new KingHealthParameterUpgradeController(this, new KingUpgrade[]
                 {
-                    new KingHealthParameter1Upgrade(),
-                    new KingHealthParameter1Upgrade(),
-                    new KingHealthParameter1Upgrade(),
-                    new KingHealthParameter1Upgrade(),
-                })
+                    new KingHealthParameter1Upgrade(), new KingHealthParameter2Upgrade(),
+                    new KingHealthParameter3Upgrade(), new KingHealthParameter4Upgrade(),
+                    new KingHealthParameter5Upgrade()
+                }, _coinsController),
+                new KingDamageParameterUpgradeController(this, new KingUpgrade[]
+                {
+                    new KingDamageParameter1Upgrade(), new KingDamageParameter2Upgrade(),
+                    new KingDamageParameter3Upgrade(), new KingDamageParameter4Upgrade(),
+                    new KingDamageParameter5Upgrade()
+                }, _coinsController)
             };
         }
         

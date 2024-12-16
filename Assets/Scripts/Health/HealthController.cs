@@ -69,7 +69,7 @@ namespace Health
         {
             _maxHealth = maxHealth;
             _healthBar.maxValue = maxHealth;
-            _healthText.text = $"{_health} / {_maxHealth}";
+            SetHealth(_maxHealth);
         }
     }
 }
