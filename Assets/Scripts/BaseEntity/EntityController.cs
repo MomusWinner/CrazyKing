@@ -12,7 +12,7 @@ namespace BaseEntity
         [SerializeField] private float _lookRadius;
         private NavMeshAgent _agent;
 
-        protected void Awake()
+        protected override void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
             _agent.updateRotation = false;

@@ -2,8 +2,12 @@
 
 namespace Controllers.UpgradeController
 {
-    public class UpgradeController<TEntity>
+    public class UpgradeController<TEntity>: IUpgradeController
     {
+        public int Level => _currentUpdateIndex + 1;
+
+        public int MaxLevel => Length; 
+        
         [CanBeNull]
         public IUpgradable<TEntity> CurrentUpgrade
         {
@@ -57,6 +61,17 @@ namespace Controllers.UpgradeController
             _currentUpdateIndex--;
             return true;
         }
+    }
+
+    public interface IUpgradeController
+    {
+        int Level { get; }
+        
+        int MaxLevel { get; }
+
+        bool Upgrade();
+
+        bool Downgrade();
     }
     
     public interface IUpgradable<T>

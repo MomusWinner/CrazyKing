@@ -22,22 +22,22 @@ namespace King.Upgrades
         public int currentIndex => upgradeController.CurrentUpdateIndex;
 
         protected readonly KingUpgrade[] kingUpgrades;
-        private readonly CoinsController _coinsController;
+        private readonly CoinsManager _coinsManager;
         protected readonly UpgradeController<KingController> upgradeController;
         
         public KingParameterUpgradeController(
             KingController entity,
             KingUpgrade[] kingUpgrades,
-            CoinsController coinsController)
+            CoinsManager coinsManager)
         {
             this.kingUpgrades = kingUpgrades;
-            _coinsController = coinsController;
+            _coinsManager = coinsManager;
             upgradeController = new UpgradeController<KingController>(entity, this.kingUpgrades);
         }
 
         public bool TryUpgrade()
         {
-            if (_coinsController.TryGetCoins(NextUpgradePrice))
+            if (_coinsManager.TryGetCoins(NextUpgradePrice))
                 return upgradeController.Upgrade();
             return false;
         }

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
 using BaseEntity;
 using Controllers;
-using Health;
 using King.Upgrades;
 using King.Upgrades.Parameters;
 using Servant;
@@ -11,49 +14,51 @@ using VContainer;
 namespace King
 {
     [RequireComponent(typeof(CirclePointController))]
-    public class KingController : BaseEntityController
+    public class  KingController : BaseEntityController
     {
         public KingParameterUpgradeController[] KingParameterUpgradeControllers => _kingParameterUpgradeControllers;
         
+        public IList<ServantController> Servants => _servants.ToList().AsReadOnly();
+        
         private KingParameterUpgradeController[] _kingParameterUpgradeControllers;
-        private ServantFactory _servantFactory;
         private CirclePointController _pointController;
-
-        [Inject] private CoinsController _coinsController;
+        private readonly ObservableCollection<ServantController> _servants = new ();
+        private CoinsManager _coinsManager;
 
         [Inject]
-        public void Setup(ServantFactory servantFactory)
+        public void Setup(CoinsManager coinsManager)
         {
-            _servantFactory = servantFactory;
+            _coinsManager = coinsManager;
             _pointController = GetComponent<CirclePointController>();
-            _kingParameterUpgradeControllers = new KingParameterUpgradeController[]
-            {
-                new KingHealthParameterUpgradeController(this, new KingUpgrade[]
-                {
-                    new KingHealthParameter1Upgrade(), new KingHealthParameter2Upgrade(),
-                    new KingHealthParameter3Upgrade(), new KingHealthParameter4Upgrade(),
-                    new KingHealthParameter5Upgrade()
-                }, _coinsController),
-                new KingDamageParameterUpgradeController(this, new KingUpgrade[]
-                {
-                    new KingDamageParameter1Upgrade(), new KingDamageParameter2Upgrade(),
-                    new KingDamageParameter3Upgrade(), new KingDamageParameter4Upgrade(),
-                    new KingDamageParameter5Upgrade()
-                }, _coinsController)
-            };
         }
         
         protected override void Start()
         {
             base.Start();
-            _servantFactory.CreateKnight(transform.position);
-            _servantFactory.CreateKnight(transform.position);
-            _servantFactory.CreateKnight(transform.position);
-            _servantFactory.CreateKnight(transform.position);
-            _servantFactory.CreateKnight(transform.position);
+            // _servantFactory.CreateKnight(transform.position);
+            // _servantFactory.CreateKnight(transform.position);
+            // _servantFactory.CreateKnight(transform.position);
+            // _servantFactory.CreateKnight(transform.position);
+            // _servantFactory.CreateKnight(transform.position);
+        }
+
+        public void SubscribeToServantsChanged(Action<IList<ServantController>> onChanged)
+        {
+            void OnServantsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) => onChanged.Invoke(Servants);
+            _servants.CollectionChanged +=  OnServantsOnCollectionChanged;
+        }
+
+        public void AddServant(ServantController servant)
+        {
+            _servants.Add(servant);
+        }
+
+        public bool RemoveServant(ServantController servant)
+        {
+            return _servants.Remove(servant);
         }
         
-        public IPoint GetFreePoint() => _pointController.GetFreePoint();
+        public bool TryGetFreePoint(out IPoint point) => _pointController.TryGetFreePoint(out point);
         
         public void ReturnPoint(IPoint point) => _pointController.ReturnPoint(point);
     }

@@ -17,7 +17,7 @@ namespace Servant.FSM
         
         public override void Start()
         {
-            followingPoint = king.GetFreePoint();
+            followingPoint = Servant.Point;
         }
 
         public override void Update()

@@ -1,4 +1,5 @@
 ﻿using Enemy.FSM;
+using Servant;
 using UnityEngine;
 using VContainer;
 
@@ -16,6 +17,7 @@ namespace Enemy.RedKnight
         
         [Inject]
         private EnemyFSM<RedKnightController> _fsm;
+        
         protected override void Start()
         {
             base.Start();

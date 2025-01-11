@@ -2,6 +2,7 @@
 using Servant.FSM;
 using Servant.Knight.FSM;
 using Servant.Knight.Upgrades;
+using Servant.Upgrade;
 using UnityEngine;
 using VContainer;
 
@@ -9,9 +10,13 @@ namespace Servant.Knight
 {
     public class KnightController : ServantController
     {
+        public override IServantUpgradeController UpgradeController => _upgradeController;
         public ServantFSM<KnightController> Fsm => _fsm;
+        
         public float AttackRadius =>  _attackRadius;
+        
         public int AttackDamage => _damage;
+        
         public KnightUpgradeController _upgradeController;
             
         [Inject] private ServantFSM<KnightController> _fsm;
@@ -19,9 +24,9 @@ namespace Servant.Knight
         [SerializeField] private float _attackRadius;
         [SerializeField] private int _damage;
 
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             _upgradeController = new KnightUpgradeController(this, new IUpgradable<KnightController>[]
             {
                 new Knight1Upgrade(),
@@ -30,6 +35,11 @@ namespace Servant.Knight
                 new Knight4Upgrade(),
                 new Knight5Upgrade()
             });
+        }
+        
+        protected override void Start()
+        {
+            base.Start();
             _fsm.SetUp(this);
             _fsm.ChangeState<KnightFollowToKingState>();
         }

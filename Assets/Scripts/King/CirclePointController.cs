@@ -20,6 +20,7 @@ namespace King
             this.centerOffset = centerOffset;
         }
 
+        /// <returns>Global position</returns>
         public Vector2 GetPosition()
         {
             if (!centerTransform)
@@ -42,7 +43,7 @@ namespace King
         private List<IPoint> _freePoints = new();
         private List<IPoint> _busyPoints = new();
         
-        public void Start()
+        public void Awake()
         {
             GeneratePoints();
         }
@@ -64,15 +65,16 @@ namespace King
             _freePoints.Add(newPoint);
         }
 
-        public IPoint GetFreePoint()
+        public bool TryGetFreePoint(out IPoint point)
         {
+            point = null;
             if (_freePoints.Count == 0)
-                return null;
+                return false;
 
-            IPoint point = _freePoints.First(); // TODO remove
+            point = _freePoints.First(); // TODO remove
             _busyPoints.Add(point);
             _freePoints.Remove(point);
-            return point;
+            return true;
         }
 
         public void ReturnPoint(IPoint point)

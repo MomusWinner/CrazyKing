@@ -1,67 +1,112 @@
-﻿using Controllers.UpgradeController;
+﻿using Servant.Upgrade;
 
 namespace Servant.Knight.Upgrades
 {
-    public class Knight1Upgrade : IUpgradable<KnightController>
+    public class Knight1Upgrade : ServantUpgrade<KnightController>
     {
-        public void Upgrade(KnightController entity)
+        public override ServantUpgradeData GetUpgradeData()
+        {
+            return new ServantUpgradeData()
+            {
+                Description = "Knight 1 upgrade",
+                Price = 10,
+            };
+        }
+
+        public override void  Upgrade(KnightController entity)
         {
             entity.transform.localScale *= 2;
         }
 
-        public void Downgrade(KnightController entity)
+        public override void Downgrade(KnightController entity)
         {
             entity.transform.localScale /= 2;
         }
     }
     
-    public class Knight2Upgrade : IUpgradable<KnightController>
+    public class Knight2Upgrade : ServantUpgrade<KnightController>
     {
-        public void Upgrade(KnightController entity)
+        public override ServantUpgradeData GetUpgradeData()
+        {
+            return new ServantUpgradeData()
+            {
+                Description = "Knight 2 upgrade",
+                Price = 10,
+            };
+        }
+
+        public override void Upgrade(KnightController entity)
         {
             entity.transform.localScale *= 2;
         }
 
-        public void Downgrade(KnightController entity)
+        public override void Downgrade(KnightController entity)
         {
             entity.transform.localScale /= 2;
         }
     }
     
-    public class Knight3Upgrade : IUpgradable<KnightController>
+    public class Knight3Upgrade : ServantUpgrade<KnightController>
     {
-        public void Upgrade(KnightController entity)
+        public override ServantUpgradeData GetUpgradeData()
+        {
+            return new ServantUpgradeData()
+            {
+                Description = "Knight 3 upgrade",
+                Price = 10,
+            };
+        }
+
+        public override void Upgrade(KnightController entity)
         {
             entity.transform.localScale *= 2;
         }
 
-        public void Downgrade(KnightController entity)
+        public override void Downgrade(KnightController entity)
         {
             entity.transform.localScale /= 2;
         }
     }
     
-    public class Knight4Upgrade : IUpgradable<KnightController>
+    public class Knight4Upgrade : ServantUpgrade<KnightController>
     {
-        public void Upgrade(KnightController entity)
+        public override ServantUpgradeData GetUpgradeData()
+        { 
+            return new ServantUpgradeData()
+            {
+                Description = "Knight 4 upgrade",
+                Price = 10,
+            };
+        }
+
+        public override void Upgrade(KnightController entity)
         {
             entity.transform.localScale *= 2;
         }
 
-        public void Downgrade(KnightController entity)
+        public override void Downgrade(KnightController entity)
         {
             entity.transform.localScale /= 2;
         }
     }
     
-    public class Knight5Upgrade : IUpgradable<KnightController>
+    public class Knight5Upgrade : ServantUpgrade<KnightController>
     {
-        public void Upgrade(KnightController entity)
+        public override ServantUpgradeData GetUpgradeData()
+        {
+            return new ServantUpgradeData()
+            {
+                Description = "Knight 5 upgrade",
+                Price = 10,
+            };
+        }
+
+        public override void Upgrade(KnightController entity)
         {
             entity.transform.localScale *= 2;
         }
 
-        public void Downgrade(KnightController entity)
+        public override void Downgrade(KnightController entity)
         {
             entity.transform.localScale /= 2;
         }

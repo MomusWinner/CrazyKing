@@ -1,20 +1,31 @@
 ﻿using Controllers;
+using King;
+using King.Upgrades.Parameters;
+using Servant;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
 public class BootstrapScope : LifetimeScope
 {
-    [SerializeField] private string _loadingScreenObject = "Loading/Loading";
-    
+    [SerializeField] private int _startingCoins;
+    [SerializeField] private string _loadingScreenObject = "Loading/Loading"; 
+    [SerializeField] private ServantsSO _servantsSO;
+    [SerializeField] private KingParametersSO _kingParametersSO;
+
     public void Start()
     {
         DontDestroyOnLoad(gameObject);
-    }
+    }       
     
     protected override void Configure(IContainerBuilder builder)
     {
-        builder.RegisterInstance(new CoinsController()).AsImplementedInterfaces();
-        builder.RegisterInstance(new SceneLoader(_loadingScreenObject)).AsImplementedInterfaces();
+        // King
+        builder.RegisterInstance(_kingParametersSO);
+        builder.RegisterEntryPoint<KingParameterManager>().AsSelf();
+        // Register Servants
+        builder.RegisterInstance(_servantsSO);
+        builder.RegisterEntryPoint<CoinsManager>().WithParameter(typeof(int), _startingCoins).AsSelf();
+        builder.RegisterEntryPoint<SceneLoader>().WithParameter(typeof(string), _loadingScreenObject).AsSelf();
     }
 }

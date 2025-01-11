@@ -1,4 +1,5 @@
-﻿using Health;
+﻿using System;
+using Health;
 using UnityEngine;
 
 namespace BaseEntity
@@ -25,7 +26,10 @@ namespace BaseEntity
         [SerializeField] private Animator _animator;
         private Rigidbody2D _rigidBody;
         private HealthController _healthController;
-        
+
+        protected virtual void Awake()
+        { }
+
         protected virtual void Start()
         {
             _healthController = new HealthController(_maxHealth, _healthData, OnDead);

@@ -25,9 +25,7 @@ namespace Servant.Knight.FSM
         public override void Dispose()
         {
             base.Dispose();
-            king.ReturnPoint(followingPoint);
             Servant.StopCoroutine(_checkEnemyCoroutine);
-            // Servant.Animator.SetBool(isRun, false); TODO
         }
 
         private IEnumerator CheckEnemy()

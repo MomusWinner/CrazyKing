@@ -8,7 +8,7 @@ public class MenuUI : MonoBehaviour
 
     public void StartGame()
     {
-        _sceneLoader?.LoadScene("Level_1");
+        _sceneLoader?.LoadScene("UpgradeMenu");
     }
 
     public void OpenOptions()

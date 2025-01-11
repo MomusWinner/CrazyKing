@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 1502793749}
   - component: {fileID: 1502793750}
   m_Layer: 0
-  m_Name: BaseScope
+  m_Name: '[BASE_SCOPE]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,7 +168,10 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 1915430785}
+  _startingCoins: 103130000
   _loadingScreenObject: Loading/Loading
+  _servantsSO: {fileID: 11400000, guid: 411b76aa0b167514aa95797e9ea4c726, type: 2}
+  _kingParametersSO: {fileID: 11400000, guid: d6e4ecaf38857c1439443572065d6528, type: 2}
 --- !u!1 &1915430785
 GameObject:
   m_ObjectHideFlags: 0
