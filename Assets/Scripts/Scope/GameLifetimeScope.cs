@@ -8,6 +8,7 @@ using Servant.Knight;
 using Servant.Knight.FSM;
 using UI.Upgrade.ServantTab;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
@@ -16,13 +17,10 @@ namespace Scope
     public class GameLifetimeScope : LifetimeScope
     {
         [SerializeField] private KingController _kingController;
-        [SerializeField] private ServantTab _servantTab;
+        [FormerlySerializedAs("_servantTab")] [SerializeField] private ServantContainer servantContainer;
         
         protected override void Configure(IContainerBuilder builder)
         {
-            // Register Servants
-            builder.RegisterEntryPoint<ServantManager>().AsSelf();
-            
             // Register King
             builder.RegisterComponent(_kingController);
             builder.Register<KingFSM>(Lifetime.Scoped);

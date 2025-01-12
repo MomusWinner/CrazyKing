@@ -3,6 +3,7 @@ using Servant.Upgrade;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
 
 namespace UI.Upgrade.ServantTab
 {
@@ -10,31 +11,62 @@ namespace UI.Upgrade.ServantTab
     {
         [SerializeField] private TMP_Text _name;
         [SerializeField] private TMP_Text _description;
+        [SerializeField] private TMP_Text _lvText;
         [SerializeField] private Image _actionButtonImage;
         [SerializeField] private Image _icon;
         [SerializeField] private ProgressBarByCells _progressBar;
         [SerializeField] private TMP_Text _buttonText;
-        private ServantController _servantController;
+        [Inject] private ServantsSO _servantsSO;
+        [Inject] private ServantsStorage _servantsStorage;
+        private ServantData _servantData;
+        private ServantSO _servantSo;
         
-        public void Setup(ServantController servantController)
+        public void Setup(ServantData servantData)
         {
-            _servantController = servantController;
-            _name.text = servantController.ServantData.servantName;
-            _icon.sprite = servantController.ServantData.avatar;
-            _progressBar.SetUp(servantController.UpgradeController.MaxLevel);
-            _progressBar.SetCurrentValue(servantController.UpgradeController.Level);
-            ServantUpgradeData nextUpgradeData = servantController.UpgradeController.GetNextUpgradeData();
-            _buttonText.text = nextUpgradeData.Price.ToString();
-            _description.text = nextUpgradeData.Description;
+            _servantData = servantData;
+            _servantSo = _servantsSO.GetServantByType(servantData.Type);
+            _name.text = _servantSo.servantName;
+            _icon.sprite = _servantSo.avatar;
+            _progressBar.SetUp(_servantsSO.intervalOfEvolutionLevels);
+            ShowServantUpgradeData();
         }
 
         public void Upgrade()
         {
-            _servantController.UpgradeController.Upgrade();
-            if(_servantController.UpgradeController.Level == _servantController.UpgradeController.MaxLevel)
-                _progressBar.SetFullValue();
+            _servantsStorage.UpgradeServant(_servantData.ID);
+            ShowServantUpgradeData();
+        }
+        
+        private void ShowServantUpgradeData()
+        {
+            _lvText.text = $"lv {_servantData.Lv}";
+            if (IsMaxLv())
+            {
+                _buttonText.text = "MAX";
+                _description.text = "max lv";
+                if (_servantData.Lv % _servantsSO.intervalOfEvolutionLevels == 0)
+                {
+                    _progressBar.SetFullValue();
+                }
+                return;
+            }
+            ServantUpgradeSO upgradeSo = _servantSo.upgrades[_servantData.Lv];
+            SetProgressBarValue(_servantData.Lv);
+            _buttonText.text = upgradeSo.price.ToString();
+            _description.text = upgradeSo.description;
+        }
+
+        private void SetProgressBarValue(int lv)
+        {
+            if (lv % _servantsSO.intervalOfEvolutionLevels == 0)
+                _progressBar.SetCurrentValue(0);
             else
-                _progressBar.SetCurrentValue(_servantController.UpgradeController.Level + 1);
+                _progressBar.SetCurrentValue(lv % _servantsSO.intervalOfEvolutionLevels + 1);
+        }
+
+        private bool IsMaxLv()
+        {
+            return _servantSo.upgrades.Count <= _servantData.Lv;
         }
     }
 }

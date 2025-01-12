@@ -20,11 +20,13 @@ public class BootstrapScope : LifetimeScope
     
     protected override void Configure(IContainerBuilder builder)
     {
+        // Servant
+        builder.RegisterEntryPoint<ServantsStorage>().AsSelf();
+        builder.RegisterInstance(_servantsSO);
         // King
         builder.RegisterInstance(_kingParametersSO);
         builder.RegisterEntryPoint<KingParameterManager>().AsSelf();
-        // Register Servants
-        builder.RegisterInstance(_servantsSO);
+        
         builder.RegisterEntryPoint<CoinsManager>().WithParameter(typeof(int), _startingCoins).AsSelf();
         builder.RegisterEntryPoint<SceneLoader>().WithParameter(typeof(string), _loadingScreenObject).AsSelf();
     }

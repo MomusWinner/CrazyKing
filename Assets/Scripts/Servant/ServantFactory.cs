@@ -33,7 +33,7 @@ namespace Servant
                 Debug.LogWarning("Couldn't get free point from the king");
                 return null;
             }
-            var servant = Resources.Load<GameObject>(servantSO.PrefabPath);
+            var servant = Resources.Load<GameObject>(servantSO.prefabPath);
             ServantController servantController =  _container.Instantiate(
                 servant,
                 point.GetPosition(),

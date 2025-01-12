@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Servant.Upgrade;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Servant
 {
@@ -9,6 +12,13 @@ namespace Servant
         public string description;
         public Sprite avatar;
         public ServantType type;
-        public string PrefabPath;
+        public string prefabPath;
+        public List<ServantUpgradeSO> upgrades;
+        public int price;
+    }
+
+    public enum ServantType
+    {
+        Knight,
     }
 }

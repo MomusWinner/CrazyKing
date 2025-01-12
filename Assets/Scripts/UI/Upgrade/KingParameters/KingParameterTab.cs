@@ -1,10 +1,9 @@
 ﻿using King.Upgrades.Parameters;
-using UI.Upgrade.KingParameters;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace UI.Upgrade.KingParametersTab
+namespace UI.Upgrade.KingParameters
 {
     public class KingParameterTab : MonoBehaviour
     {

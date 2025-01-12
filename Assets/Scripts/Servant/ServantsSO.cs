@@ -7,6 +7,12 @@ namespace Servant
     public class ServantsSO : ScriptableObject
     {
         public int maxServants = 10;
+        public int intervalOfEvolutionLevels = 5;
         public List<ServantSO> availableServants;
+
+        public ServantSO GetServantByType(ServantType type)
+        {
+            return availableServants.Find(x => x.type == type);
+        }
     }
 }
