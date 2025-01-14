@@ -17,7 +17,6 @@ namespace Scope
     public class GameLifetimeScope : LifetimeScope
     {
         [SerializeField] private KingController _kingController;
-        [FormerlySerializedAs("_servantTab")] [SerializeField] private ServantContainer servantContainer;
         
         protected override void Configure(IContainerBuilder builder)
         {
@@ -25,6 +24,9 @@ namespace Scope
             builder.RegisterComponent(_kingController);
             builder.Register<KingFSM>(Lifetime.Scoped);
             builder.Register<ServantFactory>(Lifetime.Singleton);
+            
+            // Servant
+            builder.RegisterEntryPoint<ServantManager>().AsSelf();
             
             // Register Knight
             builder.Register<KnightFollowToKingState>(Lifetime.Transient);

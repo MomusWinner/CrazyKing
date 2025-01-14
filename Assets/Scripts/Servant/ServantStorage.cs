@@ -16,8 +16,8 @@ namespace Servant
         /// <summary>
         /// On add, remove and update servant
         /// </summary>
-        public Action<IList<ServantData>> OnServantsUpdated { get; set; }
-        public IList<ServantData> Servants => _servants.AsReadOnly();
+        public Action<IReadOnlyCollection<ServantData>> OnServantsUpdated { get; set; }
+        public IReadOnlyCollection<ServantData> Servants => _servants.AsReadOnly();
         
         private List<ServantData> _servants;
         [Inject] private ServantsSO _servantsSO;
@@ -88,6 +88,7 @@ namespace Servant
         {
             string servantsJson = JsonConvert.SerializeObject(_servants);
             PlayerPrefs.SetString("Servants", servantsJson);
+            Debug.Log(servantsJson);
         }
 
         private int GetServantsIndexById(int id)

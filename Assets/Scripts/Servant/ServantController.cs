@@ -1,5 +1,4 @@
 ﻿using BaseEntity;
-using Controllers.UpgradeController;
 using King;
 using Servant.Upgrade;
 using UnityEngine;
@@ -9,9 +8,11 @@ namespace Servant
 {
     public abstract class ServantController : EntityController
     {
+        public int ID { get; private set; }
         public abstract IServantUpgradeController UpgradeController { get; }
         
-        public ServantSO ServantData { get; set; }
+        public ServantSO ServantSO { get; set; }
+        public ServantData ServantData { get; set; }
         
         public IPoint Point { get; set; }
         
@@ -22,13 +23,17 @@ namespace Servant
         
         protected override void Start()
         {
-            if (Point is null)
-                if (KingController.TryGetFreePoint(out IPoint point))
-                    Point = point;
             base.Start(); 
+        }
+
+        public void Init()
+        {
+            if (KingController.TryGetPoint(ServantData.PointId, out IPoint point)) Point = point;
+            else Debug.LogError($"ServantPoint ID:{ServantData.PointId} already busy.");
+            ID = ServantData.ID;
             KingController.AddServant(this);
             _enemyMask = LayerMask.GetMask("Enemy");
-            _servantMask = LayerMask.GetMask("King");
+            _servantMask = LayerMask.GetMask("King");           
         }
         
         public Transform FindEnemyInLookRadius()

@@ -6,7 +6,6 @@ using System.Linq;
 using BaseEntity;
 using Controllers;
 using King.Upgrades;
-using King.Upgrades.Parameters;
 using Servant;
 using UnityEngine;
 using VContainer;
@@ -35,11 +34,6 @@ namespace King
         protected override void Start()
         {
             base.Start();
-            // _servantFactory.CreateKnight(transform.position);
-            // _servantFactory.CreateKnight(transform.position);
-            // _servantFactory.CreateKnight(transform.position);
-            // _servantFactory.CreateKnight(transform.position);
-            // _servantFactory.CreateKnight(transform.position);
         }
 
         public void SubscribeToServantsChanged(Action<IList<ServantController>> onChanged)
@@ -58,7 +52,11 @@ namespace King
             return _servants.Remove(servant);
         }
         
-        public bool TryGetFreePoint(out IPoint point) => _pointController.TryGetFreePoint(out point);
+        public bool TryGetPoint(int pointId, out IPoint point)
+            => _pointController.TryGetPoint(pointId, out point);
+        
+        public bool TryGetPositionById(int pointId, out Vector2 position)
+            => _pointController.TryGetPointPosition(pointId, out position);
         
         public void ReturnPoint(IPoint point) => _pointController.ReturnPoint(point);
     }

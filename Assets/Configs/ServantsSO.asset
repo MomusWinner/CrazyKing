@@ -12,5 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c2130bfe524153942b34f4a3b54913, type: 3}
   m_Name: ServantsSO
   m_EditorClassIdentifier: 
+  intervalOfEvolutionLevels: 5
   availableServants:
   - {fileID: 11400000, guid: 3c896312ce6f3c9428a3093ccdfe796e, type: 2}
+  rings:
+  - quantity: 4
+    angleOffset: 0
+    radius: 1.5
+  - quantity: 8
+    angleOffset: 0
+    radius: 2.5
+  - quantity: 10
+    angleOffset: 0
+    radius: 3
