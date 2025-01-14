@@ -15,7 +15,7 @@ namespace UI.Upgrade.ServantShop
         [SerializeField] private Image avatar;
         
         [Inject] private CoinsManager _coinsManager;
-        [Inject] private ServantsStorage _servantsStorage;
+        [Inject] private ServantStorage _servantStorage;
 
         private ServantSO _servant;
         
@@ -35,7 +35,7 @@ namespace UI.Upgrade.ServantShop
                 Debug.LogWarning("Not enough coins to buy a servant.");
                 return;
             }
-            _servantsStorage.AddServant(new ServantData()
+            _servantStorage.AddServant(new ServantData()
             {
                 IsUsed = false,
                 Lv = 0,

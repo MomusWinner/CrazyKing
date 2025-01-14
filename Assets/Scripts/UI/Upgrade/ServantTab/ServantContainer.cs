@@ -12,15 +12,15 @@ namespace UI.Upgrade.ServantTab
     { 
         [SerializeField] private GameObject _servantItemPref;
         [SerializeField] private GameObject _servantItemParent;
-        [Inject] private ServantsStorage _servantsStorage;
+        [Inject] private ServantStorage _servantStorage;
         [Inject] private IObjectResolver _container;
         private List<ServantItem> _servantItems = new();
         
         public void Start()
         {
             SetupServants();
-            _servantsStorage.OnAddServant += AddNewServant;
-            _servantsStorage.OnRemoveServant += id =>
+            _servantStorage.OnAddServant += AddNewServant;
+            _servantStorage.OnRemoveServant += id =>
             {
                 foreach (var item in _servantItems.Where(item => item.ServantData.ID == id))
                     Destroy(item.gameObject);
@@ -32,7 +32,7 @@ namespace UI.Upgrade.ServantTab
              _servantItems.ForEach(item => Destroy(item.gameObject));
              _servantItems.Clear();
              
-             foreach (var servant in _servantsStorage.Servants)
+             foreach (var servant in _servantStorage.Servants)
              {
                  AddNewServant(servant);
              }           

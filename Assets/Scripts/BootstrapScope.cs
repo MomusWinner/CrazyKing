@@ -21,7 +21,7 @@ public class BootstrapScope : LifetimeScope
     protected override void Configure(IContainerBuilder builder)
     {
         // Servant
-        builder.RegisterEntryPoint<ServantsStorage>().AsSelf();
+        builder.RegisterEntryPoint<ServantStorage>().AsSelf();
         builder.RegisterInstance(_servantsSO);
         // King
         builder.RegisterInstance(_kingParametersSO);

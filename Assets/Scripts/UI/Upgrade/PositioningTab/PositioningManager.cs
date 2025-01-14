@@ -14,7 +14,7 @@ namespace UI.Upgrade.PositioningTab
         [SerializeField] private GameObject servantCardPref;
         [SerializeField] private ServantCardContainer servantCardContainer;
         [SerializeField] private TrashZone trashZone;
-        [Inject] private ServantsStorage _servantsStorage;
+        [Inject] private ServantStorage _servantStorage;
         [Inject] private IObjectResolver _container;
         private List<ServantCard> _servantCards = new();
         
@@ -22,15 +22,15 @@ namespace UI.Upgrade.PositioningTab
         
         public void Start()
         {
-            SetupCards(_servantsStorage.Servants);
+            SetupCards(_servantStorage.Servants);
             trashZone.OnThrowToTrash += OnThrowToTrash;
-            _servantsStorage.OnAddServant += AddServantCard;
-            _servantsStorage.OnRemoveServant += id =>
+            _servantStorage.OnAddServant += AddServantCard;
+            _servantStorage.OnRemoveServant += id =>
             {
                 foreach (var servantCard in _servantCards.Where(c => c.ServantData.ID == id))
                     Destroy(servantCard.gameObject);
             };
-            _servantsStorage.OnUpgradeServant += data =>
+            _servantStorage.OnUpgradeServant += data =>
             {
                 foreach (var servantCard in _servantCards.Where(c => c.ServantData.ID == data.ID))
                 {
@@ -39,11 +39,7 @@ namespace UI.Upgrade.PositioningTab
             };
         }
 
-        public void SetServantCardToSlot(ServantCard card, PositionSlot slot)
-        {
-            slot.SetServantCard(card);
-            _servantsStorage.SetServantPoint(card.ServantData.ID, slot.PositionId);
-        }
+
         
         private void SetupCards(IEnumerable<ServantData> servants)
         {
@@ -102,9 +98,10 @@ namespace UI.Upgrade.PositioningTab
             if (!slot.IsEmpty)
             {
                 PositionSlot previousSlot = GetSlotByServantId(servantCard.ServantData.ID);
-                if (previousSlot == null)
-                    return;
-                SetServantCardToSlot(slot.ServantCard, previousSlot);
+                if (previousSlot != null)
+                    SetCardToSlot(previousSlot, slot.ServantCard);
+                if (servantCardContainer.FindServantCardById(servantCard.ServantData.ID) != null)
+                    AddCardToServantCardContainer(slot.ServantCard);
             }
             SetCardToSlot(slot, servantCard);   
         }
@@ -112,19 +109,24 @@ namespace UI.Upgrade.PositioningTab
         private void SetCardToSlot(PositionSlot slot, ServantCard card)
         {
             DropCard(card.ServantData.ID);
-            _servantsStorage.SetServantPoint(card.ServantData.ID, slot.PositionId);
+            _servantStorage.SetServantPoint(card.ServantData.ID, slot.PositionId);
             slot.SetServantCard(card);
         }
-
+        
         private void OnCardContainerDetectDrop(ServantCard servantCard)
         {
             if(_currentCard is null) return;
             CleanupCurrentCard();
-            DropCard(servantCard.ServantData.ID);
-            _servantsStorage.UnsetServantPoint(servantCard.ServantData.ID);
-            servantCardContainer.AddServantCard(servantCard);
+            AddCardToServantCardContainer(servantCard);
         }    
         
+        private void AddCardToServantCardContainer(ServantCard servantCard)
+        {
+             DropCard(servantCard.ServantData.ID);
+             _servantStorage.UnsetServantPoint(servantCard.ServantData.ID);
+             servantCardContainer.AddServantCard(servantCard);            
+        }
+         
         private Transform GetCardParent(int id)
         {
             int index = slots.FindIndex(s => !s.IsEmpty && s.ServantCard.ServantData.ID == id);
@@ -153,7 +155,7 @@ namespace UI.Upgrade.PositioningTab
         private void OnThrowToTrash(ServantCard card)
         {
             CleanupCurrentCard();
-            _servantsStorage.RemoveServant(card.ServantData.ID);
+            _servantStorage.RemoveServant(card.ServantData.ID);
             Destroy(card.gameObject);
         }
 

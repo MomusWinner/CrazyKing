@@ -19,7 +19,7 @@ namespace UI.Upgrade.ServantTab
         [SerializeField] private ProgressBarByCells _progressBar;
         [SerializeField] private TMP_Text _buttonText;
         [Inject] private ServantsSO _servantsSO;
-        [Inject] private ServantsStorage _servantsStorage;
+        [Inject] private ServantStorage _servantStorage;
         private ServantData _servantData;
         private ServantSO _servantSo;
         
@@ -35,7 +35,7 @@ namespace UI.Upgrade.ServantTab
 
         public void Upgrade()
         {
-            _servantsStorage.UpgradeServant(_servantData.ID);
+            _servantStorage.UpgradeServant(_servantData.ID);
             ShowServantUpgradeData();
         }
         

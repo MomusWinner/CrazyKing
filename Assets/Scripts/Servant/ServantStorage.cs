@@ -8,7 +8,7 @@ using VContainer.Unity;
 
 namespace Servant
 {
-    public class ServantsStorage : IStartable
+    public class ServantStorage : IStartable
     {
         public Action<ServantData> OnAddServant;
         public Action<int> OnRemoveServant;
