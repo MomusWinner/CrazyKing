@@ -10,8 +10,11 @@ namespace Servant
 {
     public class ServantsStorage : IStartable
     {
+        public Action<ServantData> OnAddServant;
+        public Action<int> OnRemoveServant;
+        public Action<ServantData> OnUpgradeServant;
         /// <summary>
-        /// On add or remove servant
+        /// On add, remove and update servant
         /// </summary>
         public Action<IList<ServantData>> OnServantsUpdated { get; set; }
         public IList<ServantData> Servants => _servants.AsReadOnly();
@@ -28,8 +31,10 @@ namespace Servant
         {
             int index = GetServantsIndexById(id);
             if (index == -1) return;
-            Servants.RemoveAt(index);
+            _servants.RemoveAt(index);
             OnServantsUpdated?.Invoke(Servants);
+            OnRemoveServant?.Invoke(id);
+            Save();
         }
         
         public void AddServant(ServantData servantData)
@@ -38,6 +43,7 @@ namespace Servant
             _servants.Add(servantData);
             Save();
             OnServantsUpdated?.Invoke(Servants);
+            OnAddServant?.Invoke(servantData);
         }
 
         public void UpgradeServant(int id)
@@ -49,8 +55,29 @@ namespace Servant
             if (servantData.Lv >= maxUpgradeLv) return;
             servantData.Lv++;
             Save();
+            OnServantsUpdated?.Invoke(Servants);
+            OnUpgradeServant?.Invoke(servantData);
         }
 
+        public void UnsetServantPoint(int id)
+        {
+            int index = GetServantsIndexById(id);
+            if (index == -1) return;
+            ServantData servantData = _servants[index];
+            servantData.IsUsed = false;
+            Save();
+        }
+
+        public void SetServantPoint(int id, int pointId)
+        {
+            int index = GetServantsIndexById(id);
+            if (index == -1) return;
+            ServantData servantData = _servants[index];
+            servantData.PointId = pointId;
+            servantData.IsUsed = true;
+            Save();
+        }
+        
         private void Load()
         {
             string servantsJson = PlayerPrefs.GetString("Servants");
@@ -61,7 +88,6 @@ namespace Servant
         {
             string servantsJson = JsonConvert.SerializeObject(_servants);
             PlayerPrefs.SetString("Servants", servantsJson);
-            Debug.Log(servantsJson);
         }
 
         private int GetServantsIndexById(int id)
@@ -76,6 +102,6 @@ namespace Servant
         public int Lv { get; set; }
         public bool IsUsed { get; set; }
         public ServantType Type { get; set; }
-        public int? PointNumber { get; set; }
+        public int PointId { get; set; }
     }
 }

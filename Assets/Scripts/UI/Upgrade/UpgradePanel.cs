@@ -1,52 +1,38 @@
-﻿using DG.Tweening;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace UI.Upgrade
 {
     public class UpgradePanel : MonoBehaviour
     {
-        [SerializeField] private float _panelWidth;
-        [SerializeField] private GameObject _kingParameterTab;
-        [SerializeField] private GameObject _servantTab;
-        
-        private RectTransform _rectTransform;
-        private GameObject _currentTab;
+        [SerializeField] private GameObject positioningTab;
+        [SerializeField] private GameObject upgradeTab;
+        private GameObject currentTab;
+
+        public void Start()
+        {
+            positioningTab.SetActive(false);
+            upgradeTab.SetActive(false);
+            OpenTab(positioningTab);
+        }
 
         public void DeleteSave()
         {
             PlayerPrefs.DeleteAll();
         }
-        // public void Start()
-        // {
-        //     OpenKingParameterTab();
-        //     _rectTransform = GetComponent<RectTransform>();
-        // }
-        //
-        // public void Open()
-        // {
-        //     _rectTransform.DOAnchorPosX(-1 * _panelWidth / 2, 1f).SetEase(Ease.OutCubic);
-        // }
-        //
-        // public void Close()
-        // {
-        //     _rectTransform.DOAnchorPosX(_panelWidth / 2, 1f).SetEase(Ease.OutCubic);
-        // }
-        //
-        // public void OpenKingParameterTab()
-        // {
-        //     OpenTab(_kingParameterTab);
-        // }
-        //
-        // public void OpenServantTab()
-        // {
-        //     OpenTab(_servantTab);
-        // }
-        //
-        // public void OpenTab(GameObject tab)
-        // {
-        //     _currentTab?.SetActive(false);
-        //     tab.SetActive(true);
-        //     _currentTab = tab;
-        // }
+
+        public void StartGame()
+        {
+        }
+
+        public void OpenUpgradesTab() => OpenTab(upgradeTab);
+
+        public void OpenPositioningTab() => OpenTab(positioningTab);
+
+        private void OpenTab(GameObject tab)
+        {
+            currentTab?.SetActive(false);
+            currentTab = tab;
+            currentTab.SetActive(true);
+        }
     }
 }

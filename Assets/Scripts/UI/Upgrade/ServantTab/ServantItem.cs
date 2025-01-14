@@ -9,6 +9,8 @@ namespace UI.Upgrade.ServantTab
 {
     public class ServantItem: MonoBehaviour
     {
+        public ServantData ServantData => _servantData;
+        
         [SerializeField] private TMP_Text _name;
         [SerializeField] private TMP_Text _description;
         [SerializeField] private TMP_Text _lvText;

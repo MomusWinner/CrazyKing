@@ -14,7 +14,7 @@ namespace UI.Upgrade.KingParameters
 
         public void Start()
         {
-            foreach (var (type, kingParameter) in _parameters.GetKingParameters())
+            foreach (var (_, kingParameter) in _parameters.GetKingParameters())
             {
                 var parameterUpController = _container.Instantiate(_kingParameterPref, _parametersParent.transform)
                     .GetComponent<KingParameterUI>();
