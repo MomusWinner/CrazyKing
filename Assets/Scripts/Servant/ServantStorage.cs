@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using TMPro;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -51,7 +52,7 @@ namespace Servant
             int index = GetServantsIndexById(id);
             if (index == -1) return;
             ServantData servantData = _servants[index];
-            int maxUpgradeLv = _servantsSO.GetServantByType(servantData.Type).upgrades.Count;
+            int maxUpgradeLv = _servantsSO.GetServantByType(servantData.Type).Upgrades.Count;
             if (servantData.Lv >= maxUpgradeLv) return;
             servantData.Lv++;
             Save();
@@ -77,6 +78,16 @@ namespace Servant
             servantData.IsUsed = true;
             Save();
         }
+ 
+        public bool TryMergeServants(List<int> ids)
+        {
+            int upServantId = ids.First();
+            ids.Remove(upServantId);
+            foreach (var id in ids)
+                RemoveServant(id);
+            UpgradeServant(upServantId);
+            return true;
+        }       
         
         private void Load()
         {

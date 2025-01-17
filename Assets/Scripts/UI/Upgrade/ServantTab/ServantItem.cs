@@ -1,4 +1,7 @@
-﻿using Servant;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Controllers;
+using Servant;
 using Servant.Upgrade;
 using TMPro;
 using UnityEngine;
@@ -15,13 +18,18 @@ namespace UI.Upgrade.ServantTab
         [SerializeField] private TMP_Text _description;
         [SerializeField] private TMP_Text _lvText;
         [SerializeField] private Image _actionButtonImage;
+        [SerializeField] private Button _actionButton;
         [SerializeField] private Image _icon;
         [SerializeField] private ProgressBarByCells _progressBar;
         [SerializeField] private TMP_Text _buttonText;
         [Inject] private ServantsSO _servantsSO;
         [Inject] private ServantStorage _servantStorage;
+        [Inject] private CoinsManager _coinsManager;
         private ServantData _servantData;
         private ServantSO _servantSo;
+        private ServantUpgradeData NextUpgrade => _servantSo.Upgrades[ServantData.Lv];
+        private bool _canByMerged;
+        private List<ServantData> _sameServants;
         
         public void Setup(ServantData servantData)
         {
@@ -30,13 +38,43 @@ namespace UI.Upgrade.ServantTab
             _name.text = _servantSo.servantName;
             _icon.sprite = _servantSo.avatar;
             _progressBar.SetUp(_servantsSO.intervalOfEvolutionLevels);
+            if (!IsMaxLv())
+            {
+                _servantStorage.OnUpgradeServant += OnUpgradeServant;
+                CheckMergeAvailable();
+            }
             ShowServantUpgradeData();
         }
 
         public void Upgrade()
         {
-            _servantStorage.UpgradeServant(_servantData.ID);
-            ShowServantUpgradeData();
+            if (NextUpgrade.isMergeUpgrade)
+            {
+                if (!_canByMerged)
+                {
+                    Debug.LogWarning("Can't merge servants.");
+                    return;
+                }
+
+                _servantStorage.TryMergeServants(_sameServants
+                    .Select(s => s.ID)
+                    .ToList()
+                    .GetRange(0, NextUpgrade.mergeAmount));
+            }
+            else
+            {
+                if (!_coinsManager.TryGetCoins(NextUpgrade.price))
+                {
+                    Debug.LogWarning("Not enough coins.");
+                    return;
+                } 
+                _servantStorage.UpgradeServant(_servantData.ID);
+            }
+
+            if (IsMaxLv())
+            {
+                _servantStorage.OnUpgradeServant -= OnUpgradeServant;
+            }
         }
         
         private void ShowServantUpgradeData()
@@ -46,16 +84,28 @@ namespace UI.Upgrade.ServantTab
             {
                 _buttonText.text = "MAX";
                 _description.text = "max lv";
+                _actionButton.interactable = false;
                 if (_servantData.Lv % _servantsSO.intervalOfEvolutionLevels == 0)
                 {
                     _progressBar.SetFullValue();
                 }
                 return;
             }
-            ServantUpgradeSO upgradeSo = _servantSo.upgrades[_servantData.Lv];
             SetProgressBarValue(_servantData.Lv);
-            _buttonText.text = upgradeSo.price.ToString();
-            _description.text = upgradeSo.description;
+            _description.text = NextUpgrade.description;
+            if (NextUpgrade.isMergeUpgrade)
+                _buttonText.text = "MERGE " + NextUpgrade.mergeAmount;
+            else
+                _buttonText.text = NextUpgrade.price.ToString();
+        }
+
+        private void OnUpgradeServant(ServantData data)
+        {
+            if (data.ID == ServantData.ID)
+            { 
+                ShowServantUpgradeData();                   
+            }
+            CheckMergeAvailable();
         }
 
         private void SetProgressBarValue(int lv)
@@ -68,7 +118,37 @@ namespace UI.Upgrade.ServantTab
 
         private bool IsMaxLv()
         {
-            return _servantSo.upgrades.Count <= _servantData.Lv;
+            return _servantSo.Upgrades.Count <= _servantData.Lv;
+        }
+
+        private void CheckMergeAvailable()
+        {
+            if (!NextUpgrade.isMergeUpgrade)
+            {
+                _sameServants?.Clear();
+                _canByMerged = false;
+                return;
+            }
+            _sameServants = GetServantsBySameTypeAndLv();
+            if (_sameServants.Count < NextUpgrade.mergeAmount)
+            {
+                _sameServants.Clear();
+                _canByMerged = false;
+                return;
+            }
+            _canByMerged = true;
+        }
+
+        private List<ServantData> GetServantsBySameTypeAndLv()
+        {
+            List<ServantData> servants = new List<ServantData>();
+            foreach (var servantData in _servantStorage.Servants)
+            {
+                if (servantData.Lv == ServantData.Lv && servantData.Type == ServantData.Type)
+                    servants.Add(servantData);
+            }
+            
+            return servants;
         }
     }
 }

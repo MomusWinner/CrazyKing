@@ -1,8 +1,5 @@
-﻿using Controllers.UpgradeController;
-using Servant.FSM;
+﻿using Servant.FSM;
 using Servant.Knight.FSM;
-using Servant.Knight.Upgrades;
-using Servant.Upgrade;
 using UnityEngine;
 using VContainer;
 
@@ -10,50 +7,23 @@ namespace Servant.Knight
 {
     public class KnightController : ServantController
     {
-        public override IServantUpgradeController UpgradeController => _upgradeController;
         public ServantFSM<KnightController> Fsm => _fsm;
         
         public float AttackRadius =>  _attackRadius;
+        public int AttackDamage { get; set; }
         
-        public int AttackDamage => _damage;
-        
-        public KnightUpgradeController _upgradeController;
-            
         [Inject] private ServantFSM<KnightController> _fsm;
 
         [SerializeField] private float _attackRadius;
-        [SerializeField] private int _damage;
 
-        protected override void Awake()
+        public override void Initialize()
         {
-            base.Awake();
-            _upgradeController = new KnightUpgradeController(this, new IUpgradable<KnightController>[]
-            {
-                new Knight1Upgrade(),
-                new Knight2Upgrade(),
-                new Knight3Upgrade(),
-                new Knight4Upgrade(),
-                new Knight5Upgrade()
-            });
-        }
-        
-        protected override void Start()
-        {
-            base.Start();
             _fsm.SetUp(this);
             _fsm.ChangeState<KnightFollowToKingState>();
+            base.Initialize();
         }
-
         protected override void Update()
         {
-            if (Input.GetKeyDown(KeyCode.J))
-            {
-                _upgradeController.Upgrade();
-            }
-            else if (Input.GetKeyDown(KeyCode.K))
-            {
-                _upgradeController.Downgrade();
-            }
             base.Update();
             _fsm?.Update();
         }

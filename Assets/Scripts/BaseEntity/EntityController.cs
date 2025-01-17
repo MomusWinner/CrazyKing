@@ -7,6 +7,7 @@ namespace BaseEntity
     [RequireComponent(typeof(NavMeshAgent))]
     public abstract class EntityController : BaseEntityController
     {
+        public override float Speed => _agent.speed;
         public float LookRadius => _lookRadius;
 
         [SerializeField] private float _lookRadius;
@@ -81,6 +82,11 @@ namespace BaseEntity
             }
 
             return null;    
+        }
+
+        public void SetSpeed(float speed)
+        {
+            _agent.speed = speed;
         }
     }
 }

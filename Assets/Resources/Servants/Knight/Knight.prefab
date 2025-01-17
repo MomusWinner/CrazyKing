@@ -235,13 +235,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radius: 0.3
   _healthData: {fileID: 5012305167229742227}
-  _maxHealth: 100
+  _maxHealth: 0
   _rotationSpeed: 4
   _speed: 3.5
   _animator: {fileID: 1519547769236760422}
   _lookRadius: 4.79
+  KingController: {fileID: 0}
   _attackRadius: 0.6
-  _damage: 4
 --- !u!95 &1519547769236760422
 Animator:
   serializedVersion: 7

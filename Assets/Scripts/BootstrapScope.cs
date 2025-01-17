@@ -2,6 +2,7 @@
 using King;
 using King.Upgrades.Parameters;
 using Servant;
+using Servant.FSM;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -9,6 +10,7 @@ using VContainer.Unity;
 public class BootstrapScope : LifetimeScope
 {
     [SerializeField] private int _startingCoins;
+    [SerializeField] private ServantStatesSO servantStatesSo;
     [SerializeField] private string _loadingScreenObject = "Loading/Loading"; 
     [SerializeField] private ServantsSO _servantsSO;
     [SerializeField] private KingParametersSO _kingParametersSO;
@@ -21,6 +23,7 @@ public class BootstrapScope : LifetimeScope
     protected override void Configure(IContainerBuilder builder)
     {
         // Servant
+        builder.RegisterInstance(servantStatesSo);
         builder.RegisterEntryPoint<ServantStorage>().AsSelf();
         builder.RegisterInstance(_servantsSO);
         // King

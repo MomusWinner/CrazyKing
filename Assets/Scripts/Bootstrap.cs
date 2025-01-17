@@ -20,9 +20,5 @@ public class Bootstrap : MonoBehaviour
             Debug.Log("Delete all PlayerPrefs data");
             PlayerPrefs.DeleteAll();
         }
-        // if (Input.GetKeyDown(KeyCode.N))
-        // {
-        //     _sceneLoader.LoadScene("Level_2");
-        // }
     }
 }

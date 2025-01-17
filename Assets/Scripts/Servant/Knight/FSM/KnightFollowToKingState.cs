@@ -11,7 +11,7 @@ namespace Servant.Knight.FSM
 
         private IEnumerator _checkEnemyCoroutine;
         
-        public KnightFollowToKingState(KingController king) : base(king)
+        public KnightFollowToKingState(KingController king, ServantStatesSO statesSO) : base(king, statesSO)
         {
         }
 

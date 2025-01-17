@@ -21,7 +21,7 @@
             currentState?.FixedUpdate();
         }
 
-        public void SendMessage(string name, object message)
+        public void SendMessage(string name, object message = null)
         {
             currentState?.Message(name, message);
         }

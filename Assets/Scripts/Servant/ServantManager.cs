@@ -33,7 +33,6 @@ namespace Servant
                 }
                 ServantController servant = _servantFactory.CreateServant(servantData, position);
                 _servants.Add(servant);
-                servant.Init();
             }
         }
     }

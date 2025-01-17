@@ -10,6 +10,7 @@ namespace Enemy
 
         protected override void Start()
         {
+            Initialize();
             base.Start();
             _servantMask = LayerMask.GetMask("King");
             _enemyMask = LayerMask.GetMask("Enemy");

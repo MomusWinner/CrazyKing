@@ -1,6 +1,5 @@
 ﻿using BaseEntity;
 using King;
-using Servant.Upgrade;
 using UnityEngine;
 using VContainer;
 
@@ -9,11 +8,8 @@ namespace Servant
     public abstract class ServantController : EntityController
     {
         public int ID { get; private set; }
-        public abstract IServantUpgradeController UpgradeController { get; }
-        
         public ServantSO ServantSO { get; set; }
         public ServantData ServantData { get; set; }
-        
         public IPoint Point { get; set; }
         
         [Inject] public KingController KingController;
@@ -26,8 +22,9 @@ namespace Servant
             base.Start(); 
         }
 
-        public void Init()
+        public override void Initialize()
         {
+            base.Initialize();
             if (KingController.TryGetPoint(ServantData.PointId, out IPoint point)) Point = point;
             else Debug.LogError($"ServantPoint ID:{ServantData.PointId} already busy.");
             ID = ServantData.ID;

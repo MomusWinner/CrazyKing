@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Servant;
-using UnityEditor;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -35,7 +34,7 @@ namespace UI.Upgrade.ServantTab
              foreach (var servant in _servantStorage.Servants)
              {
                  AddNewServant(servant);
-             }           
+             }        
         }
 
         private void AddNewServant(ServantData servantData)

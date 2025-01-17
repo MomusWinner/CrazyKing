@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace Servant
 {
-
-    
     [CreateAssetMenu(menuName = "Game/Servant/ServantsSO")]
     public class ServantsSO : ScriptableObject
     {

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using Enemy;
 using Servant.FSM;
 using UnityEngine;

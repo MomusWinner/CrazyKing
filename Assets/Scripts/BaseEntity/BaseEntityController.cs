@@ -1,5 +1,4 @@
-﻿using System;
-using Health;
+﻿using Health;
 using UnityEngine;
 
 namespace BaseEntity
@@ -12,7 +11,7 @@ namespace BaseEntity
         
         public Rigidbody2D RigidBody => _rigidBody;
         
-        public float Speed => _speed;
+        public virtual float Speed => _speed;
         
         public Animator Animator => _animator;
         
@@ -27,22 +26,23 @@ namespace BaseEntity
         private Rigidbody2D _rigidBody;
         private HealthController _healthController;
 
-        protected virtual void Awake()
-        { }
-
-        protected virtual void Start()
+        public virtual void Initialize()
         {
             _healthController = new HealthController(_maxHealth, _healthData, OnDead);
             _rigidBody = GetComponent<Rigidbody2D>();
         }
         
+        protected virtual void Awake()
+        { }
+
+        protected virtual void Start()
+        { }
+        
         protected virtual void Update()
-        {
-        }
+        { }
 
         protected virtual void FixedUpdate()
-        {
-        }
+        { }
 
         public virtual void Rotate(Vector2 dir, float t)
         {
