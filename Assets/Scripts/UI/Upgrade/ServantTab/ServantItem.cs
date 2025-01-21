@@ -4,6 +4,7 @@ using Controllers;
 using Servant;
 using Servant.Upgrade;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -27,7 +28,7 @@ namespace UI.Upgrade.ServantTab
         [Inject] private CoinsManager _coinsManager;
         private ServantData _servantData;
         private ServantSO _servantSo;
-        private ServantUpgradeData NextUpgrade => _servantSo.Upgrades[ServantData.Lv];
+        private ServantUpgradeData NextUpgrade => ServantData.Lv >= _servantSo.Upgrades.Count ? null : _servantSo.Upgrades[ServantData.Lv];
         private bool _canByMerged;
         private List<ServantData> _sameServants;
         
@@ -36,7 +37,6 @@ namespace UI.Upgrade.ServantTab
             _servantData = servantData;
             _servantSo = _servantsSO.GetServantByType(servantData.Type);
             _name.text = _servantSo.servantName;
-            _icon.sprite = _servantSo.avatar;
             _progressBar.SetUp(_servantsSO.intervalOfEvolutionLevels);
             if (!IsMaxLv())
             {
@@ -75,10 +75,13 @@ namespace UI.Upgrade.ServantTab
             {
                 _servantStorage.OnUpgradeServant -= OnUpgradeServant;
             }
+            ShowServantUpgradeData();
         }
         
         private void ShowServantUpgradeData()
         {
+            if(_servantData is null) return;
+            _icon.sprite = _servantSo.GetAvatarByLevel(_servantData.Lv);
             _lvText.text = $"lv {_servantData.Lv}";
             if (IsMaxLv())
             {
@@ -123,6 +126,7 @@ namespace UI.Upgrade.ServantTab
 
         private void CheckMergeAvailable()
         {
+            if(NextUpgrade is null) return;
             if (!NextUpgrade.isMergeUpgrade)
             {
                 _sameServants?.Clear();

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Finders;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +7,7 @@ namespace BaseEntity
     [RequireComponent(typeof(NavMeshAgent))]
     public abstract class EntityController : BaseEntityController
     {
-        public override float Speed => _agent.speed;
+        public EntityFinder TargetFinder { get; protected set; }
         public float LookRadius => _lookRadius;
 
         [SerializeField] private float _lookRadius;
@@ -18,7 +18,7 @@ namespace BaseEntity
             _agent = GetComponent<NavMeshAgent>();
             _agent.updateRotation = false;
             _agent.updateUpAxis = false;
-            _agent.speed = Speed;
+            _agent.speed = speed;
         }
 
         protected override void FixedUpdate()
@@ -51,42 +51,15 @@ namespace BaseEntity
             }
         }
 
-        public Transform FindObjectInLookRadius(LayerMask targetMask, LayerMask ignoreMask)
+        public Transform FindTargetInLookRadius()
         {
-            Vector3 entityPos = transform.position;
-            var targets = Physics2D.OverlapCircleAll(
-                transform.position,
-                LookRadius,
-                targetMask);
-
-            Array.Sort(targets, (collider2D1, collider2D2) =>
-            {
-                float dist1 = (collider2D1.transform.position - entityPos).sqrMagnitude;
-                float dist2 = (collider2D2.transform.position - entityPos).sqrMagnitude;
-                if (dist1 < dist2)
-                    return -1;
-                if (dist1 > dist2)
-                    return 1;
-
-                return 0;
-            });
-
-            foreach (var target in targets)
-            {
-                RaycastHit2D hit = Physics2D.Raycast(entityPos,
-                    target.transform.position - entityPos,
-                    LookRadius,  ~ignoreMask);
-
-                if (hit.collider != null && targetMask == (targetMask | (1 << hit.collider.gameObject.layer)))
-                    return hit.collider.transform;
-            }
-
-            return null;    
+            return  TargetFinder.FindObjectInLookRadius(transform.position);
         }
 
         public void SetSpeed(float speed)
         {
             _agent.speed = speed;
+            this.speed = speed;
         }
     }
 }

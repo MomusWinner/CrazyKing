@@ -19,9 +19,11 @@ namespace UI.Upgrade.PositioningTab
 
         public void Setup(ServantData servantData)
         {
+            if (servantData is null)
+                return;
             ServantData = servantData;
             ServantSO servantSo = _servantsSO.GetServantByType(servantData.Type);
-            avatar.sprite = servantSo.avatar;
+            avatar.sprite = servantSo.GetAvatarByLevel(servantData.Lv);
             lv.text = servantData.Lv.ToString();
         }
 

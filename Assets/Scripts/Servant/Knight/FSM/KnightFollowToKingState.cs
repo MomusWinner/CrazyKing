@@ -33,7 +33,7 @@ namespace Servant.Knight.FSM
             while (true)
             {
                 yield return new WaitForSeconds(0.5f);
-                Transform enemy = Servant.FindEnemyInLookRadius();
+                Transform enemy = Servant.TargetFinder.FindObjectInLookRadius(Servant.transform.position);
                 if (enemy is not null)
                     Servant.Fsm.ChangeState<KnightAttackState>(); // TODO send target to state
             }

@@ -1,4 +1,6 @@
-﻿using Servant.Knight;
+﻿using Servant.Archer;
+using Servant.Archer.Upgrades;
+using Servant.Knight;
 using Servant.Knight.Upgrades;
 using UnityEngine;
 using VContainer;
@@ -37,8 +39,13 @@ namespace Servant
             servantController.ServantSO = servantSO;
             servantController.Initialize();
             IServantParameterSetter upgrader = GetParamUpgrader(servantController, servantSO);
+            if (upgrader is null)
+            {
+                Debug.LogError($"Register your servant{servantSO.type} in GetParamUpgrader method");
+            }
             upgrader.SetStartParameter();
             upgrader.UpgradeParameters(servantData.Lv);
+            servantController.StartFirstState();
             return servantController;
         }
 
@@ -48,6 +55,8 @@ namespace Servant
             {
                 case ServantType.Knight:
                     return new KnightParametersUpgrader((KnightServantSO)servantSo, (KnightController)controller);
+                case ServantType.Archer:
+                    return new ArcherParametersUpgrader((ArcherServantSO) servantSo, (ArcherController)controller);
             }
             return null;
         }

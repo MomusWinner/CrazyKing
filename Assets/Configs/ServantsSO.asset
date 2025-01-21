@@ -15,6 +15,7 @@ MonoBehaviour:
   intervalOfEvolutionLevels: 5
   availableServants:
   - {fileID: 11400000, guid: 30fe46246c5e2ce43b6e240d6766a8ac, type: 2}
+  - {fileID: 11400000, guid: 0106507f49750364b94fb5d61320eb7a, type: 2}
   rings:
   - quantity: 4
     angleOffset: 0

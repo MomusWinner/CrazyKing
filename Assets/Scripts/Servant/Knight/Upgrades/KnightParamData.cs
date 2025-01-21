@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor.Animations;
 
 namespace Servant.Knight.Upgrades
 {
@@ -9,5 +10,6 @@ namespace Servant.Knight.Upgrades
         public int damage;
         public float attackSpeed;
         public float speed;
+        public AnimatorController animatorController;
     }
 }

@@ -60,8 +60,7 @@ namespace King
                 {
                     float angle = Mathf.Lerp(0, 360, (float)i / ring.quantity);
                     angle += ring.angleOffset;
-                    Vector2 position = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
-                    position *= ring.radius;
+                    Vector2 position = MathUtils.AngleToVector2(angle) * ring.radius;
                     CreatePoint(position);
                 }
             }

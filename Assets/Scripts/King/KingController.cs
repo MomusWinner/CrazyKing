@@ -34,6 +34,7 @@ namespace King
         protected override void Start()
         {
             base.Start();
+            Initialize();
         }
 
         public void SubscribeToServantsChanged(Action<IList<ServantController>> onChanged)

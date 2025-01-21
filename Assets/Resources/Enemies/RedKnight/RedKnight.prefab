@@ -288,12 +288,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716a7d4a353a45cd8ebc09434ffd31ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 0.3
-  _healthData: {fileID: 4479689275655107448}
-  _maxHealth: 40
-  _rotationSpeed: 3
-  _speed: 1
-  _animator: {fileID: 3948156043672189180}
+  radius: 0.3
+  healthData: {fileID: 4479689275655107448}
+  maxHealth: 300
+  rotationSpeed: 7
+  speed: 4
+  animator: {fileID: 3948156043672189180}
   _lookRadius: 10
   _attackDamage: 15
   _attackRadius: 0.6

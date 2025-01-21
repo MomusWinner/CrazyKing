@@ -106,7 +106,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Knight
+  m_Name: KnightLv1
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Attack
@@ -186,7 +186,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 898d3e4c549648048b3d63f4a121caa6, type: 2}
+  m_Motion: {fileID: 7400000, guid: c7004954e1ae5f144a0750a8a8b61eee, type: 2}
   m_Tag: 
   m_SpeedParameter: AttackSpeed
   m_MirrorParameter: 
@@ -239,7 +239,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 19edcd459350eed4a8a5fe0afabd5253, type: 2}
+  m_Motion: {fileID: 7400000, guid: d22798800cdd2c746a8e2a7bdb12ab02, type: 2}
   m_Tag: 
   m_SpeedParameter: AttackSpeed
   m_MirrorParameter: 
@@ -267,7 +267,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 383f8c725a7bcd94b85e8c22ed8585a3, type: 2}
+  m_Motion: {fileID: 7400000, guid: 70048a66971f9274e90cf5e6665985b6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

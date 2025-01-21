@@ -1,5 +1,6 @@
 ﻿using Health;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BaseEntity
 {
@@ -11,24 +12,24 @@ namespace BaseEntity
         
         public Rigidbody2D RigidBody => _rigidBody;
         
-        public virtual float Speed => _speed;
-        
-        public Animator Animator => _animator;
-        
-        public float Radius => _radius;
+        public virtual float Speed => speed;
 
-        [SerializeField] private float _radius;
-        [SerializeField] private HealthUIData _healthData;
-        [SerializeField] private int _maxHealth;
-        [SerializeField] private float _rotationSpeed;
-        [SerializeField] private float _speed;
-        [SerializeField] private Animator _animator;
+        public Animator Animator => animator;
+        
+        public float Radius => radius;
+
+        [SerializeField] protected float radius;
+        [SerializeField] protected HealthUIData healthData;
+        [SerializeField] protected int maxHealth;
+        [SerializeField] protected float rotationSpeed;
+        [SerializeField] protected float speed;
+        [SerializeField] protected Animator animator;
         private Rigidbody2D _rigidBody;
         private HealthController _healthController;
 
         public virtual void Initialize()
         {
-            _healthController = new HealthController(_maxHealth, _healthData, OnDead);
+            _healthController = new HealthController(maxHealth, healthData, OnDead);
             _rigidBody = GetComponent<Rigidbody2D>();
         }
         
@@ -46,11 +47,11 @@ namespace BaseEntity
 
         public virtual void Rotate(Vector2 dir, float t)
         {
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            float angle = dir.ToAngle();
             RigidBody.SetRotation(Quaternion.Lerp(
                 transform.rotation,
                 Quaternion.Euler(new Vector3(0f,0f,angle)),
-                _rotationSpeed*Time.fixedDeltaTime));
+                rotationSpeed*Time.fixedDeltaTime));
         }
 
         public void ChangeMaxHealth(int maxHealth) => _healthController.ChangeMaxHealth(maxHealth);

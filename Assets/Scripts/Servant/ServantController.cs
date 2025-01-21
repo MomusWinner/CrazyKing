@@ -1,4 +1,5 @@
 ﻿using BaseEntity;
+using Finders;
 using King;
 using UnityEngine;
 using VContainer;
@@ -12,15 +13,12 @@ namespace Servant
         public ServantData ServantData { get; set; }
         public IPoint Point { get; set; }
         
-        [Inject] public KingController KingController;
+        [HideInInspector]
+        [Inject]
+        public KingController KingController;
 
         private LayerMask _enemyMask;
         private LayerMask _servantMask;
-        
-        protected override void Start()
-        {
-            base.Start(); 
-        }
 
         public override void Initialize()
         {
@@ -30,14 +28,12 @@ namespace Servant
             ID = ServantData.ID;
             KingController.AddServant(this);
             _enemyMask = LayerMask.GetMask("Enemy");
-            _servantMask = LayerMask.GetMask("King");           
-        }
-        
-        public Transform FindEnemyInLookRadius()
-        {
-            return FindObjectInLookRadius(_enemyMask, _servantMask);
+            _servantMask = LayerMask.GetMask("King");
+            TargetFinder = new EntityFinder(LookRadius, _enemyMask, _servantMask);
         }
 
+        public abstract void StartFirstState();
+        
         public override void OnDead()
         {
             if (Point is not null)

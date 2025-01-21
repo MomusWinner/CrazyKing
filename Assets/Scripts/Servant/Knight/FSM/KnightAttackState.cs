@@ -61,7 +61,8 @@ namespace Servant.Knight.FSM
 
         private bool TryFindEnemyInLookRadius()
         {
-            _target = Servant.FindEnemyInLookRadius()?.GetComponent<EnemyController>();
+            _target = Servant.TargetFinder.FindObjectInLookRadius(Servant.transform.position)
+                ?.GetComponent<EnemyController>();
             return _target;
         }
         

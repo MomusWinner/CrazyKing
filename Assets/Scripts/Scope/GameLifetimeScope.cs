@@ -3,12 +3,12 @@ using Enemy.RedKnight;
 using King;
 using King.FSM;
 using Servant;
+using Servant.Archer;
+using Servant.Archer.FSM;
 using Servant.FSM;
 using Servant.Knight;
 using Servant.Knight.FSM;
-using UI.Upgrade.ServantTab;
 using UnityEngine;
-using UnityEngine.Serialization;
 using VContainer;
 using VContainer.Unity;
 
@@ -25,13 +25,20 @@ namespace Scope
             builder.Register<KingFSM>(Lifetime.Scoped);
             builder.Register<ServantFactory>(Lifetime.Singleton);
             
-            // Servant
+            // SERVANTS
             builder.RegisterEntryPoint<ServantManager>().AsSelf();
             
             // Register Knight
             builder.Register<KnightFollowToKingState>(Lifetime.Transient);
             builder.Register<KnightAttackState>(Lifetime.Transient);
             builder.Register<ServantFSM<KnightController>>(Lifetime.Transient);
+            
+            // Register Archer
+            builder.Register<ArcherFollowToKingState>(Lifetime.Transient);
+            builder.Register<ArcherAttackState>(Lifetime.Transient);
+            builder.Register<ServantFSM<ArcherController>>(Lifetime.Transient);
+            
+            // ENEMIES
             
             // Register RedKnight
             builder.Register<EnemyFSM<RedKnightController>>(Lifetime.Transient);

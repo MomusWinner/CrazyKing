@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Servant.Knight
 {
-    [CreateAssetMenu(menuName = "Game/Servant/Upgrade/" + nameof(KnightServantSO))]
+    [CreateAssetMenu(menuName = "Game/Servant/" + nameof(KnightServantSO))]
     public class KnightServantSO : ServantSO
     {
         public KnightParamData startParam;

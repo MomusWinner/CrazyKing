@@ -37,7 +37,7 @@ public class Movement : MonoBehaviour
 
     private void SetRotation(Vector2 dir)
     {
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        float angle = dir.ToAngle();
         var rotation = Quaternion.Lerp(
             transform.rotation,
             Quaternion.Euler(new Vector3(0f,0f,angle)),

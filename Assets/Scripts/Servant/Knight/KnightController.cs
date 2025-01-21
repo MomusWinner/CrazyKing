@@ -9,7 +9,7 @@ namespace Servant.Knight
     {
         public ServantFSM<KnightController> Fsm => _fsm;
         
-        public float AttackRadius =>  _attackRadius;
+        public float AttackRadius =>  _attackRadius + Radius;
         public int AttackDamage { get; set; }
         
         [Inject] private ServantFSM<KnightController> _fsm;
@@ -19,9 +19,14 @@ namespace Servant.Knight
         public override void Initialize()
         {
             _fsm.SetUp(this);
-            _fsm.ChangeState<KnightFollowToKingState>();
             base.Initialize();
         }
+
+        public override void StartFirstState()
+        {
+            _fsm.ChangeState<KnightFollowToKingState>();
+        }
+        
         protected override void Update()
         {
             base.Update();

@@ -129,12 +129,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b11d9d5d7c402297ffc90d12fdc78d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 0.3
-  _healthData: {fileID: 2510581427262966}
-  _maxHealth: 200
-  _rotationSpeed: 1.7
-  _speed: 4
-  _animator: {fileID: 0}
+  radius: 0.3
+  healthData: {fileID: 2510581427262966}
+  maxHealth: 200
+  rotationSpeed: 0
+  speed: 0
+  animator: {fileID: 5995648593536054506}
 --- !u!114 &3100625625134443667
 MonoBehaviour:
   m_ObjectHideFlags: 0

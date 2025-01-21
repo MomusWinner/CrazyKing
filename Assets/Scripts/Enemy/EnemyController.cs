@@ -1,4 +1,5 @@
 ﻿using BaseEntity;
+using Finders;
 using UnityEngine;
 
 namespace Enemy
@@ -14,11 +15,12 @@ namespace Enemy
             base.Start();
             _servantMask = LayerMask.GetMask("King");
             _enemyMask = LayerMask.GetMask("Enemy");
+            TargetFinder = new EntityFinder(LookRadius, _servantMask, _enemyMask);
         }
         
         public Transform FindKingOrServant()
         {
-            return FindObjectInLookRadius(_servantMask, _enemyMask);
+            return FindTargetInLookRadius();
         }
     }
 }

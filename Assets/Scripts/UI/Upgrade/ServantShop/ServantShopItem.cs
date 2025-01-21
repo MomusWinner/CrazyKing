@@ -25,7 +25,7 @@ namespace UI.Upgrade.ServantShop
             servantName.text = servant.servantName;
             description.text = servant.description;
             price.text = servant.price.ToString();
-            avatar.sprite = servant.avatar;
+            avatar.sprite = servant.GetAvatarByLevel(0);
         }
 
         public void Buy()
