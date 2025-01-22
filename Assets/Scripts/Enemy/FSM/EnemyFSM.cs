@@ -1,10 +1,9 @@
-﻿using Enemy.RedKnight;
-using FSM;
+﻿using FSM;
 using VContainer;
 
 namespace Enemy.FSM
 {
-    public class EnemyFSM<TEnemy> : FsmController where TEnemy:EnemyController
+    public class EnemyFSM<TEnemy> : FsmController where TEnemy : EnemyController
     {
         private TEnemy _enemy;
         private readonly IObjectResolver _container;

@@ -1,37 +1,31 @@
-﻿using UnityEngine;
-using UnityEngine.InputSystem;
+﻿using Controllers;
+using UnityEngine;
+using VContainer;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movement : MonoBehaviour
 {
+    public bool FreezeMovement { get; set; }
+    public bool FreezeRotation { get; set; }
+    
     [SerializeField] private float speed;
-    [SerializeField] private InputActionAsset _actionAsset;
     [SerializeField] private float _rotationSpeed;
-    private InputAction _moveAction;
+    [Inject] private InputManager _inputManager;
     private Rigidbody2D _rigidbody2D;
 
     private void Start()
     {
-        _moveAction = _actionAsset.FindActionMap("Player").FindAction("Move");
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _moveAction.Enable();
-    }
-
-    private void OnEnable()
-    {
-        _actionAsset.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _actionAsset.Disable();
     }
 
     private void FixedUpdate()
     {
-        Vector2 dir = _moveAction.ReadValue<Vector2>();
-        _rigidbody2D.linearVelocity = dir * speed;
-        if (dir.magnitude > 0.1f)
+        Vector2 dir = _inputManager.MoveDirection;
+        
+        if (!FreezeMovement)
+            _rigidbody2D.linearVelocity = dir * speed;
+        
+        if (!FreezeRotation && dir.magnitude > 0.1f)
             SetRotation(dir);
     }
 

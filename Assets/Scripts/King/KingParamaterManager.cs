@@ -42,7 +42,7 @@ namespace King
             if (!_parameters.TryGetValue(type, out var result) 
                 || result.Lv >= parameter.Upgrades.Count) return;
             
-           result.Value = parameter.Upgrades[result.Lv];
+           result.Value = parameter.Upgrades[result.Lv].Value;
            result.Lv++; 
            Save();
         }
@@ -62,7 +62,11 @@ namespace King
                 _parameters = new Dictionary<KingParameterType, KingParameterData>();
                 foreach (var type in Enum.GetValues(typeof(KingParameterType)))
                 {
-                    _parameters.Add((KingParameterType)type, new KingParameterData());
+                    KingParameterData data = new KingParameterData();
+                    KingParameterType kingType = (KingParameterType)type;
+                    data.Type = kingType;
+                    data.Value = _kingParameters.GetKingParameters()[kingType].StartValue;
+                    _parameters.Add(kingType, data);
                 }
             }
         }

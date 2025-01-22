@@ -23,11 +23,12 @@ namespace Scope
         {
             // Register King
             builder.RegisterComponent(_kingController);
-            builder.Register<KingFSM>(Lifetime.Scoped);
-            builder.Register<ServantFactory>(Lifetime.Singleton);
+            builder.Register<KingAttackState>(Lifetime.Scoped);
+            builder.Register<DefaultKingState>(Lifetime.Scoped);
             
             // SERVANTS
             builder.RegisterEntryPoint<ServantManager>().AsSelf();
+            builder.Register<ServantFactory>(Lifetime.Singleton);
             
             // Register Knight
             builder.Register<KnightFollowToKingState>(Lifetime.Transient);

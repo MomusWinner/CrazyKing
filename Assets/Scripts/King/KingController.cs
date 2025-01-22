@@ -5,7 +5,9 @@ using System.Collections.Specialized;
 using System.Linq;
 using BaseEntity;
 using Controllers;
+using King.FSM;
 using King.Upgrades;
+using King.Upgrades.Parameters;
 using Servant;
 using UnityEngine;
 using VContainer;
@@ -15,26 +17,52 @@ namespace King
     [RequireComponent(typeof(CirclePointController))]
     public class  KingController : BaseEntityController
     {
-        public KingParameterUpgradeController[] KingParameterUpgradeControllers => _kingParameterUpgradeControllers;
-        
+        public KingFSM Fsm => _kingFsm;
         public IList<ServantController> Servants => _servants.ToList().AsReadOnly();
+        public int AttackDamage { get; private set; }
         
         private KingParameterUpgradeController[] _kingParameterUpgradeControllers;
         private CirclePointController _pointController;
         private readonly ObservableCollection<ServantController> _servants = new ();
         private CoinsManager _coinsManager;
-
+        private KingParameterManager _kingParameterManager;
+        private InputManager _inputManager;
+        private KingFSM _kingFsm;
+        private KingParametersSO _kingParametersSO;
+        
         [Inject]
-        public void Setup(CoinsManager coinsManager)
+        public void Setup(CoinsManager coinsManager,
+            KingParameterManager kingParameterManager,
+            InputManager inputManager,
+            IObjectResolver container,
+            KingParametersSO parametersSO)
         {
+            _kingFsm = new KingFSM(container, this);
+            _kingParameterManager = kingParameterManager;
             _coinsManager = coinsManager;
             _pointController = GetComponent<CirclePointController>();
+            _inputManager = inputManager;
+            _inputManager.OnAttack += StartAttack;
+            _kingParametersSO = parametersSO;
         }
         
         protected override void Start()
         {
             base.Start();
             Initialize();
+            ChangeMaxHealth(_kingParameterManager.GetParameterValue<int>(KingParameterType.Health));
+            AttackDamage = _kingParameterManager.GetParameterValue<int>(KingParameterType.Damage);
+        }
+
+        public void StartAttack()
+        {
+            if (_kingFsm.currentState is KingAttackState) return;
+            _kingFsm.ChangeState<KingAttackState>();
+        }
+
+        public void SetDamage()
+        {
+            _kingFsm.SendMessage("set_damage");
         }
 
         public void SubscribeToServantsChanged(Action<IList<ServantController>> onChanged)
@@ -60,5 +88,12 @@ namespace King
             => _pointController.TryGetPointPosition(pointId, out position);
         
         public void ReturnPoint(IPoint point) => _pointController.ReturnPoint(point);
+
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position + transform.right * _kingParametersSO.attackDistance, _kingParametersSO.attackRadius);
+        }
     }
 }

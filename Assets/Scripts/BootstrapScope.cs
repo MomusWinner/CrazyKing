@@ -4,16 +4,18 @@ using King.Upgrades.Parameters;
 using Servant;
 using Servant.FSM;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using VContainer;
 using VContainer.Unity;
 
 public class BootstrapScope : LifetimeScope
 {
     [SerializeField] private int _startingCoins;
-    [SerializeField] private ServantStatesSO servantStatesSo;
     [SerializeField] private string _loadingScreenObject = "Loading/Loading"; 
     [SerializeField] private ServantsSO _servantsSO;
+    [SerializeField] private ServantStatesSO servantStatesSo;
     [SerializeField] private KingParametersSO _kingParametersSO;
+    [SerializeField] private InputActionAsset _actionAsset;
 
     public void Start()
     {
@@ -22,6 +24,10 @@ public class BootstrapScope : LifetimeScope
     
     protected override void Configure(IContainerBuilder builder)
     {
+        // Input
+        builder.RegisterInstance(_actionAsset);
+        builder.RegisterEntryPoint<InputManager>().AsSelf();
+        
         // Servant
         builder.RegisterInstance(servantStatesSo);
         builder.RegisterEntryPoint<ServantStorage>().AsSelf();

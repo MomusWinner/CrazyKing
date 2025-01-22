@@ -9,6 +9,9 @@ namespace King.Upgrades.Parameters
         public KingHealthParameter healthParameter;
         public KingDamageParameter damageParameter;
 
+        public float attackDistance;
+        public float attackRadius;
+
         public Dictionary<KingParameterType, KingParameter> GetKingParameters()
         {
             return new Dictionary<KingParameterType, KingParameter>
