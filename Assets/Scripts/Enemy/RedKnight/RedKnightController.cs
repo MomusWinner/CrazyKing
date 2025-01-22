@@ -38,7 +38,7 @@ namespace Enemy.RedKnight
 
         public void Attack()
         {
-            _fsm?.SendMessage("attack", null);
+            _fsm?.SendMessage("attack");
         }
         
         protected new void OnDrawGizmos()

@@ -1,17 +1,19 @@
-﻿using Servant.FSM;
+﻿using BaseEntity;
+using EntityBehaviour;
+using Servant.FSM;
 using Servant.Knight.FSM;
 using UnityEngine;
 using VContainer;
 
 namespace Servant.Knight
 {
-    public class KnightController : ServantController
+    public class KnightController : ServantController, IWarrior
     {
+        public EntityController Controller => this;
         public ServantFSM<KnightController> Fsm => _fsm;
-        
         public float AttackRadius =>  _attackRadius + Radius;
         public int AttackDamage { get; set; }
-        
+
         [Inject] private ServantFSM<KnightController> _fsm;
 
         [SerializeField] private float _attackRadius;

@@ -1,5 +1,5 @@
 ﻿using System;
-using UnityEditor.Animations;
+using UnityEngine;
 
 namespace Servant.Archer.Upgrades
 {
@@ -11,7 +11,7 @@ namespace Servant.Archer.Upgrades
         public int damage;
         public float attackSpeed;
         public float range;
-        public AnimatorController animatorController;
+        public RuntimeAnimatorController animatorController;
         public string arrowPath;
     }
 }

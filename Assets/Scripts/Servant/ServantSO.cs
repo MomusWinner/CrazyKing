@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Servant.Upgrade;
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 namespace Servant
