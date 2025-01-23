@@ -4,7 +4,6 @@ using Controllers;
 using Servant;
 using Servant.Upgrade;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -38,6 +37,7 @@ namespace UI.Upgrade.ServantTab
             _servantSo = _servantsSO.GetServantByType(servantData.Type);
             _name.text = _servantSo.servantName;
             _progressBar.SetUp(_servantsSO.intervalOfEvolutionLevels);
+            _progressBar.SetFullValue();
             if (!IsMaxLv())
             {
                 _servantStorage.OnUpgradeServant += OnUpgradeServant;
@@ -83,6 +83,7 @@ namespace UI.Upgrade.ServantTab
             if(_servantData is null) return;
             _icon.sprite = _servantSo.GetAvatarByLevel(_servantData.Lv);
             _lvText.text = $"lv {_servantData.Lv}";
+            SetProgressBarValue(_servantData.Lv);
             if (IsMaxLv())
             {
                 _buttonText.text = "MAX";
@@ -94,7 +95,6 @@ namespace UI.Upgrade.ServantTab
                 }
                 return;
             }
-            SetProgressBarValue(_servantData.Lv);
             _description.text = NextUpgrade.description;
             if (NextUpgrade.isMergeUpgrade)
                 _buttonText.text = "MERGE " + NextUpgrade.mergeAmount;

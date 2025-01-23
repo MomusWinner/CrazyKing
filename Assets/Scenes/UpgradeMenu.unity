@@ -1651,10 +1651,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6521357341307732427, guid: 89644c8b6dd46ed49be113e5faa049f6, type: 3}
-      propertyPath: id
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 6589000374689386251, guid: 89644c8b6dd46ed49be113e5faa049f6, type: 3}
       propertyPath: m_Name
       value: ServantPositionCell (9)
@@ -2358,8 +2354,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47, y: 0.8499}
-  m_SizeDelta: {x: 71.6846, y: 71.6846}
+  m_AnchoredPosition: {x: 63.1, y: -0.0000019073}
+  m_SizeDelta: {x: 38.8742, y: 38.8742}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &660641141
 MonoBehaviour:
@@ -2381,7 +2377,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1667879286, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4635,8 +4631,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -45.717, y: 0}
-  m_SizeDelta: {x: 98.348, y: 100}
+  m_AnchoredPosition: {x: -27.525105, y: 0}
+  m_SizeDelta: {x: 134.7318, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1393398948
 MonoBehaviour:
@@ -4692,7 +4688,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0

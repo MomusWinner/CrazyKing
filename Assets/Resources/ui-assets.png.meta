@@ -113,15 +113,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: char-icon-assets_0
+      name: acher_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 600
+        y: 850
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -135,15 +135,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char-icon-assets_1
+      name: acher_2
       rect:
         serializedVersion: 2
         x: 200
-        y: 600
+        y: 850
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -157,15 +157,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char-icon-assets_2
+      name: archer_3
       rect:
         serializedVersion: 2
         x: 400
-        y: 600
+        y: 850
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,11 +183,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 400
+        y: 650
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,11 +205,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 200
-        y: 400
+        y: 650
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,11 +227,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 400
-        y: 400
+        y: 650
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -245,15 +245,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char-icon-assets_6
+      name: king
       rect:
         serializedVersion: 2
         x: 0
-        y: 200
+        y: 450
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -267,15 +267,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char-icon-assets_7
+      name: knight_1
       rect:
         serializedVersion: 2
         x: 200
-        y: 200
+        y: 450
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -289,15 +289,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char-icon-assets_8
+      name: knight_2
       rect:
         serializedVersion: 2
         x: 400
-        y: 200
+        y: 450
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -311,15 +311,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: char-icon-assets_9
+      name: knight_3
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 250
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -337,11 +337,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 200
-        y: 0
+        y: 250
         width: 200
         height: 200
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -350,6 +350,160 @@ TextureImporter:
       bones: []
       spriteID: 73959ef6730914643bf7a05f6b3298f3
       internalID: 1661749189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv-icon_1
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 150
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e81b19f3388bbc41b49a9ef76d2ef3a
+      internalID: 862879443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv-icon_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 150
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0ba6adc2e1f12a41b49fbde3ed54d6b
+      internalID: -1054251377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lv-icon_3
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 150
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7db14494366f7ff47ae63ec45299e189
+      internalID: 189622310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: progress-bar-empty
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5d27512adb11e24fa05f6e7c3371fcb
+      internalID: 1819097063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: progress-bar-current
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd8736620e0a54342b62228410433911
+      internalID: 1496195532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: progress-bar-full
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2e8017649a58a444942945dea51f179
+      internalID: -128236313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: coin
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 50
+        width: 50
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c156087d9840794e993fb985c9bcca1
+      internalID: -1667879286
       vertices: []
       indices: 
       edges: []
@@ -368,17 +522,24 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      char-icon-assets_0: -2998579584471748655
-      char-icon-assets_1: 1848337442
+      acher_1: -2998579584471748655
+      acher_2: 1848337442
+      archer_3: -382557
       char-icon-assets_10: 1661749189
-      char-icon-assets_2: -382557
       char-icon-assets_3: -849319093
       char-icon-assets_4: -1381340638
       char-icon-assets_5: -1211191247
-      char-icon-assets_6: -581257419
-      char-icon-assets_7: -998387988
-      char-icon-assets_8: 464905424
-      char-icon-assets_9: 1204571438
+      coin: -1667879286
+      king: -581257419
+      knight_1: -998387988
+      knight_2: 464905424
+      knight_3: 1204571438
+      lv-icon_1: -1426901434
+      lv-icon_2: -1054251377
+      lv-icon_3: 189622310
+      progress-bar-current: 1496195532
+      progress-bar-empty: 1819097063
+      progress-bar-full: -128236313
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
