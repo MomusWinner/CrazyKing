@@ -135,6 +135,7 @@ MonoBehaviour:
   rotationSpeed: 0
   speed: 0
   animator: {fileID: 5995648593536054506}
+  body: {fileID: 9183713493444116259}
 --- !u!114 &3100625625134443667
 MonoBehaviour:
   m_ObjectHideFlags: 0

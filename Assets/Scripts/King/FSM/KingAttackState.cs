@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using DG.Tweening;
 using Enemy;
 using King.Upgrades.Parameters;
 using UnityEngine;
@@ -20,13 +21,13 @@ namespace King.FSM
             _enemyMask = LayerMask.GetMask("Enemy");
             King.Animator.SetTrigger(Attack);
             _movement = King.GetComponent<Movement>();
+            _movement.FreezeRotation = true;
             if (_inputManager.MouseAvailable)
             {
                 Vector2 mousePos = Camera.main.ScreenToWorldPoint(_inputManager.MousePosition);
                 Vector2 kingPos = King.transform.position;
-                King.transform.rotation = Quaternion.Euler(new Vector3(0,0, (mousePos - kingPos).ToAngle()));
+                King.RigidBody.DORotate((mousePos - kingPos).ToAngle(), 0.2f);
             }
-            _movement.FreezeRotation = true;
         }
 
         public override void Message(string name, object obj)

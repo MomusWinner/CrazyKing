@@ -164,6 +164,7 @@ MonoBehaviour:
   rotationSpeed: 7
   speed: 3
   animator: {fileID: 3948156043672189180}
+  body: {fileID: 9040031626666789148}
   _lookRadius: 10
   attackDamage: 10
   attackRadius: 0.6
