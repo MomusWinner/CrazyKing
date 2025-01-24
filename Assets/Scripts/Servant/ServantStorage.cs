@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json;
-using TMPro;
-using UnityEngine;
+using Controllers;
 using VContainer;
 using VContainer.Unity;
 
@@ -22,10 +20,11 @@ namespace Servant
         
         private List<ServantData> _servants;
         [Inject] private ServantsSO _servantsSO;
+        [Inject] private SaveManager _saveManager; 
         
         public void Start()
         {
-            Load();
+            _servants = _saveManager.GameData.Servants;
         }
 
         public void RemoveServant(int id)
@@ -89,17 +88,9 @@ namespace Servant
             return true;
         }       
         
-        private void Load()
-        {
-            string servantsJson = PlayerPrefs.GetString("Servants");
-            _servants = JsonConvert.DeserializeObject<List<ServantData>>(servantsJson) ?? new List<ServantData>();
-        }
-
         private void Save()
         {
-            string servantsJson = JsonConvert.SerializeObject(_servants);
-            PlayerPrefs.SetString("Servants", servantsJson);
-            Debug.Log(servantsJson);
+            _saveManager.Save();
         }
 
         private int GetServantsIndexById(int id)

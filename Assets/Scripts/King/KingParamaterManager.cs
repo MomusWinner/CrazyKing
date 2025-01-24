@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Controllers;
 using King.Upgrades.Parameters;
 using Newtonsoft.Json;
 using UnityEngine;
@@ -11,11 +12,13 @@ namespace King
     public class KingParameterManager : IStartable
     {
         [Inject] private KingParametersSO _kingParameters;
+        [Inject] private SaveManager _saveManager;
+        
         private Dictionary<KingParameterType, KingParameterData> _parameters = new();
 
         public void Start()
         {
-            LoadParameters(); 
+            LoadParameters();
         }
 
         public int GetParameterLevel(KingParameterType type)
@@ -26,7 +29,7 @@ namespace King
         public T GetParameterValue<T>(KingParameterType type)
         {
             if (_parameters.TryGetValue(type, out var result))
-                return (T)result.Value;
+                return (T)_kingParameters.GetKingParameters()[type].Upgrades[result.Lv].Value;
             return default;
         }
 
@@ -42,30 +45,25 @@ namespace King
             if (!_parameters.TryGetValue(type, out var result) 
                 || result.Lv >= parameter.Upgrades.Count) return;
             
-           result.Value = parameter.Upgrades[result.Lv].Value;
            result.Lv++; 
            Save();
         }
 
         public void Save()
         {
-            string json = JsonConvert.SerializeObject(_parameters);
-            PlayerPrefs.SetString("king_parameters", json);
+            _saveManager.Save();
         }
 
         public void LoadParameters()
         {
-            string json = PlayerPrefs.GetString("king_parameters");
-            _parameters = JsonConvert.DeserializeObject<Dictionary<KingParameterType, KingParameterData>>(json);
-            if (_parameters is null)
+            _parameters = _saveManager.GameData.KingParameters;
+            if (_parameters.Count <= 0)
             {
-                _parameters = new Dictionary<KingParameterType, KingParameterData>();
                 foreach (var type in Enum.GetValues(typeof(KingParameterType)))
                 {
                     KingParameterData data = new KingParameterData();
                     KingParameterType kingType = (KingParameterType)type;
                     data.Type = kingType;
-                    data.Value = _kingParameters.GetKingParameters()[kingType].StartValue;
                     _parameters.Add(kingType, data);
                 }
             }
@@ -76,6 +74,5 @@ namespace King
     {
         public int Lv { get; set; }
         public KingParameterType Type { get; set; }
-        public object Value { get; set; }
     }
 }
