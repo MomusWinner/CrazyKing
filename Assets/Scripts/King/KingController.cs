@@ -92,6 +92,7 @@ namespace King
 
         public void OnDrawGizmos()
         {
+            if (_kingParametersSO is null) return;
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position + transform.right * _kingParametersSO.attackDistance, _kingParametersSO.attackRadius);
         }

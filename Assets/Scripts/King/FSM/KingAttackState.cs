@@ -16,6 +16,7 @@ namespace King.FSM
 
         public override void Start()
         {
+            if (King == null) return;
             _enemyMask = LayerMask.GetMask("Enemy");
             King.Animator.SetTrigger(Attack);
             _movement = King.GetComponent<Movement>();
