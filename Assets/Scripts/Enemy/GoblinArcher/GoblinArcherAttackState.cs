@@ -6,7 +6,7 @@ namespace Enemy.GoblinArcher
 {
     public class GoblinArcherAttackState : EnemyState<GoblinArcherController>
     {
-          private ArcherAttackBehaviour _attackBehaviour;
+    private ArcherAttackBehaviour _attackBehaviour;
         private readonly int _aimAnim = Animator.StringToHash("isAiming");
         
         public override void Start()

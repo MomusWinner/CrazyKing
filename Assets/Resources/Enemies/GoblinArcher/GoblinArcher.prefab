@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3948156043672189180}
   - component: {fileID: 7501678706278429449}
   - component: {fileID: -3808773140360106254}
+  - component: {fileID: 6639581200054036985}
   m_Layer: 6
   m_Name: GoblinArcher
   m_TagString: Untagged
@@ -160,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.3
   healthData: {fileID: 4479689275655107448}
+  damageFlash: {fileID: 6639581200054036985}
   maxHealth: 200
   rotationSpeed: 7
   speed: 3
@@ -168,6 +170,21 @@ MonoBehaviour:
   _lookRadius: 10
   attackDamage: 10
   ArrowPrefPath: Arrow/GoblinArrowGrade1
+--- !u!114 &6639581200054036985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264004522685862450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68797dfa6a634eec9c0e83101be33d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
+  _damageParticle: {fileID: 6985042913406038341, guid: 1b20d950fd84d6944a664c546b47ab05, type: 3}
 --- !u!1 &4853825563625445605
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +272,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2a031b840e1b68d48a91ae18b0aeedeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -342,7 +359,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2a031b840e1b68d48a91ae18b0aeedeb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

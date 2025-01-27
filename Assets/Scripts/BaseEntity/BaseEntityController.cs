@@ -22,6 +22,7 @@ namespace BaseEntity
 
         [SerializeField] protected float radius;
         [SerializeField] protected HealthUIData healthData;
+        [SerializeField] protected DamageFlash damageFlash;
         [SerializeField] protected int maxHealth;
         [SerializeField] protected float rotationSpeed;
         [SerializeField] protected float speed;
@@ -67,12 +68,7 @@ namespace BaseEntity
         public bool Damage(int damage)
         {
             bool isDeath = _healthController.Damage(damage);
-            if (!isDeath)
-            { 
-                Sequence sequence = DOTween.Sequence().SetId(gameObject);
-                sequence.Append(body.DOColor(new Color(1f, 0f, 0f, 1f), 0.2f));
-                sequence.Append(body.DOColor(new Color(1f, 1f, 1f, 1f), 0.2f));               
-            }
+            damageFlash?.CallDamageFlash();
             return isDeath;
         }
 
