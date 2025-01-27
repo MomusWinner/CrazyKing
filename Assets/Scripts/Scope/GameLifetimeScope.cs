@@ -1,6 +1,6 @@
 using Enemy.FSM;
+using Enemy.GoblinArcher;
 using Enemy.GoblinWarrior;
-using Enemy.RedKnight;
 using King;
 using King.FSM;
 using Servant;
@@ -47,10 +47,10 @@ namespace Scope
             builder.Register<GoblinWarriorAttackState>(Lifetime.Transient);
             builder.Register<GoblinWarriorStayState>(Lifetime.Transient);
             
-            // Register RedKnight
-            // builder.Register<EnemyFSM<RedKnightController>>(Lifetime.Transient);
-            // builder.Register<RedKnightStayState>(Lifetime.Transient);
-            // builder.Register<RedKnightAttackState>(Lifetime.Transient);
+            // Register Goblin Archer
+            builder.Register<EnemyFSM<GoblinArcherController>>(Lifetime.Transient);
+            builder.Register<GoblinArcherStayState>(Lifetime.Transient);
+            builder.Register<GoblinArcherAttackState>(Lifetime.Transient);
         }
     }
 }

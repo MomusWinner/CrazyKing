@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using BaseEntity;
 using Finders;
 using UnityEngine;
@@ -6,7 +7,7 @@ using Object = UnityEngine.Object;
 
 namespace EntityBehaviour
 {
-    public class ArcherAttackBehaviour
+    public class ArcherAttackBehaviour : IDisposable
     {
         public bool Enable { get; set; } = true;
         public Action OnAim;
@@ -14,7 +15,7 @@ namespace EntityBehaviour
         public Action OnAttackCompleted;
 
         private EntityController _entity;
-        private EntityController _target;
+        private BaseEntityController _target;
         private readonly string _arrowPath;
         private readonly EntityFinder _entityFinder;
         private readonly ArrowData _arrowData;
@@ -23,6 +24,8 @@ namespace EntityBehaviour
         private float _attackTimOut;
 
         private float _attackTimOutLeft;
+
+        private IEnumerator _findTargetCoroutine;
         
         
         public ArcherAttackBehaviour(
@@ -41,7 +44,8 @@ namespace EntityBehaviour
         public void Start()
         {
             if (!Enable) return;
-            FindNewTarget();
+            _findTargetCoroutine = FindNewTarget();
+            _entity.StartCoroutine(_findTargetCoroutine);
         }
 
         public void Update(float dt)
@@ -55,9 +59,6 @@ namespace EntityBehaviour
                 else
                     _attackTimOutLeft -= dt;
             }
-
-            if (_target == null)
-                FindNewTarget();
         }
 
         public void FixedUpdate(float dt)
@@ -79,6 +80,15 @@ namespace EntityBehaviour
                 }
             }
         }
+
+        public void Dispose()
+        {
+            if (_entity != null)
+            {
+                _entity.StopCoroutine(_findTargetCoroutine);
+            }
+        }
+        
 
         private void StartAttack()
         {
@@ -110,12 +120,18 @@ namespace EntityBehaviour
             return false;
         }
 
-        private void FindNewTarget()
+        private IEnumerator FindNewTarget()
         {
-             _target = _entityFinder.FindObjectInLookRadius(_entity.transform.position)?.GetComponent<EntityController>();
-             if (_target == null)
-                 OnAttackCompleted?.Invoke();
+            while (true)
+            { 
+                _target = _entityFinder.FindObjectInLookRadius(_entity.transform.position)?.GetComponent<BaseEntityController>();
+                if (_target == null) 
+                    OnAttackCompleted?.Invoke();
+
+                yield return new WaitForSeconds(1f);
+            }
         }
+        
     }
 
     public interface IArrow

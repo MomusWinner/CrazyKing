@@ -1,17 +1,17 @@
 ﻿using System.Collections;
-using System.Linq;
 using Enemy.FSM;
+using Enemy.GoblinWarrior;
 using UnityEngine;
 using VContainer;
 
-namespace Enemy.RedKnight
+namespace Enemy.GoblinArcher
 {
-    public class RedKnightStayState : EnemyState<RedKnightController>
+    public class GoblinArcherStayState : EnemyState<GoblinArcherController>
     {
         private readonly IObjectResolver _container;
         private IEnumerator _checkEnvCoroutine;
 
-        public RedKnightStayState(IObjectResolver container)
+        public GoblinArcherStayState(IObjectResolver container)
         {
             _container = container;
         }
@@ -27,14 +27,9 @@ namespace Enemy.RedKnight
             while (true)
             {
                 yield return new WaitForSeconds(1f);
-                Collider2D[] colliders =  Physics2D.OverlapCircleAll(
-                    Enemy.transform.position,
-                    Enemy.LookRadius,
-                    LayerMask.GetMask("King"));
-
-                if (!colliders.Any()) continue;
-
-                Enemy.Fsm.ChangeState<RedKnightAttackState>();          
+                Transform target = Enemy.TargetFinder.FindObjectInLookRadius(Enemy.transform.position);
+                if (target != null)
+                    Enemy.Fsm.ChangeState<GoblinArcherAttackState>();          
             } 
         }
 

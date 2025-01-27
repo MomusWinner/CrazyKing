@@ -1,30 +1,30 @@
-﻿using EntityBehaviour;
-using Servant.FSM;
+﻿using Enemy.FSM;
+using EntityBehaviour;
 using UnityEngine;
 
-namespace Servant.Archer.FSM
+namespace Enemy.GoblinArcher
 {
-    public class ArcherAttackState : ServantState<ArcherController>
+    public class GoblinArcherAttackState : EnemyState<GoblinArcherController>
     {
-        private ArcherAttackBehaviour _attackBehaviour;
+          private ArcherAttackBehaviour _attackBehaviour;
         private readonly int _aimAnim = Animator.StringToHash("isAiming");
         
         public override void Start()
         {
             ArrowData arrowData = new ArrowData
             {
-                damage = Servant.AttackDamage,
+                damage = Enemy.AttackDamage,
                 speed = 8,
                 distance = 10000,
-                targetLayer = LayerMask.GetMask("Enemy")            
+                targetLayer = LayerMask.GetMask("King")            
             };
             
-            _attackBehaviour = new ArcherAttackBehaviour(Servant, Servant.ArrowPrefPath, 1f, arrowData);
+            _attackBehaviour = new ArcherAttackBehaviour(Enemy, Enemy.ArrowPrefPath, 1f, arrowData);
 
             base.Start();
             _attackBehaviour.Start();
-            _attackBehaviour.OnAim += () => Servant.Animator.SetBool(_aimAnim, true);
-            _attackBehaviour.OnAttackCompleted += () => Servant.Fsm.ChangeState<ArcherFollowToKingState>();
+            _attackBehaviour.OnAim += () => Enemy.Animator.SetBool(_aimAnim, true);
+            _attackBehaviour.OnAttackCompleted += () => Enemy.Fsm.ChangeState<GoblinArcherStayState>();
         }
 
         public override void FixedUpdate()
@@ -43,7 +43,7 @@ namespace Servant.Archer.FSM
         {
             base.Dispose();
             _attackBehaviour.Dispose();
-            Servant.Animator.SetBool(_aimAnim, false);
+            Enemy.Animator.SetBool(_aimAnim, false);
         }
     }
 }
