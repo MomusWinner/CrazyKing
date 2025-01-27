@@ -1,4 +1,5 @@
-﻿using Controllers;
+﻿using System.Collections;
+using Controllers;
 using DG.Tweening;
 using Enemy;
 using King.Upgrades.Parameters;
@@ -14,6 +15,7 @@ namespace King.FSM
         private static readonly int Attack = Animator.StringToHash("Attack");
         private Movement _movement;
         private LayerMask _enemyMask;
+        private IEnumerator rotationCorutine;
 
         public override void Start()
         {
@@ -26,7 +28,24 @@ namespace King.FSM
             {
                 Vector2 mousePos = Camera.main.ScreenToWorldPoint(_inputManager.MousePosition);
                 Vector2 kingPos = King.transform.position;
-                King.RigidBody.DORotate((mousePos - kingPos).ToAngle(), 0.2f);
+                float angle = (mousePos - kingPos).ToAngle();
+
+                // King.RigidBody.rotation = angle;
+                rotationCorutine = Rotate(angle);
+                King.StartCoroutine(rotationCorutine);
+            }
+        }
+
+        public IEnumerator Rotate(float angle)
+        {
+            while (true)
+            {
+                var rotation = Quaternion.Lerp(
+                    King.transform.rotation,
+                    Quaternion.Euler(new Vector3(0f,0f,angle)),
+                    10f*Time.fixedDeltaTime);
+                King.RigidBody.MoveRotation(rotation);
+                yield return new WaitForFixedUpdate();
             }
         }
 
@@ -42,6 +61,8 @@ namespace King.FSM
         public override void Dispose()
         {
             base.Dispose();
+            if(King != null) 
+                King.StopCoroutine(rotationCorutine);
             _movement.FreezeRotation = false;
         }
 

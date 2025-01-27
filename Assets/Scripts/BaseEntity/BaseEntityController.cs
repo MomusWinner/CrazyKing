@@ -48,13 +48,18 @@ namespace BaseEntity
         protected virtual void FixedUpdate()
         { }
 
-        public virtual void Rotate(Vector2 dir, float t)
+        public virtual void Rotate(Vector2 dir, float dt)
         {
             float angle = dir.ToAngle();
+            Rotate(angle, dt);
+        }
+
+        public void Rotate(float angle, float dt)
+        {
             RigidBody.SetRotation(Quaternion.Lerp(
                 transform.rotation,
                 Quaternion.Euler(new Vector3(0f,0f,angle)),
-                rotationSpeed*Time.fixedDeltaTime));
+                rotationSpeed*dt));
         }
 
         public void ChangeMaxHealth(int maxHealth) => _healthController.ChangeMaxHealth(maxHealth);
