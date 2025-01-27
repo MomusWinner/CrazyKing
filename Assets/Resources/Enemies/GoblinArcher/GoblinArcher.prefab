@@ -165,7 +165,7 @@ MonoBehaviour:
   speed: 3
   animator: {fileID: 3948156043672189180}
   body: {fileID: 9040031626666789148}
-  _lookRadius: 15
+  _lookRadius: 10
   attackDamage: 10
   ArrowPrefPath: Arrow/GoblinArrowGrade1
 --- !u!1 &4853825563625445605
