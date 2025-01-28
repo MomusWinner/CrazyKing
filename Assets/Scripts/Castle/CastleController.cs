@@ -1,6 +1,5 @@
 ﻿using King;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Castle
@@ -9,7 +8,7 @@ namespace Castle
     {
         public bool IsCaptured { get; private set; }
 
-        [FormerlySerializedAs("_capturingTime")] [SerializeField] private float _captureTime;
+        [SerializeField] private float _captureTime = 3f;
         [SerializeField] private Image _stateImage;
         [SerializeField] private Sprite _targetState;
         [SerializeField] private Sprite _captureStatus;
