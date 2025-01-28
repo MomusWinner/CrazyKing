@@ -168,7 +168,7 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 1915430785}
-  _startingCoins: 10313
+  _startingCoins: 103130
   _loadingScreenObject: Loading/Loading
   _servantsSO: {fileID: 11400000, guid: 411b76aa0b167514aa95797e9ea4c726, type: 2}
   servantStatesSo: {fileID: 11400000, guid: b2805d0e66c58ef48b59a1da27160529, type: 2}
