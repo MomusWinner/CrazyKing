@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using Controllers;
 using King.Upgrades.Parameters;
-using Newtonsoft.Json;
-using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -29,7 +27,11 @@ namespace King
         public T GetParameterValue<T>(KingParameterType type)
         {
             if (_parameters.TryGetValue(type, out var result))
-                return (T)_kingParameters.GetKingParameters()[type].Upgrades[result.Lv].Value;
+            {
+                if (result.Lv == 0)
+                    return (T)_kingParameters.GetKingParameters()[type].StartValue;
+                return (T)_kingParameters.GetKingParameters()[type].Upgrades[result.Lv - 1].Value;
+            }
             return default;
         }
 
