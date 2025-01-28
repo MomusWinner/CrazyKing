@@ -77,7 +77,7 @@ namespace EntityBehaviour
                 _warrior.Controller.Stop();
             }
             else
-                _warrior.Controller.SetDestination(_target.transform.position);
+                _warrior.Controller.Move(_target.transform.position);
         }
 
         private void StartAttackAnim()

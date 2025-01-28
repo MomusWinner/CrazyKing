@@ -48,7 +48,7 @@ namespace Servant.FSM
             float speedCof = _statesSo.speedByApproachingToTarget.Evaluate(sqrMagnitude);
             Servant.SetSpeed(speedCof * _startSpeed);
             Servant.Animator.SetBool(isRun, true);
-            Servant.SetDestination(pointPos);
+            Servant.Move(pointPos);
         }
         
         public override void Dispose()

@@ -15,7 +15,8 @@ namespace Enemy
             base.Start();
             _servantMask = LayerMask.GetMask("King");
             _enemyMask = LayerMask.GetMask("Enemy");
-            TargetFinder = new EntityFinder(LookRadius, _servantMask, _enemyMask);
+            LayerMask lowBarrier = LayerMask.GetMask("LowBarrier");
+            TargetFinder = new EntityFinder(LookRadius, _servantMask, _enemyMask | lowBarrier);
         }
         
         public Transform FindKingOrServant()

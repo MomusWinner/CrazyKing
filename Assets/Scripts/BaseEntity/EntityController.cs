@@ -16,6 +16,7 @@ namespace BaseEntity
         protected override void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
+            _agent.updatePosition = false;
             _agent.updateRotation = false;
             _agent.updateUpAxis = false;
             _agent.speed = speed;
@@ -30,9 +31,20 @@ namespace BaseEntity
             Rotate(dir, Time.fixedDeltaTime);
         }
 
-        public void SetDestination(Vector3 position)
+        public void Move(Vector3 position)
         {
             _agent.SetDestination(position);
+            Vector3 direction = (_agent.steeringTarget - transform.position).normalized; // Get direction towards steering target
+            RigidBody.linearVelocity = direction * speed; // Set Rigidbody velocity based on direction
+
+            // Update NavMeshAgent's next position to match Rigidbody's position
+            _agent.nextPosition = RigidBody.position;
+
+            // Optionally handle rotation
+            // if (RigidBody.velocity != Vector2.zero) {
+            //     Quaternion targetRotation = Quaternion.LookRotation(RigidBody.velocity);
+            //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+            // }
         }
 
         public void Stop()

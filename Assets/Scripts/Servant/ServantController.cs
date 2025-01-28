@@ -29,7 +29,8 @@ namespace Servant
             KingController.AddServant(this);
             _enemyMask = LayerMask.GetMask("Enemy");
             _servantMask = LayerMask.GetMask("King");
-            TargetFinder = new EntityFinder(LookRadius, _enemyMask, _servantMask);
+            LayerMask lowBarrier = LayerMask.GetMask("LowBarrier");
+            TargetFinder = new EntityFinder(LookRadius, _enemyMask, _servantMask | lowBarrier);
         }
 
         public abstract void StartFirstState();
