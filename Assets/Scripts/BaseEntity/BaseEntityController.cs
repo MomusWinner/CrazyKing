@@ -1,16 +1,14 @@
 ﻿using DG.Tweening;
 using Health;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace BaseEntity
 {
     public abstract class BaseEntityController : MonoBehaviour, IDamageable
     {
-        public int Health => _healthController.Health;
+        public int Health => healthController.Health;
         
-        public int MaxHealth => _healthController.MaxHealth;
+        public int MaxHealth => healthController.MaxHealth;
         
         public Rigidbody2D RigidBody => _rigidBody;
         
@@ -21,19 +19,18 @@ namespace BaseEntity
         public float Radius => radius;
 
         [SerializeField] protected float radius;
-        [SerializeField] protected HealthUIData healthData;
+        [SerializeField] protected HealthController healthController;
         [SerializeField] protected DamageFlash damageFlash;
         [SerializeField] protected int maxHealth;
         [SerializeField] protected float rotationSpeed;
         [SerializeField] protected float speed;
         [SerializeField] protected Animator animator;
-        [SerializeField] protected SpriteRenderer body;
+        
         private Rigidbody2D _rigidBody;
-        private HealthController _healthController;
 
         public virtual void Initialize()
         {
-            _healthController = new HealthController(maxHealth, healthData, OnDead);
+            healthController.Setup(maxHealth, OnDead);
             _rigidBody = GetComponent<Rigidbody2D>();
         }
         
@@ -63,16 +60,16 @@ namespace BaseEntity
                 rotationSpeed*dt));
         }
 
-        public void ChangeMaxHealth(int maxHealth) => _healthController.ChangeMaxHealth(maxHealth);
+        public void ChangeMaxHealth(int maxHealth) => healthController.ChangeMaxHealth(maxHealth);
 
         public bool Damage(int damage)
         {
-            bool isDeath = _healthController.Damage(damage);
+            bool isDeath = healthController.Damage(damage);
             damageFlash?.CallDamageFlash();
             return isDeath;
         }
 
-        public void Heal(int health) => _healthController.Heal(health);
+        public void Heal(int health) => healthController.Heal(health);
 
         public float GetDistanceBetweenEntities(EntityController other)
         {

@@ -1,30 +1,54 @@
 ﻿using System;
 using TMPro;
+using TriInspector;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Health
 {
-    public class HealthController
+    public class HealthController : MonoBehaviour
     {
+        public Action OnDeath;
         public int Health => _health;
         public int MaxHealth => _maxHealth;
+
+        [SerializeField] private Slider _healthBar;
+        [SerializeField] private TMP_Text _healthText;
+        [SerializeField] private bool _hideOnCalm;
+        [ShowIf(nameof(_hideOnCalm))]
+        [SerializeField] private float _disableHpBarTime;
         
-        private readonly Slider _healthBar;
-        private readonly TMP_Text _healthText;
-        private readonly Action _onDeath;
         private int _maxHealth;
         private int _health;
         private bool _isDead;
+        private float _elapsedTime;
+
+        public void Start()
+        {
+            if (_hideOnCalm)
+                HideBar();
+        }
         
-        public HealthController(int maxHealth, HealthUIData healthUIData, Action onDeath)
+        public void Setup(int maxHealth, Action onDeath)
         {
             _maxHealth = maxHealth;
-            _healthBar = healthUIData.slider;
-            _healthText = healthUIData.healthText;
-            _onDeath = onDeath;
+            OnDeath = onDeath;
             _health = maxHealth;
             _healthBar.maxValue = _maxHealth;
             _healthBar.value = _maxHealth;
+        }
+
+        public void Update()
+        {
+            if (!_hideOnCalm) return;
+            
+            if (_elapsedTime >= _disableHpBarTime)
+            {
+                HideBar();
+                _elapsedTime = 0;
+            }
+            else
+                _elapsedTime += Time.deltaTime;
         }
 
         private void SetHealth(int value)
@@ -42,10 +66,12 @@ namespace Health
             if (damage >= _health)
             {
                 SetHealth(0);
-                _onDeath?.Invoke();
+                OnDeath?.Invoke();
                 _isDead = true;
                 return true;
             }
+            
+            ShowBar();
             
             SetHealth(_health - damage);
             return false;
@@ -70,6 +96,17 @@ namespace Health
             _maxHealth = maxHealth;
             _healthBar.maxValue = maxHealth;
             SetHealth(_maxHealth);
+        }
+
+        private void HideBar()
+        {
+            _healthBar.gameObject.SetActive(false);
+        }
+
+        private void ShowBar()
+        {
+            _elapsedTime = 0;
+            _healthBar.gameObject.SetActive(true);
         }
     }
 }

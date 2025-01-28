@@ -160,13 +160,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0.3
-  healthData: {fileID: 4479689275655107448}
+  healthController: {fileID: 5382578779629449176}
   damageFlash: {fileID: 7044150000207963175}
   maxHealth: 200
   rotationSpeed: 7
   speed: 3
   animator: {fileID: 3948156043672189180}
-  body: {fileID: 9040031626666789148}
   _lookRadius: 10
   attackDamage: 10
   attackRadius: 0.6
@@ -461,14 +460,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7311915141724437422, guid: c6bc503867d512843949eb0b49f4d109, type: 3}
   m_PrefabInstance: {fileID: 9091204407526306119}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4479689275655107448 stripped
+--- !u!114 &5382578779629449176 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4612107769730728511, guid: c6bc503867d512843949eb0b49f4d109, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3789973545577897631, guid: c6bc503867d512843949eb0b49f4d109, type: 3}
   m_PrefabInstance: {fileID: 9091204407526306119}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f24553a81b3d124d822fe79ab230cff, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a275028534140d28a4108d63ecca641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
