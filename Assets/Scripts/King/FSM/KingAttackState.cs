@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using Controllers;
-using DG.Tweening;
 using Enemy;
 using King.Upgrades.Parameters;
 using UnityEngine;
@@ -24,16 +23,22 @@ namespace King.FSM
             King.Animator.SetTrigger(Attack);
             _movement = King.GetComponent<Movement>();
             _movement.FreezeRotation = true;
+            _movement.FreezeMovement = true;
+            
+            Vector2 attackDir = _inputManager.MoveDirection;
+            
             if (_inputManager.MouseAvailable)
             {
                 Vector2 mousePos = Camera.main.ScreenToWorldPoint(_inputManager.MousePosition);
                 Vector2 kingPos = King.transform.position;
-                float angle = (mousePos - kingPos).ToAngle();
-
-                // King.RigidBody.rotation = angle;
+                attackDir = mousePos - kingPos;
+                attackDir.Normalize();
+                float angle = attackDir.ToAngle();
                 rotationCorutine = Rotate(angle);
                 King.StartCoroutine(rotationCorutine);
             }
+            
+            King.RigidBody.AddForce(attackDir * _parameters.jerkForce);
         }
 
         public IEnumerator Rotate(float angle)
@@ -43,7 +48,7 @@ namespace King.FSM
                 var rotation = Quaternion.Lerp(
                     King.transform.rotation,
                     Quaternion.Euler(new Vector3(0f,0f,angle)),
-                    10f*Time.fixedDeltaTime);
+                    20f*Time.fixedDeltaTime);
                 King.RigidBody.MoveRotation(rotation);
                 yield return new WaitForFixedUpdate();
             }
@@ -64,6 +69,7 @@ namespace King.FSM
             if(King != null) 
                 King.StopCoroutine(rotationCorutine);
             _movement.FreezeRotation = false;
+            _movement.FreezeMovement = false;
         }
 
         private void SetDamage()

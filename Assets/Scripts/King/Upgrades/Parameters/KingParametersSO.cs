@@ -11,6 +11,7 @@ namespace King.Upgrades.Parameters
 
         public float attackDistance;
         public float attackRadius;
+        public float jerkForce;
 
         public Dictionary<KingParameterType, KingParameter> GetKingParameters()
         {
