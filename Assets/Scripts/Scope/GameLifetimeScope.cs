@@ -1,3 +1,4 @@
+using Controllers;
 using Enemy.FSM;
 using Enemy.GoblinArcher;
 using Enemy.GoblinWarrior;
@@ -9,6 +10,7 @@ using Servant.Archer.FSM;
 using Servant.FSM;
 using Servant.Knight;
 using Servant.Knight.FSM;
+using UI;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -18,9 +20,15 @@ namespace Scope
     public class GameLifetimeScope : LifetimeScope
     {
         [SerializeField] private KingController _kingController;
+        [SerializeField] private GameUI _gameUI;
         
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterInstance(_gameUI);
+            
+            builder.RegisterEntryPoint<CastleManager>().AsSelf();
+            builder.RegisterEntryPoint<GameController>().AsSelf();
+            
             // Register King
             builder.RegisterComponent(_kingController);
             builder.Register<KingAttackState>(Lifetime.Scoped);
@@ -41,6 +49,8 @@ namespace Scope
             builder.Register<ServantFSM<ArcherController>>(Lifetime.Transient);
             
             // ENEMIES
+            
+            builder.RegisterEntryPoint<EnemyManager>().AsSelf();
             
             // Register Goblin Warrior
             builder.Register<EnemyFSM<GoblinWarriorController>>(Lifetime.Transient);

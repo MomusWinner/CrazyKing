@@ -15,6 +15,7 @@ public class BootstrapScope : LifetimeScope
     [SerializeField] private ServantsSO _servantsSO;
     [SerializeField] private ServantStatesSO servantStatesSo;
     [SerializeField] private KingParametersSO _kingParametersSO;
+    [SerializeField] private LevelSO _levelSO;
     [SerializeField] private InputActionAsset _actionAsset;
 
     public void Start()
@@ -24,6 +25,9 @@ public class BootstrapScope : LifetimeScope
     
     protected override void Configure(IContainerBuilder builder)
     {
+        builder.RegisterInstance(_levelSO);
+        builder.RegisterEntryPoint<LevelManager>().AsSelf();
+        
         // SaveManager
         SaveManager saveManager = new SaveManager();
         saveManager.Load();

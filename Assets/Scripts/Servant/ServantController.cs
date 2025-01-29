@@ -30,7 +30,8 @@ namespace Servant
             _enemyMask = LayerMask.GetMask("Enemy");
             _servantMask = LayerMask.GetMask("King");
             LayerMask lowBarrier = LayerMask.GetMask("LowBarrier");
-            TargetFinder = new EntityFinder(LookRadius, _enemyMask, _servantMask | lowBarrier);
+            LayerMask defaultLayerMask = LayerMask.GetMask("Default");
+            TargetFinder = new EntityFinder(LookRadius, _enemyMask, _servantMask | lowBarrier | defaultLayerMask);
         }
 
         public abstract void StartFirstState();

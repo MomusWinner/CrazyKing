@@ -1,4 +1,6 @@
-﻿using Controllers;
+﻿using System;
+using Controllers;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 
@@ -8,7 +10,7 @@ namespace UI.Upgrade
     {
         [SerializeField] private GameObject positioningTab;
         [SerializeField] private GameObject upgradeTab;
-        [Inject] private SceneLoader _sceneLoader;
+        [Inject] private LevelManager _levelManager;
         
         private GameObject currentTab;
 
@@ -26,7 +28,7 @@ namespace UI.Upgrade
 
         public void StartGame()
         {
-            _sceneLoader.LoadScene("Level_1");
+            _levelManager.LoadLevel();
         }
 
         public void OpenUpgradesTab() => OpenTab(upgradeTab);

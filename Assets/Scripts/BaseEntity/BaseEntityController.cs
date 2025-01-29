@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using System;
+using DG.Tweening;
 using Health;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace BaseEntity
 {
     public abstract class BaseEntityController : MonoBehaviour, IDamageable
     {
+        public Action OnDeath;
         public int Health => healthController.Health;
         
         public int MaxHealth => healthController.MaxHealth;
@@ -79,6 +81,7 @@ namespace BaseEntity
 
         public virtual void OnDead()
         {
+            OnDeath?.Invoke();
             DOTween.Kill(gameObject);
             Destroy(gameObject);
         }

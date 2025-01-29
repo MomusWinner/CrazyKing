@@ -66,8 +66,9 @@ namespace King.FSM
         public override void Dispose()
         {
             base.Dispose();
-            if(King != null) 
-                King.StopCoroutine(rotationCorutine);
+            if(King == null) return; 
+            
+            King.StopCoroutine(rotationCorutine);
             _movement.FreezeRotation = false;
             _movement.FreezeMovement = false;
         }
