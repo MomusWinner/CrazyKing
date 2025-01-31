@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3c0240a25304010a8a19c831aca94b4, type: 3}
+  m_Name: SoundSO
+  m_EditorClassIdentifier: 
+  SFXGroup: {fileID: -6003864936475730970, guid: 8b61277436e3e4a46b4774183809122f, type: 2}
+  MusicGroup: {fileID: -3233069032969288082, guid: 8b61277436e3e4a46b4774183809122f, type: 2}
+  Mixer: {fileID: 24100000, guid: 8b61277436e3e4a46b4774183809122f, type: 2}
+  Sounds:
+  - Name: UpgradeMenuMusic
+    Clip: {fileID: 8300000, guid: fa8f468c281eb9f428fedec6075efa13, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 1
+    Priority: 0
+  - Name: Forest
+    Clip: {fileID: 8300000, guid: fc2390ce5306560428c8d06ca4ffd16b, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 1
+    Priority: 0
+  - Name: KingAttack
+    Clip: {fileID: 8300000, guid: e1fb0f8370212f74d94d08bd229d60e6, type: 3}
+    Volume: 0.432
+    Pitch: 1
+    Loop: 0
+    Priority: 10
+  - Name: Archery
+    Clip: {fileID: 8300000, guid: 1f1ecc6596d7c7142a7b6222d951eebc, type: 3}
+    Volume: 1
+    Pitch: 1
+    Loop: 0
+    Priority: 0
+  - Name: WarriorAttack
+    Clip: {fileID: 8300000, guid: 4649bb287e909464281006f5f2c3bf1f, type: 3}
+    Volume: 0.432
+    Pitch: 1
+    Loop: 0
+    Priority: 0
