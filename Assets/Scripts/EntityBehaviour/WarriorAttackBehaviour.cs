@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using BaseEntity;
-using Enemy;
+using Controllers.SoundManager;
 using UnityEngine;
+using VContainer;
+using Random = UnityEngine.Random;
 
 namespace EntityBehaviour
 {
@@ -16,6 +18,8 @@ namespace EntityBehaviour
         private bool _isAttack;
         private IEnumerator _checkTargetsCoroutine;
         private IWarrior _warrior;
+        
+        [Inject] private SoundManager _soundManager;
 
         public WarriorAttackBehaviour(IWarrior warrior)
         {
@@ -83,6 +87,7 @@ namespace EntityBehaviour
         private void StartAttackAnim()
         {
             OnStartAttack?.Invoke();
+            _soundManager.StartMusic("WarriorAttack", SoundChannel.Effect, Random.Range(0.9f, 1.1f));
             _warrior.Controller.Animator.SetTrigger(_attack);
         }
 

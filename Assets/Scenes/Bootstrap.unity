@@ -168,13 +168,14 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 1915430785}
-  _startingCoins: 100000
+  _startingCoins: 900000
   _loadingScreenObject: Loading/Loading
   _servantsSO: {fileID: 11400000, guid: 411b76aa0b167514aa95797e9ea4c726, type: 2}
   servantStatesSo: {fileID: 11400000, guid: b2805d0e66c58ef48b59a1da27160529, type: 2}
   _kingParametersSO: {fileID: 11400000, guid: d6e4ecaf38857c1439443572065d6528, type: 2}
   _levelSO: {fileID: 11400000, guid: 23aebb626d2effb43add05092eb69373, type: 2}
   _actionAsset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  _soundSO: {fileID: 11400000, guid: cdad9c2fc9930b442a36ad400edec24c, type: 2}
 --- !u!1 &1915430785
 GameObject:
   m_ObjectHideFlags: 0

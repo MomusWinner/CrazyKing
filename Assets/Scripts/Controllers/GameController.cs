@@ -1,5 +1,6 @@
 ﻿using King;
 using UI;
+using UI.Game;
 using VContainer;
 using VContainer.Unity;
 
@@ -25,6 +26,7 @@ namespace Controllers
 
         public void SuccessLevelComplete()
         {
+            _gameUI.DisablePausePanel();
             _gameUI.OpenLevelEndPanel();
             _gameUI.SetupGameEndPanel("Победа!!", _earnedCoins);
             _successComplete = true;
@@ -33,6 +35,7 @@ namespace Controllers
         public void FailureLevelComplete()
         {
             if(_successComplete) return;
+            _gameUI.DisablePausePanel();
             _gameUI.OpenLevelEndPanel();
             _gameUI.SetupGameEndPanel("Поражение :(", _earnedCoins);
         }

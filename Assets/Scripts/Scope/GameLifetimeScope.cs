@@ -11,6 +11,7 @@ using Servant.FSM;
 using Servant.Knight;
 using Servant.Knight.FSM;
 using UI;
+using UI.Game;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -24,6 +25,8 @@ namespace Scope
         
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.RegisterEntryPoint<LevelBootstrap>();
+            
             builder.RegisterInstance(_gameUI);
             
             builder.RegisterEntryPoint<CastleManager>().AsSelf();

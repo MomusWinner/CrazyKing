@@ -1,17 +1,28 @@
-﻿using EntityBehaviour;
+﻿using System;
+using Controllers.SoundManager;
+using EntityBehaviour;
 using Health;
 using UnityEngine;
+using VContainer;
+using Random = UnityEngine.Random;
 
 namespace Arrow
 {
     public class BaseArrow : MonoBehaviour, IArrow
     {
+        [SerializeField] private string _sfx = "Archery";
+        [Inject] private SoundManager _soundManager;
         private float _speed;
         private int _damage;
         private float _distance;
         private Vector2 _direction;
         private LayerMask _targetLayer;
-        
+
+        public void Start()
+        {
+            _soundManager.StartMusic(_sfx, SoundChannel.Effect, Random.Range(0.85f, 1.15f));
+        }
+
         public void Setup(ArrowData arrowData, Vector2 diraction)
         {
             _speed = arrowData.speed;

@@ -1,6 +1,5 @@
-﻿using System;
-using Controllers;
-using Cysharp.Threading.Tasks;
+﻿using Controllers;
+using Controllers.SoundManager;
 using UnityEngine;
 using VContainer;
 
@@ -10,12 +9,15 @@ namespace UI.Upgrade
     {
         [SerializeField] private GameObject positioningTab;
         [SerializeField] private GameObject upgradeTab;
+        [SerializeField] private GameObject _settingPanel;
         [Inject] private LevelManager _levelManager;
+        [Inject] private SoundManager _soundManager;
         
-        private GameObject currentTab;
+        private GameObject _currentTab;
 
         public void Start()
         {
+            _soundManager.StartMusic("UpgradeMenuMusic", SoundChannel.Background);
             positioningTab.SetActive(false);
             upgradeTab.SetActive(false);
             OpenTab(positioningTab);
@@ -37,9 +39,13 @@ namespace UI.Upgrade
         
         private void OpenTab(GameObject tab)
         {
-            currentTab?.SetActive(false);
-            currentTab = tab;
-            currentTab.SetActive(true);
+            _currentTab?.SetActive(false);
+            _currentTab = tab;
+            _currentTab.SetActive(true);
         }
+
+        public void OpenSettings() => _settingPanel.SetActive(true);
+
+        public void CloseSettings() => _settingPanel.SetActive(false);
     }
 }

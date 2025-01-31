@@ -1,13 +1,15 @@
 ﻿using Enemy.FSM;
 using EntityBehaviour;
 using UnityEngine;
+using VContainer;
 
 namespace Enemy.GoblinArcher
 {
     public class GoblinArcherAttackState : EnemyState<GoblinArcherController>
     {
-    private ArcherAttackBehaviour _attackBehaviour;
+        private ArcherAttackBehaviour _attackBehaviour;
         private readonly int _aimAnim = Animator.StringToHash("isAiming");
+        [Inject] private IObjectResolver _container;
         
         public override void Start()
         {
@@ -20,6 +22,7 @@ namespace Enemy.GoblinArcher
             };
             
             _attackBehaviour = new ArcherAttackBehaviour(Enemy, Enemy.ArrowPrefPath, 1f, arrowData);
+            _container.Inject(_attackBehaviour);
 
             base.Start();
             _attackBehaviour.Start();

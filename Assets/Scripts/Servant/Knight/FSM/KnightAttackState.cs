@@ -1,16 +1,20 @@
 ﻿using EntityBehaviour;
 using Servant.FSM;
 using UnityEngine;
+using VContainer;
 
 namespace Servant.Knight.FSM
 {
     public class KnightAttackState : ServantState<KnightController>
     {
         private int _attack = Animator.StringToHash("Attack");
-        private WarriorAttackBehaviour _warriorBehaviour; 
+        private WarriorAttackBehaviour _warriorBehaviour;
+        [Inject] private IObjectResolver _container;
+        
         public override void Start()
         {
             _warriorBehaviour = new WarriorAttackBehaviour(Servant);
+            _container.Inject(_warriorBehaviour);
             _warriorBehaviour.OnComplete += () => Servant.Fsm.ChangeState<KnightFollowToKingState>();
             _warriorBehaviour.OnStartAttack += StartAttackAnim;
             _warriorBehaviour.Start();

@@ -3,7 +3,10 @@ using System.Collections;
 using BaseEntity;
 using Finders;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace EntityBehaviour
 {
@@ -27,6 +30,7 @@ namespace EntityBehaviour
 
         private IEnumerator _findTargetCoroutine;
         
+        [Inject] private IObjectResolver _container;
         
         public ArcherAttackBehaviour(
             EntityController entityController, 
@@ -50,12 +54,12 @@ namespace EntityBehaviour
 
         public void Update(float dt)
         {
-            if (!Enable) return;
+            if (!Enable || _entity == null) return;
 
             if (_isAttacking)
             {
                 if (_attackTimOutLeft <= 0)
-                    Shoot();     
+                    _entity.StartCoroutine(ShootDelay());     
                 else
                     _attackTimOutLeft -= dt;
             }
@@ -106,9 +110,15 @@ namespace EntityBehaviour
             Vector2 dir = _target.transform.position - _entity.transform.position;
             dir.Normalize();
             Vector3 spawnPos = entityPos + dir * 0.3f;
-            IArrow arrow = Object.Instantiate(arrowPref, spawnPos, Quaternion.Euler(new Vector3(0,0,dir.ToAngle()))).GetComponent<IArrow>();
+            IArrow arrow = _container.Instantiate(arrowPref, spawnPos, Quaternion.Euler(new Vector3(0,0,dir.ToAngle()))).GetComponent<IArrow>();
             arrow.Setup(_arrowData, dir);
+        }
+
+        private IEnumerator ShootDelay()
+        {
             _isAttacking = false;
+            yield return new WaitForSeconds(Random.Range(0f, 0.5f));
+            Shoot();
         }
 
         private bool IsAimed()

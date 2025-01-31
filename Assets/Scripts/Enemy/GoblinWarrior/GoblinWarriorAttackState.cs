@@ -1,6 +1,7 @@
 ﻿using Enemy.FSM;
 using EntityBehaviour;
 using UnityEngine;
+using VContainer;
 
 namespace Enemy.GoblinWarrior
 {
@@ -8,11 +9,13 @@ namespace Enemy.GoblinWarrior
     {
         private readonly int _attack = Animator.StringToHash("Attack");
         private WarriorAttackBehaviour _warriorBehaviour;
+        [Inject] private IObjectResolver _container;
         
         public override void Start()
         {
             base.Start();
             _warriorBehaviour = new WarriorAttackBehaviour(Enemy);
+            _container.Inject(_warriorBehaviour);
             _warriorBehaviour.OnComplete += () => Enemy.Fsm.ChangeState<GoblinWarriorStayState>();
             _warriorBehaviour.OnStartAttack += () => Enemy.Animator.SetTrigger(_attack);
             _warriorBehaviour.Start();

@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using Controllers.SoundManager;
 using King;
 using King.Upgrades.Parameters;
 using Servant;
@@ -17,6 +18,7 @@ public class BootstrapScope : LifetimeScope
     [SerializeField] private KingParametersSO _kingParametersSO;
     [SerializeField] private LevelSO _levelSO;
     [SerializeField] private InputActionAsset _actionAsset;
+    [SerializeField] private SoundSO _soundSO;
 
     public void Start()
     {
@@ -25,6 +27,9 @@ public class BootstrapScope : LifetimeScope
     
     protected override void Configure(IContainerBuilder builder)
     {
+        builder.RegisterInstance(_soundSO);
+        builder.RegisterEntryPoint<SoundManager>().AsSelf();
+        
         builder.RegisterInstance(_levelSO);
         builder.RegisterEntryPoint<LevelManager>().AsSelf();
         

@@ -1,11 +1,13 @@
 ﻿using EntityBehaviour;
 using Servant.FSM;
 using UnityEngine;
+using VContainer;
 
 namespace Servant.Archer.FSM
 {
     public class ArcherAttackState : ServantState<ArcherController>
     {
+        [Inject] private IObjectResolver _container;
         private ArcherAttackBehaviour _attackBehaviour;
         private readonly int _aimAnim = Animator.StringToHash("isAiming");
         
@@ -20,7 +22,8 @@ namespace Servant.Archer.FSM
             };
             
             _attackBehaviour = new ArcherAttackBehaviour(Servant, Servant.ArrowPrefPath, 1f, arrowData);
-
+            _container.Inject(_attackBehaviour);
+            
             base.Start();
             _attackBehaviour.Start();
             _attackBehaviour.OnAim += () => Servant.Animator.SetBool(_aimAnim, true);

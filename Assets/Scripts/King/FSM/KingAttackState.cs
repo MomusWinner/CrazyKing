@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Controllers;
+using Controllers.SoundManager;
 using Enemy;
 using King.Upgrades.Parameters;
 using UnityEngine;
@@ -9,8 +10,9 @@ namespace King.FSM
 {
     public class KingAttackState : KingState
     {
-        [Inject] InputManager _inputManager;
-        [Inject] KingParametersSO _parameters;
+        [Inject] private InputManager _inputManager;
+        [Inject] private KingParametersSO _parameters;
+        [Inject] private SoundManager _soundManager;
         private static readonly int Attack = Animator.StringToHash("Attack");
         private Movement _movement;
         private LayerMask _enemyMask;
@@ -19,6 +21,7 @@ namespace King.FSM
         public override void Start()
         {
             if (King == null) return;
+            _soundManager.StartMusic("KingAttack", SoundChannel.Effect, Random.Range(0.83f, 1.17f));
             _enemyMask = LayerMask.GetMask("Enemy");
             King.Animator.SetTrigger(Attack);
             _movement = King.GetComponent<Movement>();
