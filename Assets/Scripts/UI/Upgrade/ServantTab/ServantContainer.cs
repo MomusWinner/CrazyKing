@@ -19,11 +19,13 @@ namespace UI.Upgrade.ServantTab
         {
             SetupServants();
             _servantStorage.OnAddServant += AddNewServant;
-            _servantStorage.OnRemoveServant += id =>
-            {
-                foreach (var item in _servantItems.Where(item => item.ServantData.ID == id))
-                    Destroy(item.gameObject);
-            };
+            _servantStorage.OnRemoveServant += RemoveServant;
+        }
+
+        public void OnDestroy()
+        {
+            _servantStorage.OnRemoveServant -= RemoveServant;
+            _servantStorage.OnAddServant -= AddNewServant;
         }
 
         private void SetupServants()
@@ -35,6 +37,12 @@ namespace UI.Upgrade.ServantTab
              {
                  AddNewServant(servant);
              }        
+        }
+
+        private void RemoveServant(int id)
+        {
+            foreach (var item in _servantItems.Where(item => item.ServantData.ID == id))
+                Destroy(item.gameObject);
         }
 
         private void AddNewServant(ServantData servantData)

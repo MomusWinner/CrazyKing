@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using Servant;
 using UnityEngine;
 using VContainer;
@@ -25,21 +24,17 @@ namespace UI.Upgrade.PositioningTab
             SetupCards(_servantStorage.Servants);
             trashZone.OnThrowToTrash += OnThrowToTrash;
             _servantStorage.OnAddServant += AddServantCard;
-            _servantStorage.OnRemoveServant += id =>
-            {
-                foreach (var servantCard in _servantCards.Where(c => c.ServantData.ID == id))
-                    Destroy(servantCard.gameObject);
-            };
-            _servantStorage.OnUpgradeServant += data =>
-            {
-                foreach (var servantCard in _servantCards.Where(c => c.ServantData.ID == data.ID))
-                {
-                    servantCard.Setup(data);
-                }
-            };
+            _servantStorage.OnRemoveServant += RemoveServantCard;
+            _servantStorage.OnUpgradeServant += UpgradeServantCard;
         }
 
-
+        public void OnDestroy()
+        {
+            trashZone.OnThrowToTrash -= OnThrowToTrash;
+            _servantStorage.OnAddServant -= AddServantCard;
+            _servantStorage.OnRemoveServant -= RemoveServantCard;
+            _servantStorage.OnUpgradeServant -= UpgradeServantCard;
+        }
         
         private void SetupCards(IEnumerable<ServantData> servants)
         {
@@ -56,6 +51,18 @@ namespace UI.Upgrade.PositioningTab
              _servantCards.ForEach(s => Destroy(s.gameObject)); 
              servantCardContainer.Dispose();
              _servantCards.Clear();           
+        }
+
+        private void RemoveServantCard(int id)
+        {
+            foreach (var servantCard in _servantCards.Where(c => c.ServantData.ID == id))
+                Destroy(servantCard.gameObject);
+        }
+
+        private void UpgradeServantCard(ServantData data)
+        {
+            foreach (var servantCard in _servantCards.Where(c => c.ServantData.ID == data.ID))
+                servantCard.Setup(data);
         }
 
         private void AddServantCard(ServantData servantData)
