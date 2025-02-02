@@ -46,3 +46,21 @@ MonoBehaviour:
     Pitch: 1
     Loop: 0
     Priority: 0
+  - Name: Click
+    Clip: {fileID: 8300000, guid: 3c7e6044e32ba964ca8b88871d796d26, type: 3}
+    Volume: 0.432
+    Pitch: 1
+    Loop: 0
+    Priority: 0
+  - Name: Buy
+    Clip: {fileID: 8300000, guid: 6fcaea27ffa58024caf6c9b58bff008f, type: 3}
+    Volume: 0.432
+    Pitch: 1
+    Loop: 0
+    Priority: 0
+  - Name: Block
+    Clip: {fileID: 8300000, guid: 6ac99b9a47a40b540bc23f024ef08f24, type: 3}
+    Volume: 0.432
+    Pitch: 1
+    Loop: 0
+    Priority: 0

@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using Controllers.SoundManager;
 using Servant;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace UI.Upgrade.ServantShop
         
         [Inject] private CoinsManager _coinsManager;
         [Inject] private ServantStorage _servantStorage;
+        [Inject] private SoundManager _soundManager;
 
         private ServantSO _servant;
         
@@ -35,6 +37,7 @@ namespace UI.Upgrade.ServantShop
                 Debug.LogWarning("Not enough coins to buy a servant.");
                 return;
             }
+            _soundManager.StartMusic("Buy", SoundChannel.UI);
             _servantStorage.AddServant(new ServantData()
             {
                 IsUsed = false,

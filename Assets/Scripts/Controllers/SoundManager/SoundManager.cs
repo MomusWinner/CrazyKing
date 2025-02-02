@@ -65,7 +65,10 @@ namespace Controllers.SoundManager
             audioPlayer.Priority = sound.Priority;
             UpdateAudioSource(audioPlayer.AudioSource, sound);
             if (pitch != 0f) audioPlayer.AudioSource.pitch = pitch;
-            audioPlayer.AudioSource.Play();
+            if (channel == SoundChannel.Background)
+                audioPlayer.AudioSource.Play();
+            else
+                audioPlayer.AudioSource.PlayOneShot(audioPlayer.AudioSource.clip);
         }
 
         public void SetMusicVolume(float value)
@@ -106,8 +109,8 @@ namespace Controllers.SoundManager
             AudioPlayer[] audioPlayers = _soundByChannel[channel];
             return
                 (from audioPlayer in audioPlayers
-                where audioPlayer.Priority <= priority
-                orderby audioPlayer.Priority ascending 
+                where audioPlayer.Priority <= priority// && !audioPlayer.AudioSource.isPlaying
+                orderby audioPlayer.Priority ascending, !audioPlayer.AudioSource.isPlaying descending
                 select audioPlayer).FirstOrDefault();
         }
     }

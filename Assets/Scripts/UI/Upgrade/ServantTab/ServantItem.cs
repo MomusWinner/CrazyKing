@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Controllers;
+using Controllers.SoundManager;
 using Servant;
 using Servant.Upgrade;
 using TMPro;
@@ -25,6 +26,7 @@ namespace UI.Upgrade.ServantTab
         [Inject] private ServantsSO _servantsSO;
         [Inject] private ServantStorage _servantStorage;
         [Inject] private CoinsManager _coinsManager;
+        [Inject] private SoundManager _soundManager;
         private ServantData _servantData;
         private ServantSO _servantSo;
         private ServantUpgradeData NextUpgrade => ServantData.Lv >= _servantSo.Upgrades.Count ? null : _servantSo.Upgrades[ServantData.Lv];
@@ -52,22 +54,28 @@ namespace UI.Upgrade.ServantTab
             {
                 if (!_canByMerged)
                 {
+                    _soundManager.StartMusic("Block", SoundChannel.UI);
                     Debug.LogWarning("Can't merge servants.");
                     return;
                 }
 
-                _servantStorage.TryMergeServants(_sameServants
-                    .Select(s => s.ID)
-                    .ToList()
-                    .GetRange(0, NextUpgrade.mergeAmount));
+                if (_servantStorage.TryMergeServants(_sameServants
+                        .Select(s => s.ID)
+                        .ToList()
+                        .GetRange(0, NextUpgrade.mergeAmount)))
+                {
+                    _soundManager.StartMusic("Buy", SoundChannel.UI);
+                }
             }
             else
             {
                 if (!_coinsManager.TryGetCoins(NextUpgrade.price))
                 {
+                    _soundManager.StartMusic("Block", SoundChannel.UI);
                     Debug.LogWarning("Not enough coins.");
                     return;
                 } 
+                _soundManager.StartMusic("Buy", SoundChannel.UI);
                 _servantStorage.UpgradeServant(_servantData.ID);
             }
 

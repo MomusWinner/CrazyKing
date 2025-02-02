@@ -14,10 +14,10 @@ namespace EntityBehaviour
         public Action OnStartAttack;
         
         private BaseEntityController _target;
-        private int _attack = Animator.StringToHash("Attack");
+        private readonly int _attack = Animator.StringToHash("Attack");
+        private readonly IWarrior _warrior;
         private bool _isAttack;
         private IEnumerator _checkTargetsCoroutine;
-        private IWarrior _warrior;
         
         [Inject] private SoundManager _soundManager;
 
@@ -43,8 +43,11 @@ namespace EntityBehaviour
             float distanceToTarget = Vector2.Distance(_target.transform.position, _warrior.Controller.transform.position);
             if (distanceToTarget <= _warrior.AttackRadius)
             {
-                _isAttack = true;
-                StartAttackAnim();
+                if (!_isAttack)
+                {
+                    _isAttack = true;
+                    StartAttackAnim();
+                }
             }
         }
 

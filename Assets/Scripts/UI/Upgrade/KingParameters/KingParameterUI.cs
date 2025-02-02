@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using Controllers.SoundManager;
 using King;
 using King.Upgrades.Parameters;
 using TMPro;
@@ -15,6 +16,7 @@ namespace UI.Upgrade.KingParameters
         [SerializeField] private TMP_Text _price;
         [Inject] private KingParameterManager _kingParameterManager;
         [Inject] private CoinsManager _coinsManager;
+        [Inject] private SoundManager _soundManager;
         private KingParameter _kingParameter; 
         private int _currentLevel;
         private KingParameterUp _currentUpgradeData; 
@@ -62,6 +64,7 @@ namespace UI.Upgrade.KingParameters
                 Debug.LogWarning("No coins available for upgrade");
                 return;
             }
+            _soundManager.StartMusic("Buy", SoundChannel.UI);
             _kingParameterManager.UpgradeParameter(_kingParameter.type);
             _currentLevel = _kingParameterManager.GetParameterLevel(parameterType);
         }
