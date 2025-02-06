@@ -31,36 +31,18 @@ namespace Scope
             builder.Register<KingAttackState>(Lifetime.Scoped);
             builder.Register<DefaultKingState>(Lifetime.Scoped);
             
-            // SERVANTS
-            builder.Register<ServantFSM>(Lifetime.Transient);
-            
-            //STATES
+            // ENTITY STATES
             EntityStateFactory.RegisterStates(builder);
             builder.Register<EntityStateFactory>(Lifetime.Singleton);
             
+            // SERVANTS
+            builder.Register<ServantFSM>(Lifetime.Transient);
             builder.RegisterEntryPoint<ServantManager>().AsSelf();
             builder.Register<ServantFactory>(Lifetime.Singleton);
             
-            // Register Knight
-            
-            // Register Archer
-            // builder.Register<ArcherAttackState>(Lifetime.Transient);
-            // builder.Register<ServantFSM<ArcherController>>(Lifetime.Transient);
-            
             // ENEMIES
-            
             builder.RegisterEntryPoint<EnemyManager>().AsSelf();
             builder.Register<EnemyFSM>(Lifetime.Singleton);
-            
-            // Register Goblin Warrior
-            // builder.Register<EnemyFSM<GoblinWarriorController>>(Lifetime.Transient);
-            // builder.Register<GoblinWarriorAttackState>(Lifetime.Transient);
-            // builder.Register<GoblinWarriorStayState>(Lifetime.Transient);
-            //
-            // // Register Goblin Archer
-            // builder.Register<EnemyFSM<GoblinArcherController>>(Lifetime.Transient);
-            // builder.Register<GoblinArcherStayState>(Lifetime.Transient);
-            // builder.Register<GoblinArcherAttackState>(Lifetime.Transient);
         }
     }
 }
