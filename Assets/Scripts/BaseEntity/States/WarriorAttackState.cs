@@ -1,39 +1,36 @@
 ﻿using System;
 using System.Collections;
-using BaseEntity;
-using BaseEntity.States;
+using Agent;
 using Controllers.SoundManager;
+using EntityBehaviour;
 using UnityEngine;
 using VContainer;
 using Random = UnityEngine.Random;
 
-namespace EntityBehaviour
+namespace BaseEntity.States
 {
-    public class WarriorAttackBehaviour
+    public class WarriorAttackState : EntityState
     {
-        public Action OnComplete;
-        public Action OnStartAttack;
-        
+        [Inject] private IObjectResolver _container;
         private BaseEntityController _target;
         private readonly int _attack = Animator.StringToHash("Attack");
-        private readonly IWarrior _warrior;
         private bool _isAttack;
         private IEnumerator _checkTargetsCoroutine;
         
         [Inject] private SoundManager _soundManager;
+        private IWarrior _warrior;
+        private PhysicAgent _physicAgent;
 
-        public WarriorAttackBehaviour(IWarrior warrior)
+        public override void Start()
         {
-            _warrior = warrior;
-        }
-        
-        public void Start()
-        {
+            _physicAgent = Entity.GetComponent<PhysicAgent>();
+            _warrior = Entity.GetComponent<IWarrior>();
+            _warrior.OnAttack += Attack;
             _checkTargetsCoroutine = CheckTargets();
             _warrior.Controller.StartCoroutine(_checkTargetsCoroutine);
         }
 
-        public void Update(float dt)
+        public override void Update()
         {
             if (!_target)
             {
@@ -52,10 +49,15 @@ namespace EntityBehaviour
             }
         }
 
-        public void Dispose()
+        public override void Dispose()
         {
-            // _warrior.Controller.Stop(); TODO
-            _warrior.Controller.StopCoroutine(_checkTargetsCoroutine);
+            OnComplete = null;
+            _isAttack = false;
+            _target = null;
+            _physicAgent.Stop();
+            if (_warrior.Controller != null)
+                _warrior.Controller.StopCoroutine(_checkTargetsCoroutine);
+            _checkTargetsCoroutine = null;
         }
         
         private IEnumerator CheckTargets()
@@ -75,22 +77,21 @@ namespace EntityBehaviour
             return _target;
         }
         
-        public void FixedUpdate(float dt)
+        public override void FixedUpdate()
         {
             if(!_target) return;
             if (_isAttack)
             {
                 Vector2 dir = _target.transform.position - _warrior.Controller.transform.position;
-                _warrior.Controller.Rotate(dir.normalized, dt);
-                // _warrior.Controller.Stop(); TODO
+                _warrior.Controller.Rotate(dir.normalized, Time.fixedDeltaTime);
+                _physicAgent.Stop();
             }
-            // else
-                // _warrior.Controller.Move(_target.transform.position); TODO
+            else
+                _physicAgent.Move(_target.transform.position);
         }
 
         private void StartAttackAnim()
         {
-            OnStartAttack?.Invoke();
             _soundManager.StartMusic("WarriorAttack", SoundChannel.Effect, Random.Range(0.9f, 1.1f));
             _warrior.Controller.Animator.SetTrigger(_attack);
         }
@@ -107,5 +108,13 @@ namespace EntityBehaviour
                 TryFindEnemyInLookRadius();
             }
         }
+    }
+    
+    public interface IWarrior
+    {
+        public Action OnAttack { get; set; }
+        public EntityController Controller { get; }
+        public int AttackDamage { get; }
+        public float AttackRadius { get; }
     }
 }

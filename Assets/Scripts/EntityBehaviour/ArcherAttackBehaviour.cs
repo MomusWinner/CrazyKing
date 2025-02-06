@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections;
 using BaseEntity;
+using BaseEntity.States;
 using Finders;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace EntityBehaviour
@@ -76,7 +76,7 @@ namespace EntityBehaviour
 
             if (!_isAttacking)
             {
-                _entity.Stop(); 
+                // _entity.Stop(); TODO 
                 if (!_isAiming)
                 {
                     OnAim?.Invoke();
@@ -133,28 +133,14 @@ namespace EntityBehaviour
         private IEnumerator FindNewTarget()
         {
             while (true)
-            { 
-                _target = _entityFinder.FindObjectInLookRadius(_entity.transform.position)?.GetComponent<BaseEntityController>();
-                if (_target == null) 
+            {
+                _target = _entityFinder.FindObjectInLookRadius(_entity.transform.position)
+                    ?.GetComponent<BaseEntityController>();
+                if (_target == null)
                     OnAttackCompleted?.Invoke();
 
                 yield return new WaitForSeconds(1f);
             }
         }
-        
-    }
-
-    public interface IArrow
-    {
-        void Setup(ArrowData data, Vector2 diraction);
-    }
-
-    [Serializable]
-    public class ArrowData
-    {
-        public float speed;
-        public int damage;
-        public float distance;
-        public LayerMask targetLayer;
     }
 }

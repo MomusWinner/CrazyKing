@@ -1,16 +1,10 @@
+using BaseEntity.States;
 using Controllers;
 using Enemy.FSM;
-using Enemy.GoblinArcher;
-using Enemy.GoblinWarrior;
 using King;
 using King.FSM;
 using Servant;
-using Servant.Archer;
-using Servant.Archer.FSM;
 using Servant.FSM;
-using Servant.Knight;
-using Servant.Knight.FSM;
-using UI;
 using UI.Game;
 using UnityEngine;
 using VContainer;
@@ -38,32 +32,35 @@ namespace Scope
             builder.Register<DefaultKingState>(Lifetime.Scoped);
             
             // SERVANTS
+            builder.Register<ServantFSM>(Lifetime.Transient);
+            
+            //STATES
+            EntityStateFactory.RegisterStates(builder);
+            builder.Register<EntityStateFactory>(Lifetime.Singleton);
+            
             builder.RegisterEntryPoint<ServantManager>().AsSelf();
             builder.Register<ServantFactory>(Lifetime.Singleton);
             
             // Register Knight
-            builder.Register<KnightFollowToKingState>(Lifetime.Transient);
-            builder.Register<KnightAttackState>(Lifetime.Transient);
-            builder.Register<ServantFSM<KnightController>>(Lifetime.Transient);
             
             // Register Archer
-            builder.Register<ArcherFollowToKingState>(Lifetime.Transient);
-            builder.Register<ArcherAttackState>(Lifetime.Transient);
-            builder.Register<ServantFSM<ArcherController>>(Lifetime.Transient);
+            // builder.Register<ArcherAttackState>(Lifetime.Transient);
+            // builder.Register<ServantFSM<ArcherController>>(Lifetime.Transient);
             
             // ENEMIES
             
             builder.RegisterEntryPoint<EnemyManager>().AsSelf();
+            builder.Register<EnemyFSM>(Lifetime.Singleton);
             
             // Register Goblin Warrior
-            builder.Register<EnemyFSM<GoblinWarriorController>>(Lifetime.Transient);
-            builder.Register<GoblinWarriorAttackState>(Lifetime.Transient);
-            builder.Register<GoblinWarriorStayState>(Lifetime.Transient);
-            
-            // Register Goblin Archer
-            builder.Register<EnemyFSM<GoblinArcherController>>(Lifetime.Transient);
-            builder.Register<GoblinArcherStayState>(Lifetime.Transient);
-            builder.Register<GoblinArcherAttackState>(Lifetime.Transient);
+            // builder.Register<EnemyFSM<GoblinWarriorController>>(Lifetime.Transient);
+            // builder.Register<GoblinWarriorAttackState>(Lifetime.Transient);
+            // builder.Register<GoblinWarriorStayState>(Lifetime.Transient);
+            //
+            // // Register Goblin Archer
+            // builder.Register<EnemyFSM<GoblinArcherController>>(Lifetime.Transient);
+            // builder.Register<GoblinArcherStayState>(Lifetime.Transient);
+            // builder.Register<GoblinArcherAttackState>(Lifetime.Transient);
         }
     }
 }

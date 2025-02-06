@@ -55,8 +55,11 @@ namespace UI.Upgrade.PositioningTab
 
         private void RemoveServantCard(int id)
         {
-            foreach (var servantCard in _servantCards.Where(c => c.ServantData.ID == id))
+            foreach (var servantCard in _servantCards.Where(c => c.ServantData.ID == id).ToList())
+            {
+                _servantCards.Remove(servantCard);
                 Destroy(servantCard.gameObject);
+            }
         }
 
         private void UpgradeServantCard(ServantData data)

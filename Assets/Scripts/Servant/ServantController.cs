@@ -1,6 +1,10 @@
 ﻿using BaseEntity;
+using BaseEntity.States;
 using Finders;
 using King;
+using King.FSM;
+using Servant.FSM;
+using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
 
@@ -14,11 +18,15 @@ namespace Servant
         public IPoint Point { get; set; }
         
         [HideInInspector]
-        [Inject]
-        public KingController KingController;
+        [Inject] public KingController KingController;
+        [Inject] public ServantFSM FSM;
+        [Inject] private IObjectResolver _container;
 
         private LayerMask _enemyMask;
         private LayerMask _servantMask;
+
+        [SerializeField] private EntityStateType _attackState;
+        [SerializeField] private EntityStateType _defaultState = EntityStateType.FollowToKing;
 
         public override void Initialize()
         {
@@ -32,6 +40,23 @@ namespace Servant
             LayerMask lowBarrier = LayerMask.GetMask("LowBarrier");
             LayerMask defaultLayerMask = LayerMask.GetMask("Default");
             TargetFinder = new EntityFinder(LookRadius, _enemyMask, _servantMask | lowBarrier | defaultLayerMask);
+        }
+
+        public void Start()
+        {
+            FSM.Setup(this, _attackState, _defaultState);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            FSM.Update();
+        }
+
+        protected override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            FSM.FixedUpdate();
         }
 
         public abstract void StartFirstState();

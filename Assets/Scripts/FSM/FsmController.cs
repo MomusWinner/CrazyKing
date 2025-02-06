@@ -11,12 +11,12 @@
             currentState?.Start();
         }
 
-        public void Update()
+        public virtual void Update()
         {
             currentState?.Update();
         }
 
-        public void FixedUpdate()
+        public virtual void FixedUpdate()
         {
             currentState?.FixedUpdate();
         }

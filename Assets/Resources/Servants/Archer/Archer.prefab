@@ -131,9 +131,10 @@ GameObject:
   - component: {fileID: 8704513132227624927}
   - component: {fileID: 7011827724601060940}
   - component: {fileID: 3608406403951464860}
+  - component: {fileID: 1339550767567709292}
   - component: {fileID: 2609820537315140243}
-  - component: {fileID: 4587486565764711998}
   - component: {fileID: 1026579379591122096}
+  - component: {fileID: 4587486565764711998}
   m_Layer: 7
   m_Name: Archer
   m_TagString: Untagged
@@ -244,6 +245,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1339550767567709292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302002649914389472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c602ad83b454080904202e53a43e15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 10
 --- !u!114 &2609820537315140243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +279,23 @@ MonoBehaviour:
   animator: {fileID: 4587486565764711998}
   _lookRadius: 10
   KingController: {fileID: 0}
+  _attackState: 5
+  _defaultState: 0
+--- !u!114 &1026579379591122096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302002649914389472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68797dfa6a634eec9c0e83101be33d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
+  _damageParticle: {fileID: 6985042913406038341, guid: 1b20d950fd84d6944a664c546b47ab05, type: 3}
 --- !u!95 &4587486565764711998
 Animator:
   serializedVersion: 7
@@ -287,21 +318,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1026579379591122096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5302002649914389472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68797dfa6a634eec9c0e83101be33d44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flashColor: {r: 1, g: 1, b: 1, a: 1}
-  _flashTime: 0.25
-  _damageParticle: {fileID: 6985042913406038341, guid: 1b20d950fd84d6944a664c546b47ab05, type: 3}
 --- !u!1 &5972110660867155461
 GameObject:
   m_ObjectHideFlags: 0

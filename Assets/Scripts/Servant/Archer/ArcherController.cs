@@ -1,43 +1,42 @@
-﻿using Servant.Archer.FSM;
+﻿using BaseEntity.States;
 using Servant.FSM;
+using UnityEngine;
 using VContainer;
 
 namespace Servant.Archer
 {
-    public class ArcherController : ServantController
+    public class ArcherController : ServantController, IArcher
     {
-        public ServantFSM<ArcherController> Fsm => _fsm;
-        public string ArrowPrefPath { get; set; }
-        public int AttackDamage { get; set; }
+        public ArrowData ArrowData => new ArrowData
+        {
+            damage = AttackDamage,
+            speed = 8,
+            distance = 10000,
+            targetLayer = LayerMask.GetMask("Enemy")
+        };
         
-        [Inject] private ServantFSM<ArcherController> _fsm;
+        public string ArrowPath { get; set; }
+        public int AttackDamage { get; set; }
 
+        public float AttackTimeOut { get; set; } = 2f;
+        
         public override void Initialize()
         {
-            _fsm.SetUp(this);
             base.Initialize();
         }
 
         public override void StartFirstState()
         {
-            _fsm.ChangeState<ArcherFollowToKingState>();
         }
        
         protected override void Update()
         {
             base.Update();
-            _fsm?.Update();
         }
 
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-            _fsm?.FixedUpdate();
-        }
-
-        public void Attack()
-        {
-            
         }
     }
 }

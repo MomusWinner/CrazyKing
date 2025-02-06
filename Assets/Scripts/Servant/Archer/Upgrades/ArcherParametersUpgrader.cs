@@ -30,7 +30,7 @@ namespace Servant.Archer.Upgrades
 
         private void SetParameters(ArcherParamData paramData)
         {
-            _archer.ArrowPrefPath = paramData.arrowPath;
+            _archer.ArrowPath = paramData.arrowPath;
             _archer.Animator.runtimeAnimatorController = paramData.animatorController;
             _archer.SetSpeed(paramData.speed + _archer.Speed);
             _archer.AttackDamage += paramData.damage;

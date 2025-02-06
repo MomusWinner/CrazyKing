@@ -1,19 +1,18 @@
-﻿
+﻿using System;
 using FSM;
 
-namespace Servant.FSM
+namespace BaseEntity.States
 {
-    public abstract class ServantState<TServant> : IState where TServant:ServantController
+    public abstract class EntityState : IState
     {
-        public TServant Servant => _servant;
-        
-        private TServant _servant;
-        
-        public void SetUp(TServant servant)
+        public Action OnComplete { get; set; }
+        protected EntityController Entity;
+
+        public void Setup(EntityController entity)
         {
-            _servant = servant;
+            Entity = entity;
         }
-        
+
         public virtual void Start()
         { }
 

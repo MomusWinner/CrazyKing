@@ -1,6 +1,5 @@
-﻿using System;
+﻿using BaseEntity.States;
 using Controllers.SoundManager;
-using EntityBehaviour;
 using Health;
 using UnityEngine;
 using VContainer;

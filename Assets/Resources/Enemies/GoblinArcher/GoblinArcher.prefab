@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4199156335021660225}
   - component: {fileID: 3948156043672189180}
   - component: {fileID: 7501678706278429449}
+  - component: {fileID: 3243135564143591386}
   - component: {fileID: -3808773140360106254}
   - component: {fileID: 6639581200054036985}
   m_Layer: 6
@@ -147,6 +148,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &3243135564143591386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3264004522685862450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c602ad83b454080904202e53a43e15b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 10
 --- !u!114 &-3808773140360106254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +181,8 @@ MonoBehaviour:
   speed: 3
   animator: {fileID: 3948156043672189180}
   _lookRadius: 10
+  _attackState: 5
+  _defaultState: 1
   attackDamage: 10
   ArrowPrefPath: Arrow/GoblinArrowGrade1
 --- !u!114 &6639581200054036985
