@@ -1,6 +1,6 @@
 ﻿namespace BaseEntity.States
 {
-    public class Stay : EntityState
+    public class StayState : EntityState
     {
         
     }

@@ -24,6 +24,7 @@ namespace BaseEntity.States
             builder.Register<FollowToKingState>(Lifetime.Transient);
             builder.Register<WarriorAttackState>(Lifetime.Transient);
             builder.Register<ArcherAttackState>(Lifetime.Transient);
+            builder.Register<WanderState>(Lifetime.Transient);
         }
         
         public EntityState GetState(EntityStateType stateType)
@@ -33,7 +34,8 @@ namespace BaseEntity.States
                 EntityStateType.FollowToKing => _container.Resolve<FollowToKingState>(),
                 EntityStateType.WarriorAttack => _container.Resolve<WarriorAttackState>(),
                 EntityStateType.ArcherAttack => _container.Resolve<ArcherAttackState>(),
-                EntityStateType.Stay => new Stay(),
+                EntityStateType.Stay => new StayState(),
+                EntityStateType.Wander => _container.Resolve<WanderState>(),
                 _ => null
             };
         }
