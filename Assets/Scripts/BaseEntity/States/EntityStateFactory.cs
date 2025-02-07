@@ -25,6 +25,7 @@ namespace BaseEntity.States
             builder.Register<WarriorAttackState>(Lifetime.Transient);
             builder.Register<ArcherAttackState>(Lifetime.Transient);
             builder.Register<WanderState>(Lifetime.Transient);
+            builder.Register<WanderByPointState>(Lifetime.Transient);
         }
         
         public EntityState GetState(EntityStateType stateType)
@@ -36,6 +37,7 @@ namespace BaseEntity.States
                 EntityStateType.ArcherAttack => _container.Resolve<ArcherAttackState>(),
                 EntityStateType.Stay => new StayState(),
                 EntityStateType.Wander => _container.Resolve<WanderState>(),
+                EntityStateType.WanderByPoints => _container.Resolve<WanderByPointState>(),
                 _ => null
             };
         }

@@ -62049,15 +62049,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -3808773140360106254, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
       propertyPath: _defaultState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3264004522685862450, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
       propertyPath: m_Name
       value: GoblinArcher
-      objectReference: {fileID: 0}
-    - target: {fileID: 3264004522685862450, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5392369417156241115, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -62107,17 +62103,13 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7501678706278429449, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3264004522685862450, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1673930863}
+      addedObject: {fileID: 1673930864}
   m_SourcePrefab: {fileID: 100100000, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
 --- !u!4 &1673930861 stripped
 Transform:
@@ -62129,7 +62121,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3264004522685862450, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
   m_PrefabInstance: {fileID: 1673930860}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1673930863
+--- !u!114 &1673930864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62138,10 +62130,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1673930862}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c602ad83b454080904202e53a43e15b, type: 3}
+  m_Script: {fileID: 11500000, guid: d44badc3395945639cad7eba67829d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 10
+  _pointWidth: 0.2
+  _pointColor: {r: 0, g: 0, b: 0, a: 1}
+  _showPoints: 1
+  WanderPoints:
+  - {x: 1.5, y: 4.55}
+  - {x: 6.15, y: 6.13}
+  - {x: 4.15, y: 2.35}
 --- !u!1001 &1715761203
 PrefabInstance:
   m_ObjectHideFlags: 0
