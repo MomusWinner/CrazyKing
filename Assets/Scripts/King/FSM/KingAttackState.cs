@@ -21,7 +21,7 @@ namespace King.FSM
         public override void Start()
         {
             if (King == null) return;
-            _soundManager.StartMusic("KingAttack", SoundChannel.Effect, Random.Range(0.83f, 1.17f));
+            _soundManager.StartMusic("KingAttack", SoundChannel.Effect);
             _enemyMask = LayerMask.GetMask("Enemy");
             King.Animator.SetTrigger(Attack);
             _movement = King.GetComponent<Movement>();

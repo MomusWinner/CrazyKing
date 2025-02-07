@@ -92,7 +92,7 @@ namespace BaseEntity.States
 
         private void StartAttackAnim()
         {
-            _soundManager.StartMusic("WarriorAttack", SoundChannel.Effect, Random.Range(0.9f, 1.1f));
+            _soundManager.StartMusic("WarriorAttack", SoundChannel.Effect);
             _warrior.Controller.Animator.SetTrigger(_attack);
         }
 

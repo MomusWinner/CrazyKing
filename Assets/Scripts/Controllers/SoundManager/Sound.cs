@@ -9,7 +9,8 @@ namespace Controllers.SoundManager
         public string Name;
         public AudioClip Clip;
         [Range(0f, 1f)] public float Volume;
-        [Range(.1f, 3f)] public float Pitch;
+        [Range(.1f, 3f)] public float PitchMax = 1f;
+        [Range(.1f, 3f)] public float PitchMin = 1f;
         public bool Loop;
         public int Priority;
     }

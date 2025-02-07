@@ -19,7 +19,7 @@ namespace Arrow
 
         public void Start()
         {
-            _soundManager.StartMusic(_sfx, SoundChannel.Effect, Random.Range(0.85f, 1.15f));
+            _soundManager.StartMusic(_sfx, SoundChannel.Effect);
         }
 
         public void Setup(ArrowData arrowData, Vector2 diraction)

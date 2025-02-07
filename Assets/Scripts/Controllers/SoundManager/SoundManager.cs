@@ -46,7 +46,7 @@ namespace Controllers.SoundManager
             });
         }
 
-        public void StartMusic(string name, SoundChannel channel, float pitch = 0f)
+        public void StartMusic(string name, SoundChannel channel)
         {
             Sound sound = GetSound(name);
             if (sound == null)
@@ -64,7 +64,6 @@ namespace Controllers.SoundManager
             
             audioPlayer.Priority = sound.Priority;
             UpdateAudioSource(audioPlayer.AudioSource, sound);
-            if (pitch != 0f) audioPlayer.AudioSource.pitch = pitch;
             if (channel == SoundChannel.Background)
                 audioPlayer.AudioSource.Play();
             else
@@ -99,7 +98,7 @@ namespace Controllers.SoundManager
         private void UpdateAudioSource(AudioSource audioSource, Sound sound)
         {
             audioSource.volume = sound.Volume;
-            audioSource.pitch = sound.Pitch;
+            audioSource.pitch = Random.Range(sound.PitchMin, sound.PitchMax);
             audioSource.clip = sound.Clip;
             audioSource.loop = sound.Loop;
         }

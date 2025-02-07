@@ -19,48 +19,63 @@ MonoBehaviour:
   - Name: UpgradeMenuMusic
     Clip: {fileID: 8300000, guid: fa8f468c281eb9f428fedec6075efa13, type: 3}
     Volume: 1
-    Pitch: 1
+    PitchMax: 1
+    PitchMin: 1
     Loop: 1
     Priority: 0
   - Name: Forest
     Clip: {fileID: 8300000, guid: fc2390ce5306560428c8d06ca4ffd16b, type: 3}
     Volume: 1
-    Pitch: 1
+    PitchMax: 1
+    PitchMin: 1
     Loop: 1
     Priority: 0
   - Name: KingAttack
-    Clip: {fileID: 8300000, guid: e1fb0f8370212f74d94d08bd229d60e6, type: 3}
+    Clip: {fileID: 8300000, guid: d91b2e76c52d04946aac84b96db2de74, type: 3}
     Volume: 0.432
-    Pitch: 1
+    PitchMax: 0.9
+    PitchMin: 1.1
     Loop: 0
     Priority: 10
   - Name: Archery
-    Clip: {fileID: 8300000, guid: 1f1ecc6596d7c7142a7b6222d951eebc, type: 3}
+    Clip: {fileID: 8300000, guid: c2448e441a49e04458cf13ac4f9d44c9, type: 3}
     Volume: 1
-    Pitch: 1
+    PitchMax: 0.9
+    PitchMin: 1.1
     Loop: 0
     Priority: 0
   - Name: WarriorAttack
     Clip: {fileID: 8300000, guid: 4649bb287e909464281006f5f2c3bf1f, type: 3}
     Volume: 0.432
-    Pitch: 1
+    PitchMax: 0.9
+    PitchMin: 1.1
     Loop: 0
     Priority: 0
   - Name: Click
-    Clip: {fileID: 8300000, guid: 3c7e6044e32ba964ca8b88871d796d26, type: 3}
+    Clip: {fileID: 8300000, guid: f17885223d22c874c963f11db299406c, type: 3}
     Volume: 0.432
-    Pitch: 1
+    PitchMax: 1
+    PitchMin: 1
     Loop: 0
     Priority: 0
   - Name: Buy
-    Clip: {fileID: 8300000, guid: 6fcaea27ffa58024caf6c9b58bff008f, type: 3}
+    Clip: {fileID: 8300000, guid: 02e5ea306717f824785a794ab6429019, type: 3}
     Volume: 0.432
-    Pitch: 1
+    PitchMax: 1
+    PitchMin: 1
     Loop: 0
     Priority: 0
   - Name: Block
-    Clip: {fileID: 8300000, guid: 6ac99b9a47a40b540bc23f024ef08f24, type: 3}
+    Clip: {fileID: 8300000, guid: ad59942c985d5d64aa1c64aac8753594, type: 3}
     Volume: 0.432
-    Pitch: 1
+    PitchMax: 1
+    PitchMin: 1
+    Loop: 0
+    Priority: 0
+  - Name: Delete
+    Clip: {fileID: 8300000, guid: 262f1286b6a69a4429adc66f1aec87ed, type: 3}
+    Volume: 0.432
+    PitchMax: 1
+    PitchMin: 1
     Loop: 0
     Priority: 0
