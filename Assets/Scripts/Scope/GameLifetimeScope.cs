@@ -28,6 +28,7 @@ namespace Scope
             
             // Register King
             builder.RegisterComponent(_kingController);
+            builder.Register<KickState>(Lifetime.Scoped);
             builder.Register<KingAttackState>(Lifetime.Scoped);
             builder.Register<DefaultKingState>(Lifetime.Scoped);
             
@@ -42,7 +43,7 @@ namespace Scope
             
             // ENEMIES
             builder.RegisterEntryPoint<EnemyManager>().AsSelf();
-            builder.Register<EnemyFSM>(Lifetime.Singleton);
+            builder.Register<EnemyFSM>(Lifetime.Transient);
         }
     }
 }

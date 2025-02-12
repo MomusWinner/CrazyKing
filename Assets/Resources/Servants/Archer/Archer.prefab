@@ -208,9 +208,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
-  m_LinearDamping: 4
-  m_AngularDamping: 4
+  m_Mass: 1
+  m_LinearDamping: 2
+  m_AngularDamping: 2
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 1460ad5990509a746b8e9ecf8e360006, type: 2}
   m_IncludeLayers:
@@ -257,6 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c602ad83b454080904202e53a43e15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FreezeRotation: 0
   _rotationSpeed: 10
 --- !u!114 &2609820537315140243
 MonoBehaviour:

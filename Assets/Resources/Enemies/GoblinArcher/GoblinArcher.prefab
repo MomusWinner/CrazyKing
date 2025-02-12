@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3243135564143591386}
   - component: {fileID: -3808773140360106254}
   - component: {fileID: 6639581200054036985}
-  - component: {fileID: 6930717676838729293}
+  - component: {fileID: 2793253235581860461}
   m_Layer: 6
   m_Name: GoblinArcher
   m_TagString: Untagged
@@ -91,8 +91,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 5
-  m_AngularDamping: 5
+  m_LinearDamping: 2
+  m_AngularDamping: 2
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c602ad83b454080904202e53a43e15b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FreezeRotation: 0
   _rotationSpeed: 10
 --- !u!114 &-3808773140360106254
 MonoBehaviour:
@@ -183,7 +184,7 @@ MonoBehaviour:
   animator: {fileID: 3948156043672189180}
   _lookRadius: 10
   _attackState: 5
-  _defaultState: 2
+  _defaultState: 3
   attackDamage: 10
   ArrowPrefPath: Arrow/GoblinArrowGrade1
 --- !u!114 &6639581200054036985
@@ -201,7 +202,7 @@ MonoBehaviour:
   _flashColor: {r: 1, g: 1, b: 1, a: 1}
   _flashTime: 0.25
   _damageParticle: {fileID: 6985042913406038341, guid: 1b20d950fd84d6944a664c546b47ab05, type: 3}
---- !u!114 &6930717676838729293
+--- !u!114 &2793253235581860461
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -210,10 +211,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3264004522685862450}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c602ad83b454080904202e53a43e15b, type: 3}
+  m_Script: {fileID: 11500000, guid: d44badc3395945639cad7eba67829d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: 10
+  _pointWidth: 0.2
+  _pointColor: {r: 0, g: 0, b: 0, a: 1}
+  _showPoints: 1
+  WanderPoints:
+  - {x: 1.5, y: 4.55}
+  - {x: 4.15, y: 2.35}
+  - {x: 9.13, y: 2.35}
 --- !u!1 &4853825563625445605
 GameObject:
   m_ObjectHideFlags: 0

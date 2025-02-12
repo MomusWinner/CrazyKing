@@ -3909,7 +3909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &991991633
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4596,7 +4596,6 @@ GameObject:
   - component: {fileID: 1181530077}
   - component: {fileID: 1181530079}
   - component: {fileID: 1181530078}
-  - component: {fileID: 1181530080}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -4722,18 +4721,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181530076}
   m_CullTransparentMesh: 1
---- !u!114 &1181530080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181530076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce569fda1564436f97c9ae1159cd039e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1189589166
 GameObject:
   m_ObjectHideFlags: 0
@@ -5655,7 +5642,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 4.5, y: 0.00030517578}
-  m_SizeDelta: {x: -9, y: 0}
+  m_SizeDelta: {x: -9, y: -652.23517}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1440068221
 MonoBehaviour:
@@ -5936,7 +5923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1594779675
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7318,6 +7305,7 @@ GameObject:
   - component: {fileID: 2114336708}
   - component: {fileID: 2114336707}
   - component: {fileID: 2114336706}
+  - component: {fileID: 2114336709}
   m_Layer: 5
   m_Name: BuyServantButton
   m_TagString: Untagged
@@ -7340,10 +7328,10 @@ RectTransform:
   - {fileID: 1181530077}
   m_Father: {fileID: 883932612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 35, y: -35}
-  m_SizeDelta: {x: 70, y: 70}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2114336706
 MonoBehaviour:
@@ -7439,6 +7427,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114336704}
   m_CullTransparentMesh: 1
+--- !u!114 &2114336709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114336704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce569fda1564436f97c9ae1159cd039e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2133233485
 GameObject:
   m_ObjectHideFlags: 0
