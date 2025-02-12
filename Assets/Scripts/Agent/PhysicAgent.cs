@@ -6,6 +6,8 @@ namespace Agent
     [RequireComponent(typeof(Rigidbody2D), typeof(NavMeshAgent))]
     public class PhysicAgent : MonoBehaviour
     {
+        public bool FreezeMovement { get; set; } = false;
+        public bool FreezeRotation { get; set; } = false;
         [SerializeField] private float _rotationSpeed = 10;
         public float Speed { get; set; } = 3f;
         public float RotationSpeed { get; set; }
@@ -25,22 +27,17 @@ namespace Agent
 
         public void Move(Vector3 position)
         {
+            if (FreezeMovement) return;
             _agent.SetDestination(position);
             Vector3 direction = (_agent.steeringTarget - transform.position).normalized; // Get direction towards steering target
             _rigidbody.linearVelocity = direction * Speed; // Set Rigidbody velocity based on direction
 
-            // Update NavMeshAgent's next position to match Rigidbody's position
             _agent.nextPosition = _rigidbody.position;
-
-            // Optionally handle rotation
-            // if (RigidBody.velocity != Vector2.zero) {
-            //     Quaternion targetRotation = Quaternion.LookRotation(RigidBody.velocity);
-            //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
-            // }
         }
 
         protected void FixedUpdate()
         {
+            if (FreezeRotation) return;
             Vector2 dir = _agent.velocity;
             if (dir.sqrMagnitude < 0.5f) return;
             dir = dir.normalized;
