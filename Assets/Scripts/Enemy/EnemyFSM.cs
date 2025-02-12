@@ -9,6 +9,7 @@ namespace Enemy.FSM
 {
     public class EnemyFSM : FsmController
     {
+        public bool AI = true;
         private EnemyController _enemy;
         private readonly IObjectResolver _container;
         private readonly EntityStateFactory _stateFactory;
@@ -44,6 +45,11 @@ namespace Enemy.FSM
         {
             while (true)
             {
+                if (!AI)
+                {
+                    yield return null;
+                    continue;
+                }
                 if (currentState != _attackState)
                 {
                     Transform target = _enemy.TargetFinder.FindObjectInLookRadius(_enemy.transform.position);
