@@ -43,6 +43,7 @@ namespace King
             _pointController = GetComponent<CirclePointController>();
             _inputManager = inputManager;
             _inputManager.OnAttack += StartAttack;
+            _inputManager.OnKick += Kick;
             _kingParametersSO = parametersSO;
         }
         
@@ -52,6 +53,12 @@ namespace King
             Initialize();
             ChangeMaxHealth(_kingParameterManager.GetParameterValue<int>(KingParameterType.Health));
             AttackDamage = _kingParameterManager.GetParameterValue<int>(KingParameterType.Damage);
+        }
+
+        public void Kick()
+        {
+            if (_kingFsm.currentState is KickState) return;
+            _kingFsm.ChangeState<KickState>();
         }
 
         public void StartAttack()

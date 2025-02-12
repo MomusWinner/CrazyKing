@@ -16,7 +16,7 @@ namespace King.FSM
         private static readonly int Attack = Animator.StringToHash("Attack");
         private Movement _movement;
         private LayerMask _enemyMask;
-        private IEnumerator rotationCorutine;
+        private IEnumerator _rotationCoroutine;
 
         public override void Start()
         {
@@ -37,8 +37,8 @@ namespace King.FSM
                 attackDir = mousePos - kingPos;
                 attackDir.Normalize();
                 float angle = attackDir.ToAngle();
-                rotationCorutine = Rotate(angle);
-                King.StartCoroutine(rotationCorutine);
+                _rotationCoroutine = Rotate(angle);
+                King.StartCoroutine(_rotationCoroutine);
             }
             
             King.RigidBody.AddForce(attackDir * _parameters.jerkForce);
@@ -71,7 +71,7 @@ namespace King.FSM
             base.Dispose();
             if(King == null) return; 
             
-            King.StopCoroutine(rotationCorutine);
+            King.StopCoroutine(_rotationCoroutine);
             _movement.FreezeRotation = false;
             _movement.FreezeMovement = false;
         }
