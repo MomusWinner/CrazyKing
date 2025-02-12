@@ -9,8 +9,9 @@ using VContainer;
 
 namespace Servant.FSM
 {
-    public class ServantFSM: FsmController 
+    public class ServantFSM: FsmController
     {
+        public bool AI = true;
         private KingController _king;
         private ServantController _servant;
         private readonly IObjectResolver _container;
@@ -51,6 +52,11 @@ namespace Servant.FSM
         {
             while (true)
             {
+                if (!AI)
+                {
+                    yield return null;
+                    continue;
+                }
                 float distanceToKing = (_king.transform.position - _servant.transform.position).sqrMagnitude;
                 bool correctDistanceToKing = distanceToKing <= _minDistanceToKing * _minDistanceToKing;
                 

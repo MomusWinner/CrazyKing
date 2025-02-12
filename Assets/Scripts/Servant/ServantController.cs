@@ -1,4 +1,6 @@
-﻿using BaseEntity;
+﻿using System.Collections;
+using Agent;
+using BaseEntity;
 using BaseEntity.States;
 using Finders;
 using King;
@@ -8,7 +10,7 @@ using VContainer;
 
 namespace Servant
 {
-    public abstract class ServantController : EntityController
+    public abstract class ServantController : EntityController, IThrowable
     {
         public int ID { get; private set; }
         public ServantSO ServantSO { get; set; }
@@ -22,12 +24,14 @@ namespace Servant
 
         private LayerMask _enemyMask;
         private LayerMask _servantMask;
+        private PhysicAgent _agent;
 
         [SerializeField] private EntityStateType _attackState;
         [SerializeField] private EntityStateType _defaultState = EntityStateType.FollowToKing;
 
         public override void Initialize()
         {
+            _agent = GetComponent<PhysicAgent>();
             base.Initialize();
             if (KingController.TryGetPoint(ServantData.PointId, out IPoint point)) Point = point;
             else Debug.LogError($"ServantPoint ID:{ServantData.PointId} already busy.");
@@ -65,6 +69,24 @@ namespace Servant
                 KingController.ReturnPoint(Point);
             KingController.RemoveServant(this);
             base.OnDead();
+        }
+
+        public void Throw(Vector2 direction, float force)
+        {
+            _agent.Stop();
+            _agent.FreezeRotation = true;
+            _agent.FreezeMovement = true;
+            FSM.AI = false;
+            RigidBody.AddForce(direction * force, ForceMode2D.Impulse);
+            StartCoroutine(Wakeup());
+        }
+
+        private IEnumerator Wakeup()
+        {
+            yield return new WaitForSeconds(1f);
+            FSM.AI = true;
+            _agent.FreezeRotation = false;
+            _agent.FreezeMovement = false;
         }
     }
 }
