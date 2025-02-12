@@ -1,4 +1,5 @@
-﻿using King;
+﻿using DG.Tweening;
+using King;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ namespace Castle
     {
         public bool IsCaptured { get; private set; }
 
+        [SerializeField] private SpriteRenderer _roof;
         [SerializeField] private float _captureTime = 3f;
         [SerializeField] private Image _stateImage;
         [SerializeField] private Sprite _targetState;
@@ -34,17 +36,20 @@ namespace Castle
             {
                 _isCapturing = true;
                 _stateImage.sprite = _captureStatus;
+                _roof.DOColor(new Color(1,1,1, 0.3f), 0.5f);
             }
         }
-
+        
         public void OnTriggerExit2D(Collider2D collision)
         {
             
-            if (1 << collision.gameObject.layer != _kingMask || IsCaptured)
+            if (1 << collision.gameObject.layer != _kingMask)
                 return;
 
             if (collision.gameObject.TryGetComponent(out KingController king) && _isCapturing)
             {
+                _roof.DOColor(new Color(1,1,1, 1f), 0.5f);
+                if (IsCaptured) return;
                 _elapsedTime = 0;
                 _stateImage.sprite = _targetState;
                 _stateImage.fillAmount = 1;
