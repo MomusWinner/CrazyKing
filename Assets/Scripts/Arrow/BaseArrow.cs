@@ -16,9 +16,13 @@ namespace Arrow
         private float _distance;
         private Vector2 _direction;
         private LayerMask _targetLayer;
+        private LayerMask _highBarrier;
+        private LayerMask _lowBarrier;
 
         public void Start()
         {
+            _highBarrier = LayerMask.GetMask("HighBarrier");
+            _lowBarrier = LayerMask.GetMask("LowBarrier");
             _soundManager.StartMusic(_sfx, SoundChannel.Effect);
         }
 
@@ -39,10 +43,13 @@ namespace Arrow
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            if ((_targetLayer| (1 << other.gameObject.layer)) != _targetLayer) return;
+            LayerMask otherLayerMask = 1 << other.gameObject.layer;
+            if((otherLayerMask | _highBarrier) == _highBarrier || (otherLayerMask | _lowBarrier) == _lowBarrier)
+                Destroy(gameObject);
+            if ((_targetLayer | otherLayerMask) != _targetLayer) return;
             if (!other.TryGetComponent(out IDamageable damageable)) return;
             damageable.Damage(_damage);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }
