@@ -1,10 +1,7 @@
 ﻿using System;
 using BaseEntity;
 using BaseEntity.States;
-using Enemy.FSM;
-using EntityBehaviour;
 using UnityEngine;
-using VContainer;
 
 namespace Enemy.GoblinWarrior
 {
@@ -18,29 +15,9 @@ namespace Enemy.GoblinWarrior
         [SerializeField] private int attackDamage;
         [SerializeField] private float attackRadius;
 
-        //public EnemyFSM<GoblinWarriorController> Fsm => _fsm;
-        
-
-        protected override void Start()
-        {
-            
-            base.Start();
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-        }
-
-        protected override void FixedUpdate()
-        {
-            base.FixedUpdate();
-        }
-
         public void Attack()
         {
             OnAttack?.Invoke();
-           // _fsm?.SendMessage("attack");
         }
 
         protected new void OnDrawGizmos()
