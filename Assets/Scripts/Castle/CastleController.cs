@@ -29,14 +29,15 @@ namespace Castle
 
         public void OnTriggerEnter2D(Collider2D other)
         {
-            if (1 << other.gameObject.layer != _kingMask || _isCapturing || IsCaptured)
+            if (1 << other.gameObject.layer != _kingMask)
                 return;
 
             if (other.gameObject.TryGetComponent(out KingController king))
             {
+                _roof.DOColor(new Color(1,1,1, 0.3f), 0.5f);
+                if (_isCapturing || IsCaptured) return;
                 _isCapturing = true;
                 _stateImage.sprite = _captureStatus;
-                _roof.DOColor(new Color(1,1,1, 0.3f), 0.5f);
             }
         }
         
@@ -46,10 +47,10 @@ namespace Castle
             if (1 << collision.gameObject.layer != _kingMask)
                 return;
 
-            if (collision.gameObject.TryGetComponent(out KingController king) && _isCapturing)
+            if (collision.gameObject.TryGetComponent(out KingController _))
             {
                 _roof.DOColor(new Color(1,1,1, 1f), 0.5f);
-                if (IsCaptured) return;
+                if (IsCaptured || !_isCapturing) return;
                 _elapsedTime = 0;
                 _stateImage.sprite = _targetState;
                 _stateImage.fillAmount = 1;
