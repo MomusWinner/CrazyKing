@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -55,15 +56,25 @@ namespace King
             AttackDamage = _kingParameterManager.GetParameterValue<int>(KingParameterType.Damage);
         }
 
-        public void Kick()
+        private void Kick()
         {
             if (_kingFsm.currentState is KickState) return;
+            if (_kingFsm.currentState is KingAttackState)
+            {
+                _kingFsm.SendMessage("next_state", typeof(KickState));
+                return;
+            }
             _kingFsm.ChangeState<KickState>();
         }
 
-        public void StartAttack()
+        private void StartAttack()
         {
             if (_kingFsm.currentState is KingAttackState) return;
+            if (_kingFsm.currentState is KickState)
+            {
+                _kingFsm.SendMessage("next_state", typeof(KingAttackState));
+                return;
+            }
             _kingFsm.ChangeState<KingAttackState>();
         }
 
@@ -101,7 +112,7 @@ namespace King
         {
             if (_kingParametersSO is null) return;
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position + transform.right * _kingParametersSO.attackDistance, _kingParametersSO.attackRadius);
+            Gizmos.DrawWireSphere(transform.position + transform.right * _kingParametersSO.AttackDistance, _kingParametersSO.AttackRadius);
         }
     }
 }

@@ -28,9 +28,9 @@ namespace Scope
             
             // Register King
             builder.RegisterComponent(_kingController);
-            builder.Register<KickState>(Lifetime.Scoped);
-            builder.Register<KingAttackState>(Lifetime.Scoped);
-            builder.Register<DefaultKingState>(Lifetime.Scoped);
+            builder.Register<KickState>(Lifetime.Transient);
+            builder.Register<KingAttackState>(Lifetime.Transient);
+            builder.Register<DefaultKingState>(Lifetime.Transient);
             
             // ENTITY STATES
             EntityStateFactory.RegisterStates(builder);

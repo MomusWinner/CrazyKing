@@ -19,7 +19,7 @@ namespace BaseEntity.States
             _currentPoint = _wanderByPointData.WanderPoints[_currentPointIndex];
         }
 
-        public override void Update()
+        public override void FixedUpdate()
         {
             Vector2 entityPos = Entity.transform.position;
             float distance = (_currentPoint - entityPos).sqrMagnitude;

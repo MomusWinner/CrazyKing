@@ -73,10 +73,10 @@ namespace Servant
 
         public void Throw(Vector2 direction, float force)
         {
-            _agent.Stop();
-            _agent.FreezeRotation = true;
-            _agent.FreezeMovement = true;
-            FSM.AI = false;
+            // _agent.Stop();
+            // _agent.FreezeRotation = true;
+            // _agent.FreezeMovement = true;
+            // FSM.AI = false;
             RigidBody.AddForce(direction * force, ForceMode2D.Impulse);
             StartCoroutine(Wakeup());
         }
@@ -84,9 +84,9 @@ namespace Servant
         private IEnumerator Wakeup()
         {
             yield return new WaitForSeconds(1f);
-            FSM.AI = true;
-            _agent.FreezeRotation = false;
-            _agent.FreezeMovement = false;
+            // FSM.AI = true;
+            // _agent.FreezeRotation = false;
+            // _agent.FreezeMovement = false;
         }
     }
 }

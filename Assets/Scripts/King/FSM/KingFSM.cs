@@ -1,4 +1,5 @@
-﻿using FSM;
+﻿using System;
+using FSM;
 using VContainer;
 
 namespace King.FSM
@@ -17,9 +18,20 @@ namespace King.FSM
         public override void ChangeState<T>()
         {
             var state = _container.Resolve<T>();
-            if (state is not KingState kingState) return;
-            kingState.Setup(_king);
             ChangeState(state);
+        }
+
+        public void ChangeState(Type stateType)
+        {
+            var state = _container.Resolve(stateType);
+            ChangeState((IState)state);
+        }
+
+        public override void ChangeState(IState state)
+        {
+            if (state is not KingState kingState || state == null) return;
+            kingState.Setup(_king);
+            base.ChangeState(state);
         }
     }
 }

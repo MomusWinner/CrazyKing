@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Controllers;
 using Controllers.SoundManager;
+using Cysharp.Threading.Tasks;
 using Enemy;
 using King.Upgrades.Parameters;
 using UnityEngine;
@@ -13,6 +15,7 @@ namespace King.FSM
         [Inject] private InputManager _inputManager;
         [Inject] private KingParametersSO _parameters;
         [Inject] private SoundManager _soundManager;
+        private Type _nextState;
         private static readonly int Attack = Animator.StringToHash("Attack");
         private Movement _movement;
         private LayerMask _enemyMask;
@@ -41,7 +44,7 @@ namespace King.FSM
                 King.StartCoroutine(_rotationCoroutine);
             }
             
-            King.RigidBody.AddForce(attackDir * _parameters.jerkForce);
+            King.RigidBody.AddForce(attackDir * _parameters.JerkForce);
         }
 
         public IEnumerator Rotate(float angle)
@@ -59,10 +62,14 @@ namespace King.FSM
 
         public override void Message(string name, object obj)
         {
-            base.Message(name, obj);
-            if (name == "set_damage")
+            switch (name)
             {
-                SetDamage();    
+                case "set_damage":
+                    SetDamage();
+                    break;
+                case "next_state":
+                    _nextState = (Type)obj;
+                    break;
             }
         }
 
@@ -74,19 +81,25 @@ namespace King.FSM
             King.StopCoroutine(_rotationCoroutine);
             _movement.FreezeRotation = false;
             _movement.FreezeMovement = false;
+            _nextState = null;
         }
 
-        private void SetDamage()
+        private async UniTask SetDamage()
         {
             var targets = Physics2D.OverlapCircleAll(
-                King.transform.position + _parameters.attackDistance * King.transform.right, _parameters.attackRadius, _enemyMask);
+                King.transform.position + _parameters.AttackDistance * King.transform.right, _parameters.AttackRadius, _enemyMask);
             foreach (var target in targets)
             {
                 var enemy = target.GetComponent<EnemyController>();
                 if (enemy != null)
                     enemy.Damage(King.AttackDamage);
             }
-            King.Fsm.ChangeState<DefaultKingState>();
+            await UniTask.WaitForSeconds(0.1f);
+            if (King == null) return;
+            if (_nextState != null)
+                King.Fsm.ChangeState(_nextState);
+            else
+                King.Fsm.ChangeState<DefaultKingState>();
         }
     }
 }

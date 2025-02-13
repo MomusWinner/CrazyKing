@@ -1,20 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Controllers;
 using UnityEngine;
 using VContainer;
+using Object = UnityEngine.Object;
 
 namespace King.FSM
 {
     public class KickState : KingState
     {
+        private Type _nextStateType;
         private const string KickPrefPath = "King/Kick";
         private Kick _kick;
         private IEnumerator _rotationCoroutine;
-        [Inject] private InputManager _inputManager;
         private Movement _movement;
+        [Inject] private InputManager _inputManager;
 
         public override void Start()
         {
+            if (King == null)
+                return;
             _movement = King.GetComponent<Movement>();
             _movement.FreezeMovement = true;
             _movement.FreezeRotation = true;
@@ -36,8 +41,19 @@ namespace King.FSM
 
         public override void Dispose()
         {
+            if (_movement == null) return;
             _movement.FreezeMovement = false;
             _movement.FreezeRotation = false;
+            King.StopCoroutine(_rotationCoroutine);
+        }
+
+        public override void Message(string name, object obj = null)
+        {
+            _nextStateType = name switch
+            {
+                "next_state" => (Type)obj,
+                _ => _nextStateType
+            };
         }
 
         public IEnumerator Kick(Vector2 attackDir)
@@ -47,9 +63,14 @@ namespace King.FSM
             _kick.transform.position = King.transform.position;
             _kick.Setup(attackDir);
             _kick.transform.position += _kick.transform.right * (King.Radius);
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.3f);
             if (King != null)
-                King.Fsm.ChangeState<DefaultKingState>();
+            {
+                if (_nextStateType != null)
+                    King.Fsm.ChangeState(_nextStateType);
+                else
+                    King.Fsm.ChangeState<DefaultKingState>();
+            }
         }
         
         public IEnumerator Rotate(float angle)

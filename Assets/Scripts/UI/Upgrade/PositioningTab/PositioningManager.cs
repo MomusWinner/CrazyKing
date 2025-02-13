@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using King;
+using King.Upgrades.Parameters;
 using Servant;
 using UnityEngine;
 using VContainer;
@@ -15,12 +17,15 @@ namespace UI.Upgrade.PositioningTab
         [SerializeField] private TrashZone trashZone;
         [Inject] private ServantStorage _servantStorage;
         [Inject] private IObjectResolver _container;
+        [Inject] private KingParameterManager _kingParameterManager;
         private List<ServantCard> _servantCards = new();
         
         private ServantCard _currentCard;
         
         public void Start()
         {
+            UpdateSlotStates();
+            _kingParameterManager.OnUpdater += UpdateSlotStates;
             SetupCards(_servantStorage.Servants);
             trashZone.OnThrowToTrash += OnThrowToTrash;
             _servantStorage.OnAddServant += AddServantCard;
@@ -30,10 +35,29 @@ namespace UI.Upgrade.PositioningTab
 
         public void OnDestroy()
         {
+            _kingParameterManager.OnUpdater -= UpdateSlotStates;
             trashZone.OnThrowToTrash -= OnThrowToTrash;
             _servantStorage.OnAddServant -= AddServantCard;
             _servantStorage.OnRemoveServant -= RemoveServantCard;
             _servantStorage.OnUpgradeServant -= UpgradeServantCard;
+        }
+
+        private void UpdateSlotStates(KingParameterType type)
+        {
+            if (type != KingParameterType.ServantAmount) return;
+            UpdateSlotStates();
+        }
+        
+        private void UpdateSlotStates()
+        {
+            int servantAvailableSlot = _kingParameterManager.GetParameterValue<int>(KingParameterType.ServantAmount);
+            for (int i = 0; i < slots.Count; i++)
+            {
+                if(slots[i].PositionId < servantAvailableSlot)
+                    slots[i].Unblock();
+                else
+                    slots[i].BlocK();
+            }
         }
         
         private void SetupCards(IEnumerable<ServantData> servants)

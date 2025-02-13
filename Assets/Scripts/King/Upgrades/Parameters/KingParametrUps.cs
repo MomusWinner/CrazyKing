@@ -23,4 +23,11 @@ namespace King.Upgrades.Parameters
         public int damage;
         public override object Value => damage;
     }
+
+    [Serializable]
+    public class ServantAmountParameterUp : KingParameterUp
+    {
+        public int servantAmount;
+        public override object Value => servantAmount;
+    }
 }

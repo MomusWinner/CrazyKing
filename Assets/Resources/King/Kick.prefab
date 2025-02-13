@@ -172,5 +172,5 @@ MonoBehaviour:
   _startScale: 0.3
   _endScale: 0.4
   _kickDistance: 0.9
-  _speed: 3.5
-  _force: 5
+  _speed: 5
+  _force: 10

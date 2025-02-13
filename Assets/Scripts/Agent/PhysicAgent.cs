@@ -25,12 +25,16 @@ namespace Agent
             RotationSpeed = _rotationSpeed;
         }
 
-        public void Move(Vector3 position)
+        public void Move(Vector3 position, float deltaTime = 0)
         {
+            if (deltaTime == 0)
+                deltaTime = Time.fixedDeltaTime;
+            
             if (FreezeMovement) return;
             _agent.SetDestination(position);
             Vector3 direction = (_agent.steeringTarget - transform.position).normalized; // Get direction towards steering target
-            _rigidbody.linearVelocity = direction * Speed; // Set Rigidbody velocity based on direction
+            _rigidbody.AddForce(direction * (Speed * deltaTime * 100));
+            //_rigidbody.linearVelocity = direction * Speed; // Set Rigidbody velocity based on direction
 
             _agent.nextPosition = _rigidbody.position;
         }

@@ -9,6 +9,7 @@ namespace King
 {
     public class KingParameterManager : IStartable
     {
+        public Action<KingParameterType> OnUpdater;
         [Inject] private KingParametersSO _kingParameters;
         [Inject] private SaveManager _saveManager;
         
@@ -35,20 +36,15 @@ namespace King
             return default;
         }
 
-        public void SetParameter(KingParameterData data)
-        {
-            _parameters[data.Type] = data;
-            Save();
-        }
-
         public void UpgradeParameter(KingParameterType type)
         {
             KingParameter parameter = _kingParameters.GetKingParameters()[type];
             if (!_parameters.TryGetValue(type, out var result) 
                 || result.Lv >= parameter.Upgrades.Count) return;
             
-           result.Lv++; 
-           Save();
+            result.Lv++; 
+            OnUpdater?.Invoke(type);
+            Save();
         }
 
         public void Save()

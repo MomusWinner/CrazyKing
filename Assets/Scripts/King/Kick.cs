@@ -16,7 +16,6 @@ namespace King
         private float _distanceTraveled;
         private List<GameObject> _kickedObjects = new();
         
-        
         public void Setup(Vector2 direction)
         {
             _direction = direction;

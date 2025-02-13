@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36ff898f2ec494caeccc77e20044129, type: 3}
   m_Name: KingParameters
   m_EditorClassIdentifier: 
-  healthParameter:
+  HealthParameter:
     name: "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
     type: 0
-    startHealth: 70
+    startHealth: 100
     parametersUpgrades:
     - description: +30
       price: 100
@@ -32,7 +32,7 @@ MonoBehaviour:
     - description: +50
       price: 10000
       health: 300
-  damageParameter:
+  DamageParameter:
     name: "\u0423\u0440\u043E\u043D"
     type: 1
     startDamage: 30
@@ -52,6 +52,41 @@ MonoBehaviour:
     - description: 55 + 10
       price: 3000
       damage: 65
-  attackDistance: 0.5
-  attackRadius: 0.5
-  jerkForce: 3000
+  ServantAmountParameter:
+    name: "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0432\u043E\u0438\u043D\u043E\u0432"
+    type: 2
+    StartAmount: 1
+    ParameterUpgrades:
+    - description: +1
+      price: 100
+      servantAmount: 2
+    - description: +1
+      price: 200
+      servantAmount: 3
+    - description: +1
+      price: 270
+      servantAmount: 4
+    - description: +2
+      price: 500
+      servantAmount: 6
+    - description: +1
+      price: 700
+      servantAmount: 7
+    - description: +1
+      price: 1200
+      servantAmount: 8
+    - description: +1
+      price: 1500
+      servantAmount: 9
+    - description: +1
+      price: 1800
+      servantAmount: 10
+    - description: +1
+      price: 2600
+      servantAmount: 11
+    - description: +1
+      price: 4600
+      servantAmount: 12
+  AttackDistance: 0.5
+  AttackRadius: 0.5
+  JerkForce: 3000

@@ -114,3 +114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 6
+  _image: {fileID: 8792478817987861064}
+  _activeSprite: {fileID: 1819097063, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}
+  _blockSprite: {fileID: 1661749189, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}

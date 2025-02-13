@@ -31,9 +31,19 @@ namespace King.Upgrades.Parameters
         public override object StartValue => startDamage;
     }
 
+    [Serializable]
+    public class KingServantAmountParameter : KingParameter
+    {
+        public int StartAmount;
+        public List<ServantAmountParameterUp> ParameterUpgrades;
+        public override List<KingParameterUp> Upgrades => ParameterUpgrades.Cast<KingParameterUp>().ToList();
+        public override object StartValue => StartAmount;
+    }
+
     public enum KingParameterType
     {
         Health,
         Damage,
+        ServantAmount
     }
 }
