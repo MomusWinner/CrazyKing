@@ -154,6 +154,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -161,12 +174,12 @@ TextureImporter:
       name: characters-assets_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 339
+        x: 4
+        y: 1839
         width: 171
         height: 209
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -183,12 +196,12 @@ TextureImporter:
       name: characters-assets_1
       rect:
         serializedVersion: 2
-        x: 174
-        y: 328
+        x: 179
+        y: 1828
         width: 172
         height: 220
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -205,12 +218,12 @@ TextureImporter:
       name: characters-assets_2
       rect:
         serializedVersion: 2
-        x: 347
-        y: 334
+        x: 351
+        y: 1834
         width: 198
         height: 214
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +240,12 @@ TextureImporter:
       name: characters-assets_3
       rect:
         serializedVersion: 2
-        x: 546
-        y: 401
+        x: 716
+        y: 1888
         width: 279
         height: 147
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +262,12 @@ TextureImporter:
       name: characters-assets_4
       rect:
         serializedVersion: 2
-        x: 826
-        y: 382
+        x: 1000
+        y: 1877
         width: 277
         height: 166
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,12 +284,12 @@ TextureImporter:
       name: characters-assets_5
       rect:
         serializedVersion: 2
-        x: 1105
-        y: 272
+        x: 1506
+        y: 1770
         width: 238
         height: 276
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -293,12 +306,12 @@ TextureImporter:
       name: characters-assets_6
       rect:
         serializedVersion: 2
-        x: 1345
-        y: 346
+        x: 1828
+        y: 1846
         width: 174
         height: 202
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -315,12 +328,12 @@ TextureImporter:
       name: characters-assets_7
       rect:
         serializedVersion: 2
-        x: 1520
-        y: 335
+        x: 4
+        y: 1535
         width: 173
         height: 213
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -337,12 +350,12 @@ TextureImporter:
       name: characters-assets_8
       rect:
         serializedVersion: 2
-        x: 1694
-        y: 322
+        x: 180
+        y: 1522
         width: 200
         height: 227
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -359,12 +372,12 @@ TextureImporter:
       name: characters-assets_9
       rect:
         serializedVersion: 2
-        x: 1895
-        y: 414
+        x: 572
+        y: 1613
         width: 35
         height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -381,12 +394,12 @@ TextureImporter:
       name: characters-assets_10
       rect:
         serializedVersion: 2
-        x: 1930
-        y: 400
+        x: 609
+        y: 1600
         width: 40
         height: 148
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -403,12 +416,12 @@ TextureImporter:
       name: characters-assets_11
       rect:
         serializedVersion: 2
-        x: 1971
-        y: 400
+        x: 652
+        y: 1599
         width: 40
         height: 148
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -425,12 +438,12 @@ TextureImporter:
       name: characters-assets_12
       rect:
         serializedVersion: 2
-        x: 2
-        y: 188
+        x: 696
+        y: 1664
         width: 195
         height: 83
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -447,12 +460,12 @@ TextureImporter:
       name: characters-assets_13
       rect:
         serializedVersion: 2
-        x: 198
-        y: 180
+        x: 893
+        y: 1655
         width: 220
         height: 92
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -469,12 +482,12 @@ TextureImporter:
       name: characters-assets_14
       rect:
         serializedVersion: 2
-        x: 418
-        y: 174
+        x: 1113
+        y: 1648
         width: 251
         height: 99
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -491,12 +504,12 @@ TextureImporter:
       name: characters-assets_15
       rect:
         serializedVersion: 2
-        x: 670
-        y: 202
+        x: 1366
+        y: 1675
         width: 214
         height: 70
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -513,12 +526,12 @@ TextureImporter:
       name: characters-assets_16
       rect:
         serializedVersion: 2
-        x: 886
-        y: 192
+        x: 1587
+        y: 1665
         width: 224
         height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -535,12 +548,12 @@ TextureImporter:
       name: characters-assets_17
       rect:
         serializedVersion: 2
-        x: 1111
-        y: 194
+        x: 1812
+        y: 1668
         width: 221
         height: 78
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -557,12 +570,12 @@ TextureImporter:
       name: characters-assets_18
       rect:
         serializedVersion: 2
-        x: 1332
-        y: 155
+        x: 3
+        y: 1395
         width: 71
         height: 117
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -579,12 +592,12 @@ TextureImporter:
       name: characters-assets_19
       rect:
         serializedVersion: 2
-        x: 1404
-        y: 112
+        x: 78
+        y: 1359
         width: 71
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -601,12 +614,12 @@ TextureImporter:
       name: characters-assets_20
       rect:
         serializedVersion: 2
-        x: 1476
-        y: 73
+        x: 150
+        y: 1321
         width: 85
         height: 199
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -623,12 +636,12 @@ TextureImporter:
       name: characters-assets_21
       rect:
         serializedVersion: 2
-        x: 1562
-        y: 167
+        x: 240
+        y: 1413
         width: 44
         height: 104
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -645,12 +658,12 @@ TextureImporter:
       name: characters-assets_22
       rect:
         serializedVersion: 2
-        x: 1607
-        y: 164
+        x: 286
+        y: 1408
         width: 44
         height: 107
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -667,12 +680,12 @@ TextureImporter:
       name: characters-assets_23
       rect:
         serializedVersion: 2
-        x: 1652
-        y: 141
+        x: 334
+        y: 1386
         width: 39
         height: 131
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -689,12 +702,12 @@ TextureImporter:
       name: characters-assets_24
       rect:
         serializedVersion: 2
-        x: 1692
-        y: 53
+        x: 375
+        y: 1298
         width: 69
         height: 219
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -711,12 +724,12 @@ TextureImporter:
       name: characters-assets_25
       rect:
         serializedVersion: 2
-        x: 1761
-        y: 42
+        x: 584
+        y: 1286
         width: 104
         height: 229
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -733,12 +746,12 @@ TextureImporter:
       name: characters-assets_26
       rect:
         serializedVersion: 2
-        x: 1866
-        y: 112
+        x: 692
+        y: 1357
         width: 82
         height: 160
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -755,12 +768,12 @@ TextureImporter:
       name: characters-assets_27
       rect:
         serializedVersion: 2
-        x: 1949
-        y: 81
+        x: 778
+        y: 1330
         width: 88
         height: 191
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -777,12 +790,12 @@ TextureImporter:
       name: characters-assets_28
       rect:
         serializedVersion: 2
-        x: 2039
-        y: 61
+        x: 869
+        y: 1307
         width: 105
         height: 211
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -791,6 +804,28 @@ TextureImporter:
       bones: []
       spriteID: 12acbc270ba91ab49b9d52f66d9de07f
       internalID: -389384938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boot
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1347
+        width: 135
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc7f10254865a4b4e90c93e6d4bed94d
+      internalID: -1622337456
       vertices: []
       indices: 
       edges: []
@@ -809,6 +844,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      boot: -1622337456
       characters-assets_0: -8505029882673307296
       characters-assets_1: -3743173119695217123
       characters-assets_10: -4933350240115804654

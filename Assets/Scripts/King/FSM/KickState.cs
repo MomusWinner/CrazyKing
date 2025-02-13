@@ -11,9 +11,14 @@ namespace King.FSM
         private Kick _kick;
         private IEnumerator _rotationCoroutine;
         [Inject] private InputManager _inputManager;
+        private Movement _movement;
 
         public override void Start()
         {
+            _movement = King.GetComponent<Movement>();
+            _movement.FreezeMovement = true;
+            _movement.FreezeRotation = true;
+            
             Vector2 attackDir = _inputManager.MoveDirection;
             if (_inputManager.MouseAvailable)
             {
@@ -24,12 +29,27 @@ namespace King.FSM
                 float angle = attackDir.ToAngle();
                 _rotationCoroutine = Rotate(angle);
                 King.StartCoroutine(_rotationCoroutine);
-            } 
+            }
+
+            King.StartCoroutine(Kick(attackDir));
+        }
+
+        public override void Dispose()
+        {
+            _movement.FreezeMovement = false;
+            _movement.FreezeRotation = false;
+        }
+
+        public IEnumerator Kick(Vector2 attackDir)
+        {
             var kick = Resources.Load<GameObject>(KickPrefPath);
             _kick = Object.Instantiate(kick).GetComponent<Kick>();
             _kick.transform.position = King.transform.position;
             _kick.Setup(attackDir);
-            King.Fsm.ChangeState<DefaultKingState>();
+            _kick.transform.position += _kick.transform.right * (King.Radius);
+            yield return new WaitForSeconds(0.2f);
+            if (King != null)
+                King.Fsm.ChangeState<DefaultKingState>();
         }
         
         public IEnumerator Rotate(float angle)
@@ -41,6 +61,8 @@ namespace King.FSM
                     Quaternion.Euler(new Vector3(0f,0f,angle)),
                     20f*Time.fixedDeltaTime);
                 King.RigidBody.MoveRotation(rotation);
+                
+                
                 yield return new WaitForFixedUpdate();
             }
         }
