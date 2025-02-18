@@ -817,7 +817,7 @@ TextureImporter:
         width: 135
         height: 167
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -826,6 +826,72 @@ TextureImporter:
       bones: []
       spriteID: bc7f10254865a4b4e90c93e6d4bed94d
       internalID: -1622337456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characters-assets_29
+      rect:
+        serializedVersion: 2
+        x: 1746
+        y: 1953
+        width: 79
+        height: 92
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a85fb381dbde64a4bb179534a3dba863
+      internalID: 1039985874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_1_foot
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 1671
+        width: 60
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b00728bfbe6a1b4c91b56c15c7af492
+      internalID: -190552511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_1_foot
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 1977
+        width: 52
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96488f93785666d45a7825de8bb6ca45
+      internalID: 281235835
       vertices: []
       indices: 
       edges: []
@@ -844,6 +910,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      archer_1_foot: 281235835
       boot: -1622337456
       characters-assets_0: -8505029882673307296
       characters-assets_1: -3743173119695217123
@@ -867,6 +934,7 @@ TextureImporter:
       characters-assets_26: -1811119092
       characters-assets_27: -1106544103
       characters-assets_28: -389384938
+      characters-assets_29: 1039985874
       characters-assets_3: -4082326445067122455
       characters-assets_4: 1139451769480317190
       characters-assets_5: -2953191621876879684
@@ -874,6 +942,7 @@ TextureImporter:
       characters-assets_7: -8352591621406767392
       characters-assets_8: 424796007678112533
       characters-assets_9: -7569114588537362091
+      knight_1_foot: -190552511
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
