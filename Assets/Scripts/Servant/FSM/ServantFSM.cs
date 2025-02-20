@@ -57,7 +57,13 @@ namespace Servant.FSM
                     yield return null;
                     continue;
                 }
-                float distanceToKing = (_king.transform.position - _servant.transform.position).sqrMagnitude;
+
+                float distanceToKing;
+                if (_king == null)
+                    distanceToKing = float.MaxValue;
+                else
+                    distanceToKing = (_king.transform.position - _servant.transform.position).sqrMagnitude;
+                
                 bool correctDistanceToKing = distanceToKing <= _minDistanceToKing * _minDistanceToKing;
                 
                 if (currentState != _attackState && correctDistanceToKing)

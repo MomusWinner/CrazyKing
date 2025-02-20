@@ -3,7 +3,6 @@ using UnityEngine;
 using TriInspector;
 
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class TreePlacer : MonoBehaviour
 {
     [SerializeField]private float _treeWidth;
@@ -19,8 +18,6 @@ public class TreePlacer : MonoBehaviour
     [Button]
     public void Place()
     {
-        var box = GetComponent<BoxCollider2D>();
-        box.size = new Vector2(_width, _height);
         UpdateTrees();
         int maxCount = 1000;
         while (TryGetFreePlace(out Vector3 freePosition) && maxCount > 0)
