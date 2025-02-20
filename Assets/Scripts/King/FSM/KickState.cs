@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using BaseEntity;
 using Controllers;
 using UnityEngine;
 using VContainer;
@@ -14,10 +15,13 @@ namespace King.FSM
         private Kick _kick;
         private IEnumerator _rotationCoroutine;
         private Movement _movement;
+        private FootController _footController;
         [Inject] private InputManager _inputManager;
 
         public override void Start()
         {
+            _footController = King.GetComponentInChildren<FootController>();
+            
             if (King == null)
                 return;
             _movement = King.GetComponent<Movement>();
@@ -63,7 +67,11 @@ namespace King.FSM
             _kick.transform.position = King.transform.position;
             _kick.Setup(attackDir);
             _kick.transform.position += _kick.transform.right * (King.Radius);
+            
+            _footController.HideRightFoot();
             yield return new WaitForSeconds(0.3f);
+            _footController.ShowRightFoot();
+                
             if (King != null)
             {
                 if (_nextStateType != null)

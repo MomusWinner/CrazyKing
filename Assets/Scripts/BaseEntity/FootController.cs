@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace BaseEntity
 {
@@ -21,8 +22,11 @@ namespace BaseEntity
             private Vector3 _startStepPosition;
             private Vector3 _endStepPosition;
             
-            public Foot(GameObject foot)
+            private SpriteRenderer _spriteRenderer;
+            
+            public Foot(GameObject foot, SpriteRenderer spriteRenderer)
             {
+                _spriteRenderer = spriteRenderer;
                 _foot = foot;
                 _footPos = foot.transform.position;
                 _currentSpeed = StartSpeed;
@@ -75,6 +79,16 @@ namespace BaseEntity
                     _foot.transform.position = _footPos;
             }
 
+            public void Show()
+            {
+                _spriteRenderer.enabled = true;
+            }
+
+            public void Hide()
+            {
+                _spriteRenderer.enabled = false;
+            }
+            
             private float FootSize(Vector3 endPos)
             {
                 float targetStepLength = (endPos - _startStepPosition).magnitude;
@@ -109,7 +123,10 @@ namespace BaseEntity
             _footLeft.transform.position = FootLeftStartPos;
             _footRight.transform.position = FootRightStartPos;
             
-            _rightFoot = new Foot(_footRight)
+            SpriteRenderer leftFootSprite = _footLeft.GetComponentInChildren<SpriteRenderer>() ?? throw new ArgumentNullException("_footLeft.GetComponentInChildren<SpriteRenderer>()");
+            SpriteRenderer rightFootSprite = _footRight.GetComponentInChildren<SpriteRenderer>();
+            
+            _rightFoot = new Foot(_footRight, rightFootSprite)
             {
                 Acceleration = _acceleration,
                 StartSpeed = _startSpeed,
@@ -118,7 +135,7 @@ namespace BaseEntity
                 MaxFootSize = _maxFootSize,
             };
 
-            _leftFoot = new Foot(_footLeft)
+            _leftFoot = new Foot(_footLeft, leftFootSprite)
             {
                 Acceleration = _acceleration,
                 StartSpeed = _startSpeed,
@@ -126,7 +143,6 @@ namespace BaseEntity
                 MaxSpeed = _maxSpeed,
                 MaxFootSize = _maxFootSize,
             };
-            
         }
 
         public void Update()
@@ -159,6 +175,26 @@ namespace BaseEntity
             _leftFoot.Update(Time.deltaTime, FootLeftStartPos);
         }
 
+        public void HideLeftFoot()
+        {
+            _leftFoot.Hide();
+        }
+
+        public void HideRightFoot()
+        {
+            _rightFoot.Hide();
+        }
+
+        public void ShowLeftFoot()
+        {
+            _leftFoot.Show();
+        }
+
+        public void ShowRightFoot()
+        {
+            _rightFoot.Show();
+        }
+        
         public void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
