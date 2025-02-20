@@ -27,6 +27,12 @@ public class BootstrapScope : LifetimeScope
     
     protected override void Configure(IContainerBuilder builder)
     {
+#if UNITY_EDITOR || UNITY_STANDALONE
+        builder.Register<MockYandexManager>(Lifetime.Singleton).As<IYandexManager>();       
+#else
+        builder.Register<YandexManager>(Lifetime.Singleton).As<IYandexManager>();
+#endif
+        
         builder.RegisterInstance(_soundSO);
         builder.RegisterEntryPoint<SoundManager>().AsSelf();
         
