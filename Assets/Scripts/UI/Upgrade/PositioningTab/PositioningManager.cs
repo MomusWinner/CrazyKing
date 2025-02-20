@@ -83,6 +83,7 @@ namespace UI.Upgrade.PositioningTab
             {
                 _servantCards.Remove(servantCard);
                 Destroy(servantCard.gameObject);
+                DropCard(id);
             }
         }
 
