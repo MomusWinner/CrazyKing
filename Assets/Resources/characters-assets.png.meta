@@ -883,7 +883,7 @@ TextureImporter:
         width: 52
         height: 67
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -892,6 +892,50 @@ TextureImporter:
       bones: []
       spriteID: 96488f93785666d45a7825de8bb6ca45
       internalID: 281235835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AngryDog
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 1749
+        width: 177
+        height: 295
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 578ee7ac812173348ac11b02f7697c51
+      internalID: 1224134822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AngryDog_Foot
+      rect:
+        serializedVersion: 2
+        x: 1459
+        y: 2003
+        width: 43
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27209a0aba7b1e64d99db8d1dd3d0b5e
+      internalID: 2116510189
       vertices: []
       indices: 
       edges: []
@@ -910,6 +954,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      AngryDog: 1224134822
+      AngryDog_Foot: 2116510189
       archer_1_foot: 281235835
       boot: -1622337456
       characters-assets_0: -8505029882673307296
