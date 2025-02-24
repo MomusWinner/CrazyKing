@@ -19,10 +19,8 @@ public class TreePlacer : MonoBehaviour
     public void Place()
     {
         UpdateTrees();
-        int maxCount = 1000;
-        while (TryGetFreePlace(out Vector3 freePosition) && maxCount > 0)
+        while (TryGetFreePlace(out Vector3 freePosition))
         {
-            maxCount--;
             GameObject tree = CreateRandomTree();
             tree.transform.position = freePosition;
             tree.transform.parent = transform;
