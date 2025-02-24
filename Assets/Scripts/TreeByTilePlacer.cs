@@ -13,6 +13,7 @@ public class TreeByTilePlacer : MonoBehaviour
 
     [SerializeField] private float _maxSize = 0.8f;
     [SerializeField] private float _minSize = 1.3f;
+    [SerializeField] private bool _drawTiles = false;
     
     private readonly List<GameObject> _trees = new();
     private Transform _treesParent;
@@ -56,6 +57,28 @@ public class TreeByTilePlacer : MonoBehaviour
         _trees.ForEach(DestroyImmediate);
     }
 
+    public void OnDrawGizmos()
+    {
+        if (!_drawTiles) return;
+        Gizmos.color = Color.blue;
+        
+        BoundsInt bounds = _tilemap.cellBounds;
+
+        for (int x = bounds.xMin; x <= bounds.xMax; x++)
+        {
+            for (int y = bounds.yMin; y <= bounds.yMax; y++)
+            {
+                TileBase tile = _tilemap.GetTile(new Vector3Int(x, y, 0));
+
+                if (tile == null)
+                    continue;
+
+                if (tile == _treeTile)
+                    Gizmos.DrawWireCube(new Vector3(x, y) + transform.position + _grid.cellSize/2, new Vector3(_grid.cellSize.x, _grid.cellSize.y, 1));
+            }
+        }
+    }
+
     private GameObject CreateRandomTree()
     {
         int index = Random.Range(0, _treePrefabs.Length);
@@ -81,7 +104,7 @@ public class TreeByTilePlacer : MonoBehaviour
         {
             float x = Random.Range(0f, _grid.cellSize.x) + tilePos.x - _grid.cellSize.x / 2;
             float y = Random.Range(0f, _grid.cellSize.y) + tilePos.y - _grid.cellSize.y / 2;
-            position = new Vector3(x, y);
+            position = new Vector3(x, y) + transform.position + _grid.cellSize/2;
             bool isFreePoint = true;
             foreach (var tree in _trees)
             {
