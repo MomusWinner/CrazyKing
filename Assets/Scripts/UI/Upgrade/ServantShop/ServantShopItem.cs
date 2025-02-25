@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using Controllers.CoinsManager;
 using Controllers.SoundManager;
 using Servant;
 using TMPro;

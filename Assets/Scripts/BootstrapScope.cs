@@ -1,4 +1,5 @@
 ﻿using Controllers;
+using Controllers.CoinsManager;
 using Controllers.SoundManager;
 using King;
 using King.Upgrades.Parameters;
@@ -11,6 +12,7 @@ using VContainer.Unity;
 
 public class BootstrapScope : LifetimeScope
 {
+    [SerializeField] private CoinsSO _coinsSO;
     [SerializeField] private int _startingCoins;
     [SerializeField] private string _loadingScreenObject = "Loading/Loading"; 
     [SerializeField] private ServantsSO _servantsSO;
@@ -27,17 +29,24 @@ public class BootstrapScope : LifetimeScope
     
     protected override void Configure(IContainerBuilder builder)
     {
+        // Yandex SDK
 #if UNITY_EDITOR || UNITY_STANDALONE
         builder.Register<MockYandexManager>(Lifetime.Singleton).As<IYandexManager>();       
 #else
         builder.Register<YandexManager>(Lifetime.Singleton).As<IYandexManager>();
 #endif
         
+        // Sound Manager
         builder.RegisterInstance(_soundSO);
         builder.RegisterEntryPoint<SoundManager>().AsSelf();
         
+        // Level Manager
         builder.RegisterInstance(_levelSO);
         builder.RegisterEntryPoint<LevelManager>().AsSelf();
+        
+        // Coins Manager
+        builder.RegisterInstance(_coinsSO);
+        builder.RegisterEntryPoint<CoinsManager>().WithParameter(typeof(int), _startingCoins).AsSelf();
         
         // SaveManager
         SaveManager saveManager = new SaveManager();
@@ -57,7 +66,6 @@ public class BootstrapScope : LifetimeScope
         builder.RegisterInstance(_kingParametersSO);
         builder.RegisterEntryPoint<KingParameterManager>().AsSelf();
         
-        builder.RegisterEntryPoint<CoinsManager>().WithParameter(typeof(int), _startingCoins).AsSelf();
         builder.RegisterEntryPoint<SceneLoader>().WithParameter(typeof(string), _loadingScreenObject).AsSelf();
     }
 }

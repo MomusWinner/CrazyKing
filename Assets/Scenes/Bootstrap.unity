@@ -168,6 +168,7 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 1915430785}
+  _coinsSO: {fileID: 11400000, guid: d0ada8dc9d56b194186fd28198335624, type: 2}
   _startingCoins: 900000
   _loadingScreenObject: Loading/Loading
   _servantsSO: {fileID: 11400000, guid: 411b76aa0b167514aa95797e9ea4c726, type: 2}

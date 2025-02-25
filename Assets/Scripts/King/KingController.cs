@@ -6,6 +6,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using BaseEntity;
 using Controllers;
+using Controllers.CoinsManager;
 using King.FSM;
 using King.Upgrades;
 using King.Upgrades.Parameters;

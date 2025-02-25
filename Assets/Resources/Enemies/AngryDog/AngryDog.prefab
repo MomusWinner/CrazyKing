@@ -184,6 +184,8 @@ MonoBehaviour:
   _lookRadius: 10
   _attackState: 4
   _defaultState: 1
+  _coinsMin: 4
+  _coinsMax: 10
   attackDamage: 10
   attackRadius: 0.6
 --- !u!114 &7044150000207963175

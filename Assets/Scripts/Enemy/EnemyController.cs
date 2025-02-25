@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿using System.Collections.Generic;
 using Agent;
 using BaseEntity;
 using BaseEntity.States;
+using Controllers.CoinsManager;
 using Enemy.FSM;
 using Finders;
 using King;
 using UnityEngine;
 using VContainer;
+using Random = UnityEngine.Random;
 
 namespace Enemy
 {
@@ -16,7 +18,10 @@ namespace Enemy
 
         [SerializeField] private EntityStateType _attackState;
         [SerializeField] private EntityStateType _defaultState;
+        [SerializeField] private int _priceMin = 10;
+        [SerializeField] private int _priceMax = 20;
         
+        [Inject] private CoinsManager _coinsManager;
         private LayerMask _enemyMask;
         private LayerMask _servantMask;
         private PhysicAgent _agent;
@@ -47,22 +52,28 @@ namespace Enemy
             FSM.FixedUpdate();
         }
 
+        public override void OnDead()
+        {
+            base.OnDead();
+            DropCoins();
+        }
+        
         public void Throw(Vector2 direction, float force)
         {
-            //_agent.Stop();
-            //_agent.FreezeRotation = true;
-            //_agent.FreezeMovement = true;
-            //FSM.AI = false;
             RigidBody.AddForce(direction * force, ForceMode2D.Impulse);
-            StartCoroutine(Wakeup());
         }
 
-        private IEnumerator Wakeup()
+        private void DropCoins()
         {
-            yield return new WaitForSeconds(1f);
-            //FSM.AI = true;
-            //_agent.FreezeMovement = false;
-            //_agent.FreezeRotation = false;
+            float dropRadius = 1.4f;
+            int price = Random.Range(_priceMin, _priceMax);
+            List<Coin> coins = _coinsManager.GetCoins(price);
+            for (int i = 0; i < coins.Count; i++)
+            {
+                Vector3 randCirclePos = Random.insideUnitCircle;
+                coins[i].transform.position = transform.position;
+                coins[i].SetStartPosition(coins[i].transform.position + randCirclePos * dropRadius);
+            }
         }
     }
 }

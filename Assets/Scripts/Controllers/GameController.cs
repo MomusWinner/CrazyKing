@@ -11,7 +11,7 @@ namespace Controllers
         private int _earnedCoins;
         [Inject] private EnemyManager _enemyManager;
         [Inject] private CastleManager _castleManager;
-        [Inject] private CoinsManager _coinsManager;
+        [Inject] private CoinsManager.CoinsManager _coinsManager;
         [Inject] private GameUI _gameUI;
         [Inject] private KingController _kingController;
 
