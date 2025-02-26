@@ -13,6 +13,8 @@ namespace Servant.Knight
         public int AttackDamage { get; set; }
 
         [SerializeField] private float _attackRadius;
+        [SerializeField] private SpriteRenderer _body;
+        [SerializeField] private SpriteRenderer _sword;
 
         public override void StartFirstState()
         {
@@ -28,6 +30,22 @@ namespace Servant.Knight
             base.OnDrawGizmos();
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, Radius + AttackRadius);
+        }
+
+        public void SetBodySprite(Sprite body)
+        {
+            _body.sprite = body;
+        }
+
+        public void SetSwordSprite(Sprite sword)
+        {
+            _sword.sprite = sword;
+        }
+
+        public void SetFootSprite(Sprite foot)
+        {
+            var footController = GetComponentInChildren<FootController>();
+            footController.SetFootSprites(foot);
         }
     }
 }

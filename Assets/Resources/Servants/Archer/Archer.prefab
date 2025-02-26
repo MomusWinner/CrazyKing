@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1361358504229116727}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.024, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -282,6 +282,9 @@ MonoBehaviour:
   KingController: {fileID: 0}
   _attackState: 5
   _defaultState: 0
+  _attackRadius: 0
+  _body: {fileID: 1014698716670779282}
+  _bow: {fileID: 7123966606207661261}
 --- !u!114 &1026579379591122096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +310,7 @@ Animator:
   m_GameObject: {fileID: 5302002649914389472}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 449efbd40d3980347af68ab526b18920, type: 2}
+  m_Controller: {fileID: 9100000, guid: e57523dfbcfed2f4d87d831557ff93e6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

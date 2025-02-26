@@ -42,7 +42,7 @@ namespace UI.Upgrade.ServantShop
             _servantStorage.AddServant(new ServantData()
             {
                 IsUsed = false,
-                Lv = 0,
+                Lv = 1,
                 Type = _servant.type
             });
         }

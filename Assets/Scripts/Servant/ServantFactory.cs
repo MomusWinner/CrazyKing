@@ -43,7 +43,6 @@ namespace Servant
             {
                 Debug.LogError($"Register your servant{servantSO.type} in GetParamUpgrader method");
             }
-            upgrader.SetStartParameter();
             upgrader.UpgradeParameters(servantData.Lv);
             servantController.StartFirstState();
             return servantController;

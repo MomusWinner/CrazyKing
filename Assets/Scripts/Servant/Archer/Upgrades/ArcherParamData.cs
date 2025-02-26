@@ -1,17 +1,16 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Servant.Archer.Upgrades
 {
     [Serializable]
     public class ArcherParamData
     {
-        public float speed;
-        public int health;
-        public int damage;
-        public float attackSpeed;
-        public float range;
-        public RuntimeAnimatorController animatorController;
-        public string arrowPath;
+        public ArcherSkinType SkinType;
+        public float Speed;
+        public int Health;
+        public int Damage;
+        public string ArrowPath;
     }
 }

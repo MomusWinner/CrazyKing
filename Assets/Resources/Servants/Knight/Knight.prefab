@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2573209947305759510}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.2052, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -305,6 +305,8 @@ MonoBehaviour:
   _attackState: 4
   _defaultState: 0
   _attackRadius: 0.3
+  _body: {fileID: 1014698716670779282}
+  _sword: {fileID: 8268263293148993802}
 --- !u!114 &4415187479139697237
 MonoBehaviour:
   m_ObjectHideFlags: 0

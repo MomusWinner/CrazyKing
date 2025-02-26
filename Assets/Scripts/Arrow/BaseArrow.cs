@@ -3,7 +3,6 @@ using Controllers.SoundManager;
 using Health;
 using UnityEngine;
 using VContainer;
-using Random = UnityEngine.Random;
 
 namespace Arrow
 {

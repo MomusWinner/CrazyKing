@@ -171,7 +171,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: characters-assets_0
+      name: archer_1_body
       rect:
         serializedVersion: 2
         x: 4
@@ -193,7 +193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_1
+      name: archer_2_body
       rect:
         serializedVersion: 2
         x: 179
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_2
+      name: archer_3_body
       rect:
         serializedVersion: 2
         x: 351
@@ -435,7 +435,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_12
+      name: archer_1_bow
       rect:
         serializedVersion: 2
         x: 696
@@ -457,7 +457,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_13
+      name: archer_2_bow
       rect:
         serializedVersion: 2
         x: 893
@@ -479,7 +479,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_14
+      name: archer_3_bow
       rect:
         serializedVersion: 2
         x: 1113
@@ -728,8 +728,8 @@ TextureImporter:
         y: 1286
         width: 104
         height: 229
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.51237667, y: 0.2892139}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -750,8 +750,8 @@ TextureImporter:
         y: 1357
         width: 82
         height: 160
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5078482, y: 0.28278503}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -772,8 +772,8 @@ TextureImporter:
         y: 1330
         width: 88
         height: 191
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.50806355, y: 0.25109032}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -794,8 +794,8 @@ TextureImporter:
         y: 1307
         width: 105
         height: 211
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.25786918}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -905,7 +905,7 @@ TextureImporter:
         width: 177
         height: 295
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -927,7 +927,7 @@ TextureImporter:
         width: 43
         height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -936,6 +936,94 @@ TextureImporter:
       bones: []
       spriteID: 27209a0aba7b1e64d99db8d1dd3d0b5e
       internalID: 2116510189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_2_foot
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 1671
+        width: 60
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0752330d982d6b4a99539efe9bd84a7
+      internalID: 959454776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knight_3_foot
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 1671
+        width: 60
+        height: 75
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be3b7e7d6089d12469071f172f1975bc
+      internalID: -1951976171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_2_foot
+      rect:
+        serializedVersion: 2
+        x: 609
+        y: 1977
+        width: 52
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37edeef4827c4444d930fb7408bbc280
+      internalID: -1994443498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: archer_3_foot
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 1978
+        width: 52
+        height: 67
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ee8682743a93644993f514a85e504e5
+      internalID: 1648769915
       vertices: []
       indices: 
       edges: []
@@ -956,21 +1044,23 @@ TextureImporter:
     nameFileIdTable:
       AngryDog: 1224134822
       AngryDog_Foot: 2116510189
+      archer_1_body: -8505029882673307296
+      archer_1_bow: 3131231874410072673
       archer_1_foot: 281235835
+      archer_2_body: -3743173119695217123
+      archer_2_bow: -1355660819846275241
+      archer_2_foot: -1994443498
+      archer_3_body: -6981357453106134528
+      archer_3_bow: 4878745169271556188
+      archer_3_foot: 1648769915
       boot: -1622337456
-      characters-assets_0: -8505029882673307296
-      characters-assets_1: -3743173119695217123
       characters-assets_10: -4933350240115804654
       characters-assets_11: 4100396856696042465
-      characters-assets_12: 3131231874410072673
-      characters-assets_13: -1355660819846275241
-      characters-assets_14: 4878745169271556188
       characters-assets_15: 8569100232774277522
       characters-assets_16: -237243492
       characters-assets_17: 1207137289
       characters-assets_18: 1297820489
       characters-assets_19: -1388607078
-      characters-assets_2: -6981357453106134528
       characters-assets_20: -507336415
       characters-assets_21: 1117866502
       characters-assets_22: 658212869
@@ -989,6 +1079,8 @@ TextureImporter:
       characters-assets_8: 424796007678112533
       characters-assets_9: -7569114588537362091
       knight_1_foot: -190552511
+      knight_2_foot: 959454776
+      knight_3_foot: -1951976171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

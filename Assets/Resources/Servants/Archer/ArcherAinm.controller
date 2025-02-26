@@ -22,7 +22,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8ea0008a4492fac4db83d282c1167a53, type: 2}
+  m_Motion: {fileID: 7400000, guid: 73763f8c1ffeed342bacca7a3d8efed0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -50,7 +50,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 8bf74f5ed5b03db47ba28ce99a227d5f, type: 2}
+  m_Motion: {fileID: 7400000, guid: d1e094f425e093d4b9a8d4e86304cd08, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -130,7 +130,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d1fa6d09d5cdb5849953b7d598d4bd01, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3e9cbce932790c44f8bf27fd794c1ea4, type: 2}
   m_Tag: 
   m_SpeedParameter: AttackSped
   m_MirrorParameter: 
@@ -167,7 +167,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArcherAinmGrade2
+  m_Name: ArcherAinm
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isRunning

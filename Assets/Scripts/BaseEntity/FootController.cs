@@ -194,6 +194,12 @@ namespace BaseEntity
         {
             _rightFoot.Show();
         }
+
+        public void SetFootSprites(Sprite sprite)
+        {
+            _footLeft.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
+            _footRight.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
+        }
         
         public void OnDrawGizmos()
         {

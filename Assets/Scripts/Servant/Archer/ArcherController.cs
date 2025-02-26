@@ -1,7 +1,6 @@
-﻿using BaseEntity.States;
-using Servant.FSM;
+﻿using BaseEntity;
+using BaseEntity.States;
 using UnityEngine;
-using VContainer;
 
 namespace Servant.Archer
 {
@@ -17,8 +16,10 @@ namespace Servant.Archer
         
         public string ArrowPath { get; set; }
         public int AttackDamage { get; set; }
-
         public float AttackTimeOut { get; set; } = 2f;
+        
+        [SerializeField] private SpriteRenderer _body;
+        [SerializeField] private SpriteRenderer _bow;
         
         public override void Initialize()
         {
@@ -27,16 +28,23 @@ namespace Servant.Archer
 
         public override void StartFirstState()
         {
+            Resources.Load<GameObject>("Projectile/ArcherArrowGrade1");
         }
        
-        protected override void Update()
+        public void SetBodySprite(Sprite body)
         {
-            base.Update();
+            _body.sprite = body;
         }
 
-        protected override void FixedUpdate()
+        public void SetBowSprite(Sprite bow)
         {
-            base.FixedUpdate();
+            _bow.sprite = bow;
+        }
+
+        public void SetFootSprite(Sprite foot)
+        {
+            var footController = GetComponentInChildren<FootController>();
+            footController.SetFootSprites(foot);
         }
     }
 }

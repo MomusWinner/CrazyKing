@@ -102,7 +102,7 @@ namespace Servant
     public class ServantData
     {
         public int ID { get; set; }
-        public int Lv { get; set; }
+        public int Lv { get; set; } = 1;
         public bool IsUsed { get; set; }
         public ServantType Type { get; set; }
         public int PointId { get; set; }

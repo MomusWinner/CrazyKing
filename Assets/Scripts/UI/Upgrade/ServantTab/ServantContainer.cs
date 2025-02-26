@@ -41,8 +41,12 @@ namespace UI.Upgrade.ServantTab
 
         private void RemoveServant(int id)
         {
-            foreach (var item in _servantItems.Where(item => item.ServantData.ID == id))
-                Destroy(item.gameObject);
+            foreach (var item in _servantItems.Where(item => item.ServantData.ID == id).ToList())
+            {
+                if (item != null)
+                    Destroy(item.gameObject);
+                _servantItems.Remove(item);
+            }
         }
 
         private void AddNewServant(ServantData servantData)
