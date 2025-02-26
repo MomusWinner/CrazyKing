@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-namespace Controllers.CoinsManager
+namespace Controllers.Coins
 {
     public class CoinsManager: IStartable
     {
         public int CurrentCoins { get; private set; }
-        public Action<int> OnIncrease;
-        public Action<int> OnDecrease;
+        public Action<int, int> OnIncrease;
+        public Action<int, int> OnDecrease;
 
         [Inject] private IObjectResolver _container;
         [Inject] private CoinsSO _coinsSO;
@@ -46,7 +45,7 @@ namespace Controllers.CoinsManager
 
             CurrentCoins -= coins;
             SaveCoins();
-            OnDecrease?.Invoke(CurrentCoins);
+            OnDecrease?.Invoke(CurrentCoins, coins);
             return true;
         }
 
@@ -54,7 +53,7 @@ namespace Controllers.CoinsManager
         {
             CurrentCoins += coins;
             SaveCoins();
-            OnIncrease?.Invoke(CurrentCoins);
+            OnIncrease?.Invoke(CurrentCoins, coins);
         }
 
         public List<Coin> GetCoins(int price)

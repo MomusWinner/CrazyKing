@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Controllers.CoinsManager;
+using Controllers.Coins;
 using DG.Tweening;
 using King;
 using UnityEngine;

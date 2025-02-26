@@ -2,7 +2,7 @@
 using Agent;
 using BaseEntity;
 using BaseEntity.States;
-using Controllers.CoinsManager;
+using Controllers.Coins;
 using Enemy.FSM;
 using Finders;
 using King;

@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Enemy;
 using UnityEngine;
 using VContainer.Unity;
+using Object = UnityEngine.Object;
 
 namespace Controllers
 {
     public class EnemyManager : IStartable, ITickable
     {
+        public Action OnEnemyDies;
         public int EnemyCount => _enemies.Count;
         public IReadOnlyCollection<EnemyController> Enemies => _enemies;
         
@@ -22,7 +25,11 @@ namespace Controllers
         public void RegisterEnemy(EnemyController enemy)
         {
             _enemies.Add(enemy);
-            enemy.OnDeath += () => _enemies.Remove(enemy);
+            enemy.OnDeath += () =>
+            {
+                _enemies.Remove(enemy);
+                OnEnemyDies.Invoke();
+            };
         }
 
         public void Tick()

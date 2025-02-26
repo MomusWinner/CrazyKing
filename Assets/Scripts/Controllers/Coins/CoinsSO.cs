@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Controllers.CoinsManager
+namespace Controllers.Coins
 {
     [Serializable]
     public class CoinPrice

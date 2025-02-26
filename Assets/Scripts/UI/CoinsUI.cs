@@ -1,4 +1,4 @@
-﻿using Controllers.CoinsManager;
+﻿using Controllers.Coins;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -21,7 +21,7 @@ namespace UI
             _coinsManager.OnDecrease += OnDecrease;
         }
 
-        private void OnIncrease(int coinsAmount)
+        private void OnIncrease(int coinsAmount, int increaseAmount)
         {
             coinText.text = coinsAmount.ToString();
             coinText.transform
@@ -38,7 +38,7 @@ namespace UI
                 }));
         }
 
-        private void OnDecrease(int coinsAmount)
+        private void OnDecrease(int coinsAmount, int decreaseAmount)
         {
             coinText.text = coinsAmount.ToString();
             coinText.text = coinsAmount.ToString();
@@ -58,7 +58,6 @@ namespace UI
 
         public void OnDestroy()
         {
-            
             _coinsManager.OnIncrease -= OnIncrease;
             _coinsManager.OnDecrease -= OnDecrease;
         }

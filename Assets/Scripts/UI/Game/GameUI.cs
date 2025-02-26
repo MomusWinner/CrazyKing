@@ -27,9 +27,9 @@ namespace UI.Game
             _gameEndPanel.gameObject.SetActive(true);
         }
 
-        public void SetupGameEndPanel(string title, int coins)
+        public void SetupGameEndPanel(string title, int coins, int capturedCastles, int killedEnemies)
         {
-            _gameEndPanel.Setup(title, coins);
+            _gameEndPanel.Setup(title, coins, capturedCastles, killedEnemies);
         }
 
         public void MoveToUpgradeScene()

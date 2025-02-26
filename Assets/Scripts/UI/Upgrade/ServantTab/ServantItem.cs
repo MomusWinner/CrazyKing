@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Controllers;
-using Controllers.CoinsManager;
+using Controllers.Coins;
 using Controllers.SoundManager;
 using Servant;
 using Servant.Upgrade;

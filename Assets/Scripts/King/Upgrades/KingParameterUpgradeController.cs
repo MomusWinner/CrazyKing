@@ -1,5 +1,5 @@
 ﻿using Controllers;
-using Controllers.CoinsManager;
+using Controllers.Coins;
 using Controllers.UpgradeController;
 using JetBrains.Annotations;
 using UnityEngine;
