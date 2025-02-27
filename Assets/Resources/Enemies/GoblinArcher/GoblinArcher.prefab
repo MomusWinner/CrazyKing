@@ -185,8 +185,10 @@ MonoBehaviour:
   _lookRadius: 10
   _attackState: 5
   _defaultState: 3
+  _priceMin: 10
+  _priceMax: 20
   attackDamage: 10
-  ArrowPrefPath: Arrow/GoblinArrowGrade1
+  ArrowPrefPath: Projectile/GoblinArrowGrade1
 --- !u!114 &6639581200054036985
 MonoBehaviour:
   m_ObjectHideFlags: 0
