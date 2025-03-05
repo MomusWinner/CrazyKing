@@ -7,6 +7,9 @@ public class Rope : MonoBehaviour
 
     public void Update()
     {
-        _lineRenderer.SetPosition(1, _target.position - transform.position );
+        if (_target != null)
+            _lineRenderer.SetPosition(1, _target.position - transform.position );
+        else
+            _lineRenderer.enabled = false;
     }
 }
