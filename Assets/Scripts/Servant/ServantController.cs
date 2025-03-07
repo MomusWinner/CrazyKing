@@ -22,26 +22,19 @@ namespace Servant
         [Inject] public ServantFSM FSM;
         [Inject] private IObjectResolver _container;
 
-        private LayerMask _enemyMask;
-        private LayerMask _servantMask;
-        private PhysicAgent _agent;
-
         [SerializeField] private EntityStateType _attackState;
         [SerializeField] private EntityStateType _defaultState = EntityStateType.FollowToKing;
 
         public override void Initialize()
         {
-            _agent = GetComponent<PhysicAgent>();
             base.Initialize();
             if (KingController.TryGetPoint(ServantData.PointId, out IPoint point)) Point = point;
             else Debug.LogError($"ServantPoint ID:{ServantData.PointId} already busy.");
             ID = ServantData.ID;
             KingController.AddServant(this);
-            _enemyMask = LayerMask.GetMask("Enemy");
-            _servantMask = LayerMask.GetMask("King");
-            LayerMask lowBarrier = LayerMask.GetMask("LowBarrier");
-            LayerMask defaultLayerMask = LayerMask.GetMask("Default");
-            TargetFinder = new EntityFinder(LookRadius, _enemyMask, _servantMask | lowBarrier | defaultLayerMask);
+            TargetFinder = new EntityFinder(LookRadius,
+                targetMask: LayerMasks.Enemy,
+                ignoreMask: LayerMasks.King | LayerMasks.LowBarrier | LayerMasks.Default);
         }
 
         public void Start()
@@ -73,10 +66,6 @@ namespace Servant
 
         public void Throw(Vector2 direction, float force)
         {
-            // _agent.Stop();
-            // _agent.FreezeRotation = true;
-            // _agent.FreezeMovement = true;
-            // FSM.AI = false;
             RigidBody.AddForce(direction * force, ForceMode2D.Impulse);
             StartCoroutine(Wakeup());
         }
@@ -84,9 +73,6 @@ namespace Servant
         private IEnumerator Wakeup()
         {
             yield return new WaitForSeconds(1f);
-            // FSM.AI = true;
-            // _agent.FreezeRotation = false;
-            // _agent.FreezeMovement = false;
         }
     }
 }

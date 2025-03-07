@@ -7,7 +7,11 @@ namespace BaseEntity.States
 {
     public class WanderState : EntityState
     {
-        private readonly float _wanderRadius = 4f;
+        private static readonly int IsRunning = Animator.StringToHash("IsRunning");
+        public float WanderRadius { get; set; } = 4f;
+        public float WaitTime { get; set; } = 2f;
+        public float ErrorTime { get; set; } = 20f;
+        
         private Vector2? _target = null;
         private PhysicAgent _agent;
         private IEnumerator _wanderCoroutine;
@@ -17,18 +21,6 @@ namespace BaseEntity.States
             _agent = Entity.GetComponent<PhysicAgent>();
             _wanderCoroutine = Wander();
             Entity.StartCoroutine(_wanderCoroutine);
-        }
-
-        public override void Update()
-        {
-            if (_target.HasValue)
-            {
-                _agent.Move(_target.Value);
-            }
-            else
-            {
-                _agent.Stop();
-            }
         }
 
         public override void Dispose()
@@ -41,10 +33,40 @@ namespace BaseEntity.States
 
         public IEnumerator Wander()
         {
+            float wanderTime = 0;
             while (true)
             {
-                _target = GetWanderPosition();
-                yield return new WaitForSeconds(1.4f);
+                if (wanderTime > 10f){
+                    _target = GetWanderPosition();
+                    wanderTime = 0;
+                }
+
+                Vector2 agentPos = _agent.transform.position;
+
+                if (!_target.HasValue)
+                {
+                    _target = GetWanderPosition();
+                    wanderTime = 0;
+                }
+                else
+                {
+                    if ((agentPos - _target.Value).magnitude < 1f)
+                    {
+                        _agent.Stop();
+                        Entity.Animator.SetBool(IsRunning, false);
+                        yield return new WaitForSeconds(WaitTime);
+                        _target = GetWanderPosition();
+                        wanderTime = 0;
+                    }
+                }
+
+                if (_target.HasValue)
+                {
+                    _agent.Move(_target.Value);
+                    Entity.Animator.SetBool(IsRunning, true);
+                }
+                wanderTime += Time.deltaTime;
+                yield return new WaitForFixedUpdate();
             }
         }
 
@@ -54,7 +76,7 @@ namespace BaseEntity.States
             for (int i = 0; i < tries; i++)
             {
                 Vector2 entityPos = Entity.transform.position;
-                Vector2 randPos = Random.insideUnitCircle * _wanderRadius + entityPos;
+                Vector2 randPos = Random.insideUnitCircle * WanderRadius + entityPos;
                 
                 if (!PointIsFree(randPos))
                     continue;

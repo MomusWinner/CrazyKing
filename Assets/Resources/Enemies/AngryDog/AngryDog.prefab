@@ -94,7 +94,7 @@ Rigidbody2D:
   m_LinearDamping: 2
   m_AngularDamping: 2
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1460ad5990509a746b8e9ecf8e360006, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -184,8 +184,8 @@ MonoBehaviour:
   _lookRadius: 10
   _attackState: 4
   _defaultState: 1
-  _coinsMin: 4
-  _coinsMax: 10
+  _priceMin: 10
+  _priceMax: 20
   attackDamage: 10
   attackRadius: 0.6
 --- !u!114 &7044150000207963175

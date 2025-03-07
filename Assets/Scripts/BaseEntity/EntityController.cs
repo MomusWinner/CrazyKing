@@ -22,7 +22,7 @@ namespace BaseEntity
             _agent.Speed = speed;
         }
 
-        protected void OnDrawGizmos()
+        protected virtual void OnDrawGizmos()
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position, _lookRadius);

@@ -11,7 +11,7 @@ namespace Servant.Archer
             damage = AttackDamage,
             speed = 8,
             distance = 10000,
-            targetLayer = LayerMask.GetMask("Enemy")
+            targetLayer = LayerMasks.Enemy | LayerMasks.NeutralEntity
         };
         
         public string ArrowPath { get; set; }

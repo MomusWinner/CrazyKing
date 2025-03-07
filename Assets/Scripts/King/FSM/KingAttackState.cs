@@ -4,6 +4,7 @@ using Controllers;
 using Controllers.SoundManager;
 using Cysharp.Threading.Tasks;
 using Enemy;
+using Health;
 using King.Upgrades.Parameters;
 using UnityEngine;
 using VContainer;
@@ -18,14 +19,12 @@ namespace King.FSM
         private Type _nextState;
         private static readonly int Attack = Animator.StringToHash("Attack");
         private Movement _movement;
-        private LayerMask _enemyMask;
         private IEnumerator _rotationCoroutine;
 
         public override void Start()
         {
             if (King == null) return;
             _soundManager.StartMusic("KingAttack", SoundChannel.Effect);
-            _enemyMask = LayerMask.GetMask("Enemy");
             King.Animator.SetTrigger(Attack);
             _movement = King.GetComponent<Movement>();
             _movement.FreezeRotation = true;
@@ -87,10 +86,12 @@ namespace King.FSM
         private async UniTask SetDamage()
         {
             var targets = Physics2D.OverlapCircleAll(
-                King.transform.position + _parameters.AttackDistance * King.transform.right, _parameters.AttackRadius, _enemyMask);
+                King.transform.position + _parameters.AttackDistance * King.transform.right,
+                _parameters.AttackRadius,
+                LayerMasks.Enemy | LayerMasks.NeutralEntity);
             foreach (var target in targets)
             {
-                var enemy = target.GetComponent<EnemyController>();
+                var enemy = target.GetComponent<IDamageable>();
                 if (enemy != null)
                     enemy.Damage(King.AttackDamage);
             }

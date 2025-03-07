@@ -12,7 +12,7 @@ namespace Enemy.GoblinArcher
             damage = AttackDamage,
             speed = 8,
             distance = 10000,
-            targetLayer = LayerMask.GetMask("King")            
+            targetLayer = LayerMasks.King | LayerMasks.NeutralEntity
         };
         
         public string ArrowPath { get => ArrowPrefPath; set => ArrowPrefPath = value; }
@@ -21,20 +21,5 @@ namespace Enemy.GoblinArcher
 
         [SerializeField] private int attackDamage;
         public string ArrowPrefPath;
-        
-        protected override void Start()
-        {
-            base.Start();
-        }
-
-        protected override void Update()
-        {
-            base.Update();
-        }
-
-        protected override void FixedUpdate()
-        {
-            base.FixedUpdate();
-        }
     }
 }

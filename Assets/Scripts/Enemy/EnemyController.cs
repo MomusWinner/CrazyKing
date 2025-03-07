@@ -22,20 +22,15 @@ namespace Enemy
         [SerializeField] private int _priceMax = 20;
         
         [Inject] private CoinsManager _coinsManager;
-        private LayerMask _enemyMask;
-        private LayerMask _servantMask;
-        private PhysicAgent _agent;
 
         protected override void Start()
         {
             Initialize();
             base.Start();
-            _agent = GetComponent<PhysicAgent>();
-            _servantMask = LayerMask.GetMask("King");
-            _enemyMask = LayerMask.GetMask("Enemy");
-            LayerMask lowBarrier = LayerMask.GetMask("LowBarrier");
-            LayerMask defaultLayer = LayerMask.GetMask("Default");
-            TargetFinder = new EntityFinder(LookRadius, _servantMask, _enemyMask | lowBarrier | defaultLayer);
+            TargetFinder = new EntityFinder(
+                LookRadius,  
+                targetMask: LayerMasks.King,
+                ignoreMask: LayerMasks.Enemy| LayerMasks.LowBarrier| LayerMasks.Default);
             
             FSM.Setup(this, _attackState, _defaultState);
         }

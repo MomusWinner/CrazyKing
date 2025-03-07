@@ -14,7 +14,7 @@ namespace Agent
         private NavMeshAgent _agent;
         private Rigidbody2D _rigidbody;
         
-        public void Start()
+        public void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
             _rigidbody = GetComponent<Rigidbody2D>();

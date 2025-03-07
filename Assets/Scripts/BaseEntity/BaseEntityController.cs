@@ -2,6 +2,7 @@
 using DG.Tweening;
 using Health;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace BaseEntity
 {
@@ -22,7 +23,7 @@ namespace BaseEntity
 
         [SerializeField] protected float radius;
         [SerializeField] protected HealthController healthController;
-        [SerializeField] protected DamageFlash damageFlash;
+        [SerializeField] protected DamageColorizer DamageColorizer;
         [SerializeField] protected int maxHealth;
         [SerializeField] protected float rotationSpeed;
         [SerializeField] protected float speed;
@@ -32,7 +33,7 @@ namespace BaseEntity
 
         public virtual void Initialize()
         {
-            healthController.Setup(maxHealth, OnDead);
+            healthController?.Setup(maxHealth, OnDead);
             _rigidBody = GetComponent<Rigidbody2D>();
         }
         
@@ -64,10 +65,10 @@ namespace BaseEntity
 
         public void ChangeMaxHealth(int maxHealth) => healthController.ChangeMaxHealth(maxHealth);
 
-        public bool Damage(int damage)
+        public virtual bool Damage(int damage)
         {
             bool isDeath = healthController.Damage(damage);
-            damageFlash?.CallDamageFlash();
+            DamageColorizer?.CallDamageFlash();
             return isDeath;
         }
 
