@@ -273,7 +273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.3
   healthController: {fileID: 7517045900711405504}
-  damageFlash: {fileID: 1026579379591122096}
+  DamageColorizer: {fileID: 1026579379591122096}
   maxHealth: 0
   rotationSpeed: 8
   speed: 0
@@ -282,7 +282,6 @@ MonoBehaviour:
   KingController: {fileID: 0}
   _attackState: 5
   _defaultState: 0
-  _attackRadius: 0
   _body: {fileID: 1014698716670779282}
   _bow: {fileID: 7123966606207661261}
 --- !u!114 &1026579379591122096

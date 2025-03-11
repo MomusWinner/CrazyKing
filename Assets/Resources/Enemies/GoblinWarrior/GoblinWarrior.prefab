@@ -176,7 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.3
   healthController: {fileID: 5382578779629449176}
-  damageFlash: {fileID: 7044150000207963175}
+  DamageColorizer: {fileID: 7044150000207963175}
   maxHealth: 200
   rotationSpeed: 7
   speed: 3
