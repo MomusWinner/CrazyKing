@@ -307,6 +307,7 @@ MonoBehaviour:
   _attackRadius: 0.3
   _body: {fileID: 1014698716670779282}
   _sword: {fileID: 8268263293148993802}
+  _attackSound: WarriorAttack
 --- !u!114 &4415187479139697237
 MonoBehaviour:
   m_ObjectHideFlags: 0

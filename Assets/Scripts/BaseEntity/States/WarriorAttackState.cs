@@ -89,7 +89,7 @@ namespace BaseEntity.States
 
         private void StartAttackAnim()
         {
-            _soundManager.StartMusic("WarriorAttack", SoundChannel.Effect);
+            _soundManager.StartMusic(_warrior.AttackSound ,SoundChannel.Effect);
             Entity.Animator.SetTrigger(_attack);
         }
 
@@ -110,6 +110,7 @@ namespace BaseEntity.States
     public interface IWarrior
     {
         public Action OnAttack { get; set; }
+        public string AttackSound { get; }
         public int AttackDamage { get; }
         public float AttackRadius { get; }
     }

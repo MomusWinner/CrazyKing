@@ -10,12 +10,14 @@ namespace Servant.Knight
         public Action OnAttack { get; set; }
         public EntityController Controller => this;
         public float AttackRadius =>  _attackRadius + Radius;
+        public string AttackSound => _attackSound;
         public int AttackDamage { get; set; }
         public float AttackSpeed { get; set; }
 
         [SerializeField] private float _attackRadius;
         [SerializeField] private SpriteRenderer _body;
         [SerializeField] private SpriteRenderer _sword;
+        [SerializeField] private string _attackSound;
 
         public override void StartFirstState()
         {

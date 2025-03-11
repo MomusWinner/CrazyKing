@@ -3,13 +3,13 @@ using BaseEntity;
 using BaseEntity.States;
 using UnityEngine;
 
-namespace Enemy.GoblinWarrior
+namespace Enemy.AngryDog
 {
-    public class GoblinWarriorController : EnemyController, IWarrior
+    public class AngryDogController : EnemyController, IWarrior
     {
         public Action OnAttack { get; set; }
-        public EntityController Controller => this;
         public string AttackSound => _attackSound;
+        public EntityController Controller => this;
         public int AttackDamage => attackDamage;
         public float AttackRadius => Radius + attackRadius; 
 
@@ -27,6 +27,6 @@ namespace Enemy.GoblinWarrior
             base.OnDrawGizmos();
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, AttackRadius);
-        }
+        } 
     }
 }

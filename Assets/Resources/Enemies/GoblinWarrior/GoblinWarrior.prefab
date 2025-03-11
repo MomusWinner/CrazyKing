@@ -188,6 +188,7 @@ MonoBehaviour:
   _priceMax: 20
   attackDamage: 10
   attackRadius: 0.6
+  _attackSound: WarriorAttack
 --- !u!114 &7044150000207963175
 MonoBehaviour:
   m_ObjectHideFlags: 0
