@@ -10,7 +10,12 @@ namespace BaseEntity
     public abstract class EntityController : BaseEntityController
     {
         public EntityFinder TargetFinder { get; protected set; }
-        public float LookRadius => _lookRadius;
+
+        public float LookRadius
+        {
+            get => _lookRadius;
+            set => _lookRadius = value;
+        }
         
 
         [SerializeField] private float _lookRadius;
@@ -31,7 +36,7 @@ namespace BaseEntity
 
         public Transform FindTargetInLookRadius()
         {
-            return  TargetFinder.FindObjectInLookRadius(transform.position);
+            return  TargetFinder.FindObjectInLookRadius(transform.position, _lookRadius);
         }
 
         public void SetSpeed(float speed)

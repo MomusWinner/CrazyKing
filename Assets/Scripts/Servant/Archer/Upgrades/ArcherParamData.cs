@@ -8,19 +8,10 @@ namespace Servant.Archer.Upgrades
     public class ArcherParamData
     {
         public ArcherSkinType SkinType;
-        [ServantParameter]
         public float Speed;
         public int Health;
         public int Damage;
+        public int LookRadius;
         public string ArrowPath;
-    }
-
-    public class ServantParameterAttribute : Attribute
-    {
-        public ServantParameterAttribute()
-        {
-            
-        }
-        
     }
 }

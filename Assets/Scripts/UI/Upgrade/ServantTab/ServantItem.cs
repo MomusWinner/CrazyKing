@@ -70,10 +70,11 @@ namespace UI.Upgrade.ServantTab
                     }
                     param.Setup(paramName,
                         parameterSO.FriendlyName,
-                        _parameterContainer.GetParameterValue(paramName, _servantData.Lv).ToString(),
+                        "",
                         parameterSO.Icon);
                     _params.Add(param);
                 }
+                UpdateServantParams();
             }
             _name.text = _servantSo.servantName;
             _progressBar.SetUp(_servantsSO.IntervalOfEvolutionLevels);
@@ -90,7 +91,18 @@ namespace UI.Upgrade.ServantTab
         {
             if(_parameterContainer == null || _params is null) return;
             foreach (var param in _params)
-                param.UpdateText(_parameterContainer.GetParameterValue(param.FieldName, _servantData.Lv).ToString());
+            {
+                string value = _parameterContainer.GetParameterValue(param.FieldName, _servantData.Lv).ToString();
+
+                if (_servantData.Lv < _servantSo.Upgrades.Count)
+                {
+                    string nextValue = _parameterContainer.GetParameterValue(param.FieldName, _servantData.Lv + 1).ToString();
+                    if (nextValue != value)
+                        value += $" -> <color=green><b>{nextValue}</b></color>";
+                }
+                
+                param.UpdateText(value);
+            }
         }
 
         public void OpenParameters()

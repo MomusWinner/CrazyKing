@@ -69,8 +69,7 @@ namespace BaseEntity.States
 
         private bool TryFindEnemyInLookRadius()
         {
-            _target = Entity.TargetFinder.FindObjectInLookRadius(Entity.transform.position)
-                ?.GetComponent<BaseEntityController>();
+            _target = Entity.FindTargetInLookRadius()?.GetComponent<BaseEntityController>();
             if (!_target) OnComplete?.Invoke();
             return _target;
         }

@@ -25,7 +25,7 @@ namespace Servant.Archer
         
         public string[] GetAvailableParameters()
         {
-            return new string[] { "Health", "Damage" };
+            return new string[] { "Health", "Damage", "Range" };
         }
 
         public object GetParameterValue(string name, int lv)
@@ -36,6 +36,8 @@ namespace Servant.Archer
                     return upgrades.GetRange(0, lv).Sum(u => u.archerParamData.Damage);
                 case "Damage":
                     return upgrades.GetRange(0, lv).Sum(u => u.archerParamData.Damage);
+                case "Range":
+                    return upgrades.GetRange(0, lv).Sum(u => u.archerParamData.LookRadius);
             }
             return null;
         }

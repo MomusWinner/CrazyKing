@@ -37,6 +37,7 @@ namespace Servant.Archer.Upgrades
             _archer.SetSpeed(paramData.Speed + _archer.Speed);
             _archer.AttackDamage += paramData.Damage;
             _archer.ChangeMaxHealth(paramData.Health + _archer.MaxHealth);
+            _archer.LookRadius += paramData.LookRadius;
         }
     }
 }

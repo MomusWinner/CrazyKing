@@ -5,22 +5,20 @@ namespace Finders
 {
     public class EntityFinder
     {
-        private readonly float _lookRadius;
         private readonly LayerMask _targetMask;
         private readonly LayerMask _ignoreMask;
 
         public EntityFinder(float lookRadius, LayerMask targetMask, LayerMask ignoreMask)
         {
-            _lookRadius = lookRadius;
             _targetMask = targetMask;
             _ignoreMask = ignoreMask;
         }
         
-        public Transform FindObjectInLookRadius(Vector3 startPosition)
+        public Transform FindObjectInLookRadius(Vector3 startPosition, float lookRadius)
         {
             Vector3 entityPos = startPosition;
             var targets = Physics2D.OverlapCircleAll(
-                startPosition, _lookRadius, _targetMask);
+                startPosition, lookRadius, _targetMask);
 
             Array.Sort(targets, (collider2D1, collider2D2) =>
             {
@@ -38,7 +36,7 @@ namespace Finders
             {
                 RaycastHit2D hit = Physics2D.Raycast(entityPos,
                     target.transform.position - entityPos,
-                    _lookRadius,  ~_ignoreMask);
+                    lookRadius,  ~_ignoreMask);
 
                 if (hit.collider != null && _targetMask == (_targetMask | (1 << hit.collider.gameObject.layer)))
                     return hit.collider.transform;

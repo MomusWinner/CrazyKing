@@ -105,7 +105,7 @@ namespace Servant.FSM
 
         public bool Check()
         {
-            Transform target = _entity.TargetFinder.FindObjectInLookRadius(_entity.transform.position);
+            Transform target = _entity.FindTargetInLookRadius();
             if (target != null)
                 return true;
             return false;

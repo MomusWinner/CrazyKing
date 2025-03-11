@@ -52,7 +52,7 @@ namespace Enemy.FSM
                 }
                 if (currentState != _attackState)
                 {
-                    Transform target = _enemy.TargetFinder.FindObjectInLookRadius(_enemy.transform.position);
+                    Transform target = _enemy.FindTargetInLookRadius();
                     if (target != null)
                     { 
                         ChangeState(_attackState); 

@@ -120,8 +120,7 @@ namespace BaseEntity.States
         {
             while (true)
             {
-                _target = _entityFinder.FindObjectInLookRadius(Entity.transform.position)
-                    ?.GetComponent<BaseEntityController>();
+                _target = Entity.FindTargetInLookRadius()?.GetComponent<BaseEntityController>();
                 if (_target == null)
                     OnComplete?.Invoke();
 
