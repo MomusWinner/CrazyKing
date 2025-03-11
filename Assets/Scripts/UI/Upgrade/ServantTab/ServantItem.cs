@@ -1,19 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Controllers;
 using Controllers.Coins;
 using Controllers.SoundManager;
+using DG.Tweening;
 using Servant;
 using Servant.Upgrade;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using VContainer;
 
 namespace UI.Upgrade.ServantTab
 {
-    public class ServantItem: MonoBehaviour
+    public class ServantItem: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
+        public bool ParameterIsOpen { get; set; } = false;
+        public Action<ServantItem> OnPointerEnterEvent { get; set; }
+        public Action<ServantItem> OnPointerExitEvent { get; set; }
+        public Action<ServantItem> OnPointerClickEvent  { get; set; }
+
         public ServantData ServantData => _servantData;
         
         [SerializeField] private TMP_Text _name;
@@ -24,22 +31,52 @@ namespace UI.Upgrade.ServantTab
         [SerializeField] private Image _icon;
         [SerializeField] private ProgressBarByCells _progressBar;
         [SerializeField] private TMP_Text _buttonText;
+        [SerializeField] private RectTransform _paramParent;
+        
         [Inject] private ServantsSO _servantsSO;
         [Inject] private ServantStorage _servantStorage;
         [Inject] private CoinsManager _coinsManager;
         [Inject] private SoundManager _soundManager;
+        
         private ServantData _servantData;
         private ServantSO _servantSo;
+        private IServantParameterContainer _parameterContainer;
         private ServantUpgradeData NextUpgrade => ServantData.Lv >= _servantSo.Upgrades.Count ? null : _servantSo.Upgrades[ServantData.Lv];
         private bool _canByMerged;
         private List<ServantData> _sameServants;
+        private readonly List<ServantParameterUI> _params = new();
+        private RectTransform _rectTransform;
         
         public void Setup(ServantData servantData)
         {
+            _rectTransform = GetComponent<RectTransform>();
+            
             _servantData = servantData;
             _servantSo = _servantsSO.GetServantByType(servantData.Type);
+            
+            // Setup parameters
+            _parameterContainer = _servantSo as IServantParameterContainer;
+            if (_parameterContainer != null)
+            {
+                foreach (var paramName in _parameterContainer.GetAvailableParameters())
+                {
+                    GameObject paramObj = Resources.Load<GameObject>("UI/UpgradePanel/ServantParameter");
+                    ServantParameterUI param = Instantiate(paramObj, _paramParent.transform).GetComponent<ServantParameterUI>();
+                    ServantParameterSO parameterSO = _servantsSO.Parameters.Find(p => p.FieldName == paramName);
+                    if (parameterSO == null)
+                    {
+                        Debug.LogError($"Servant parameter {paramName} is not defined in ServantsSO");
+                        continue;
+                    }
+                    param.Setup(paramName,
+                        parameterSO.FriendlyName,
+                        _parameterContainer.GetParameterValue(paramName, _servantData.Lv).ToString(),
+                        parameterSO.Icon);
+                    _params.Add(param);
+                }
+            }
             _name.text = _servantSo.servantName;
-            _progressBar.SetUp(_servantsSO.intervalOfEvolutionLevels);
+            _progressBar.SetUp(_servantsSO.IntervalOfEvolutionLevels);
             _progressBar.SetFullValue();
             if (!IsMaxLv())
             {
@@ -47,6 +84,29 @@ namespace UI.Upgrade.ServantTab
                 CheckMergeAvailable();
             }
             ShowServantUpgradeData();
+        }
+
+        private void UpdateServantParams()
+        {
+            if(_parameterContainer == null || _params is null) return;
+            foreach (var param in _params)
+                param.UpdateText(_parameterContainer.GetParameterValue(param.FieldName, _servantData.Lv).ToString());
+        }
+
+        public void OpenParameters()
+        {
+            if (ParameterIsOpen) return;
+            
+            ParameterIsOpen = true;
+            float width = _paramParent.rect.width;
+            _paramParent.transform.DOLocalMoveX(- width - _rectTransform.rect.width / 2, 0.4f).SetEase(Ease.OutQuart);
+        }
+
+        public void CloseParameters()
+        {
+            if (!ParameterIsOpen) return;
+            ParameterIsOpen = false;
+            _paramParent.transform.DOLocalMoveX(- _rectTransform.rect.width / 2, 0.4f);
         }
 
         public void Upgrade()
@@ -66,6 +126,7 @@ namespace UI.Upgrade.ServantTab
                         .GetRange(0, NextUpgrade.mergeAmount)))
                 {
                     _soundManager.StartMusic("Buy", SoundChannel.UI);
+                    UpdateServantParams();
                 }
             }
             else
@@ -78,6 +139,7 @@ namespace UI.Upgrade.ServantTab
                 } 
                 _soundManager.StartMusic("Buy", SoundChannel.UI);
                 _servantStorage.UpgradeServant(_servantData.ID);
+                UpdateServantParams();
             }
 
             if (IsMaxLv())
@@ -91,14 +153,14 @@ namespace UI.Upgrade.ServantTab
         {
             if(_servantData is null) return;
             _icon.sprite = _servantSo.GetAvatarByLevel(_servantData.Lv);
-            _lvText.text = $"lv {_servantData.Lv}";
+            _lvText.text = _servantData.Lv.ToString();
             SetProgressBarValue(_servantData.Lv);
             if (IsMaxLv())
             {
                 _buttonText.text = "MAX";
                 _description.text = "max lv";
                 _actionButton.interactable = false;
-                if (_servantData.Lv % _servantsSO.intervalOfEvolutionLevels == 0)
+                if (_servantData.Lv % _servantsSO.IntervalOfEvolutionLevels == 0)
                 {
                     _progressBar.SetFullValue();
                 }
@@ -122,10 +184,10 @@ namespace UI.Upgrade.ServantTab
 
         private void SetProgressBarValue(int lv)
         {
-            if (lv % _servantsSO.intervalOfEvolutionLevels == 0)
+            if (lv % _servantsSO.IntervalOfEvolutionLevels == 0)
                 _progressBar.SetCurrentValue(0);
             else
-                _progressBar.SetCurrentValue(lv % _servantsSO.intervalOfEvolutionLevels + 1);
+                _progressBar.SetCurrentValue(lv % _servantsSO.IntervalOfEvolutionLevels + 1);
         }
 
         private bool IsMaxLv()
@@ -163,5 +225,11 @@ namespace UI.Upgrade.ServantTab
             
             return servants;
         }
+
+        public void OnPointerEnter(PointerEventData eventData) => OnPointerEnterEvent?.Invoke(this);
+
+        public void OnPointerExit(PointerEventData eventData) => OnPointerExitEvent?.Invoke(this);
+
+        public void OnPointerClick(PointerEventData eventData) => OnPointerClickEvent?.Invoke(this);
     }
 }

@@ -54,7 +54,7 @@ namespace King
 
         public void GeneratePoints()
         {
-            foreach (var ring in servantsSO.rings)
+            foreach (var ring in servantsSO.Rings)
             {
                 for (int i = 0; i < ring.quantity; i++)
                 {

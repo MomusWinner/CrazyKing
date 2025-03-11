@@ -13,7 +13,7 @@ namespace UI.Upgrade.ServantShop
 
         public void Start()
         {
-            foreach (var servant in _servantsSO.availableServants)
+            foreach (var servant in _servantsSO.AvailableServants)
             {
                 var shopItem = _container.Instantiate(shopItemPrefab, transform).GetComponent<ServantShopItem>();
                 shopItem.SetUp(servant);

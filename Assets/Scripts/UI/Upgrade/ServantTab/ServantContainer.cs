@@ -45,6 +45,8 @@ namespace UI.Upgrade.ServantTab
             {
                 if (item != null)
                     Destroy(item.gameObject);
+                item.OnPointerEnterEvent -= OnServantItemPointerEnter;
+                item.OnPointerExitEvent -= OnServantItemPointerExit;
                 _servantItems.Remove(item);
             }
         }
@@ -53,7 +55,19 @@ namespace UI.Upgrade.ServantTab
         {
             var servantItem = _container.Instantiate(_servantItemPref, _servantItemParent.transform).GetComponent<ServantItem>();
             servantItem.Setup(servantData);
+            servantItem.OnPointerEnterEvent += OnServantItemPointerEnter;
+            servantItem.OnPointerExitEvent += OnServantItemPointerExit;
             _servantItems.Add(servantItem);               
+        }
+
+        private void OnServantItemPointerEnter(ServantItem servantItem)
+        {
+            servantItem.OpenParameters();
+        }
+
+        private void OnServantItemPointerExit(ServantItem servantItem)
+        {
+            servantItem.CloseParameters();
         }
     }
 }

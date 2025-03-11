@@ -17,11 +17,28 @@ namespace Servant.Archer
     }
     
     [CreateAssetMenu(menuName = "Game/Servant/" + nameof(ArcherServantSO))]
-    public class ArcherServantSO : ServantSO
+    public class ArcherServantSO : ServantSO, IServantParameterContainer
     {
         public List<ArcherUpgradeData> upgrades;
         public override List<ServantUpgradeData> Upgrades => upgrades.Cast<ServantUpgradeData>().ToList();
         public ArcherSkin[] Skins;
+        
+        public string[] GetAvailableParameters()
+        {
+            return new string[] { "Health", "Damage" };
+        }
+
+        public object GetParameterValue(string name, int lv)
+        {
+            switch (name)
+            {
+                case "Health":
+                    return upgrades.GetRange(0, lv).Sum(u => u.archerParamData.Damage);
+                case "Damage":
+                    return upgrades.GetRange(0, lv).Sum(u => u.archerParamData.Damage);
+            }
+            return null;
+        }
     }
 
     public enum ArcherSkinType

@@ -18,12 +18,28 @@ namespace Servant.Knight
     }
 
     [CreateAssetMenu(menuName = "Game/Servant/" + nameof(KnightServantSO))]
-    public class KnightServantSO : ServantSO
+    public class KnightServantSO : ServantSO, IServantParameterContainer
     {
         public List<KnightUpgradeData> upgrades; 
         public override List<ServantUpgradeData> Upgrades => upgrades.Cast<ServantUpgradeData>().ToList();
 
         public KnightSkin[] Skins;
+        public string[] GetAvailableParameters()
+        {
+            return new string[] { "Health", "Damage" };
+        }
+
+        public object GetParameterValue(string name, int lv)
+        {
+            switch (name)
+            {
+                case "Health":
+                    return upgrades.GetRange(0, lv).Sum(u => u.paramData.Health);
+                case "Damage":
+                    return upgrades.GetRange(0, lv).Sum(u => u.paramData.Damage);
+            }
+            return null;
+        }
     }
 
     public enum KnightSkinType

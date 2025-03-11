@@ -5,6 +5,12 @@ using UnityEngine;
 
 namespace Servant
 {
+    public interface IServantParameterContainer
+    {
+        string[] GetAvailableParameters();
+        object GetParameterValue(string name, int lv);
+    }
+    
     public abstract class ServantSO: ScriptableObject
     {
         public string servantName;
@@ -14,6 +20,7 @@ namespace Servant
         public ServantType type;
         public string prefabPath;
         public int price;
+        
         public abstract List<ServantUpgradeData> Upgrades { get; }
 
         public Sprite GetAvatarByLevel(int lv)

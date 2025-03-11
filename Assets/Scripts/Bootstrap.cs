@@ -1,6 +1,5 @@
 ﻿using Controllers;
 using Cysharp.Threading.Tasks;
-using PlayablesStudio.Plugins.YandexGamesSDK.Runtime;
 using UnityEngine;
 using VContainer;
 
@@ -18,10 +17,12 @@ public class Bootstrap : MonoBehaviour
 
     public void Update()
     {
+#if DEBUG
         if (Input.GetKeyDown(KeyCode.C))
         {
             Debug.Log("Delete all PlayerPrefs data");
             PlayerPrefs.DeleteAll();
         }
+#endif
     }
 }

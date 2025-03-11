@@ -20,7 +20,7 @@ namespace UI.Upgrade
             _soundManager.StartMusic("UpgradeMenuMusic", SoundChannel.Background);
             positioningTab.SetActive(false);
             upgradeTab.SetActive(false);
-            OpenTab(positioningTab);
+            OpenTab(upgradeTab);
         }
 
         public void DeleteSave()
