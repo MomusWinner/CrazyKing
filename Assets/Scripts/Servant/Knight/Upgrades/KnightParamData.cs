@@ -10,6 +10,7 @@ namespace Servant.Knight.Upgrades
         public int Health;
         public int Damage;
         public float Speed;
+        public float AttackSpeed;
         public KnightSkinType KnightSkin;
     }
 }

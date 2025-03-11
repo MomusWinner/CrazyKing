@@ -11,6 +11,7 @@ namespace Servant.Knight
         public EntityController Controller => this;
         public float AttackRadius =>  _attackRadius + Radius;
         public int AttackDamage { get; set; }
+        public float AttackSpeed { get; set; }
 
         [SerializeField] private float _attackRadius;
         [SerializeField] private SpriteRenderer _body;

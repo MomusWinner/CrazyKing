@@ -26,7 +26,7 @@ namespace Servant.Knight
         public KnightSkin[] Skins;
         public string[] GetAvailableParameters()
         {
-            return new string[] { "Health", "Damage" };
+            return new string[] { "Health", "Damage", "AttackSpeed"};
         }
 
         public object GetParameterValue(string name, int lv)
@@ -37,6 +37,8 @@ namespace Servant.Knight
                     return upgrades.GetRange(0, lv).Sum(u => u.paramData.Health);
                 case "Damage":
                     return upgrades.GetRange(0, lv).Sum(u => u.paramData.Damage);
+                case "AttackSpeed":
+                    return upgrades.GetRange(0, lv).Sum(u => u.paramData.AttackSpeed);
             }
             return null;
         }

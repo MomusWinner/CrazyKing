@@ -36,3 +36,6 @@ MonoBehaviour:
   - FriendlyName: "\u0414\u0430\u043B\u044C\u043D\u043E\u0441\u0442\u044C"
     FieldName: Range
     Icon: {fileID: -372835234, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}
+  - FriendlyName: "\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C \u0430\u0442\u0430\u043A\u0438"
+    FieldName: AttackSpeed
+    Icon: {fileID: 1431463950, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}
