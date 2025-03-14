@@ -11,6 +11,7 @@ public class Chicken : EntityController, IThrowable
     [SerializeField] private float _waitTime = 2f;
     [SerializeField] private float _wanderRadius = 4f;
     [SerializeField] private string _kickParticle;
+    [SerializeField] private float _explosionForce = 10f;
     [SerializeField] private string _explosionParticle;
     [SerializeField] private float _explosionTime = 4f;
     [SerializeField] private int _explosionDamage = 50;
@@ -65,7 +66,13 @@ public class Chicken : EntityController, IThrowable
 
         foreach (var entity in entities)
             if (entity.TryGetComponent(out IDamageable damageable))
-                damageable.Damage(_explosionDamage);
+            {
+                bool objectDestroyed = damageable.Damage(_explosionDamage);
+                if (!objectDestroyed && entity.TryGetComponent(out IThrowable throwable))
+                {
+                    throwable.Throw(entity.transform.position - transform.position, _explosionForce);
+                }
+            }
         
         Destroy(gameObject);
     }

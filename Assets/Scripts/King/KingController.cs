@@ -17,7 +17,7 @@ using VContainer;
 namespace King
 {
     [RequireComponent(typeof(CirclePointController))]
-    public class  KingController : BaseEntityController
+    public class  KingController : BaseEntityController, IThrowable
     {
         public KingFSM Fsm => _kingFsm;
         public IList<ServantController> Servants => _servants.ToList().AsReadOnly();
@@ -114,6 +114,11 @@ namespace King
             if (_kingParametersSO is null) return;
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position + transform.right * _kingParametersSO.AttackDistance, _kingParametersSO.AttackRadius);
+        }
+
+        public void Throw(Vector2 direction, float force)
+        {
+            RigidBody.AddForce(direction * force, ForceMode2D.Impulse);
         }
     }
 }

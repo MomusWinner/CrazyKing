@@ -89,4 +89,4 @@ MonoBehaviour:
       servantAmount: 12
   AttackDistance: 0.5
   AttackRadius: 0.5
-  JerkForce: 3000
+  JerkForce: 1000
