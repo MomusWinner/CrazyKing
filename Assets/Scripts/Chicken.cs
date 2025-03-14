@@ -61,7 +61,7 @@ public class Chicken : EntityController, IThrowable
         GameObject explosionObj = Resources.Load<GameObject>(_explosionParticle);
         Instantiate(explosionObj, transform.position, Quaternion.identity);
         
-        var entities = Physics2D.OverlapCircleAll(transform.position, _explosionRadius, LayerMasks.Entity);
+        var entities = Physics2D.OverlapCircleAll(transform.position, _explosionRadius);
 
         foreach (var entity in entities)
             if (entity.TryGetComponent(out IDamageable damageable))

@@ -99,12 +99,13 @@ namespace Servant
         }
     }
 
+    [Serializable]
     public class ServantData
     {
-        public int ID { get; set; }
-        public int Lv { get; set; } = 1;
-        public bool IsUsed { get; set; }
-        public ServantType Type { get; set; }
-        public int PointId { get; set; }
+        public int ID;
+        public int Lv = 1;
+        public bool IsUsed;
+        public ServantType Type;
+        public int PointId;
     }
 }

@@ -5,10 +5,14 @@ using VContainer;
 public class MenuUI : MonoBehaviour
 {
     [Inject] private SceneLoader _sceneLoader;
+    [Inject] private SaveManager _saveManager;
 
     public void StartGame()
     {
-        _sceneLoader?.LoadScene("UpgradeMenu");
+        if (_saveManager.GameData.IsFirstStarting)
+            _sceneLoader?.LoadScene("Tutorial");
+        else
+            _sceneLoader?.LoadScene("UpgradeMenu");
     }
 
     public void OpenOptions()

@@ -221,6 +221,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bebed3ff4c94a10be0704884dd2c1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _startServantData:
+    ID: 0
+    Lv: 1
+    IsUsed: 1
+    Type: 0
+    PointId: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

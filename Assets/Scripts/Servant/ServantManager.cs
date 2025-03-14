@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using King;
 using UnityEngine;
 using VContainer;
@@ -8,6 +9,7 @@ namespace Servant
 {
     public class ServantManager : IStartable
     {
+        public bool _isInitialized = false;
         public IReadOnlyCollection<ServantController> Servants => _servants.AsReadOnly(); 
         [Inject] private ServantFactory _servantFactory;
         [Inject] private ServantStorage _servantStorage;
@@ -18,6 +20,7 @@ namespace Servant
         public void Start()
         {
             LoadKingServants();
+            _isInitialized = true;
         }
         
         private void LoadKingServants()

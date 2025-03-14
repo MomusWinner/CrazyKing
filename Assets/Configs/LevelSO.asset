@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LevelSO
   m_EditorClassIdentifier: 
   levels:
-  - Level_1
+  - Tutorial
