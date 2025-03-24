@@ -278,7 +278,7 @@ MonoBehaviour:
   rotationSpeed: 8
   speed: 0
   animator: {fileID: 4587486565764711998}
-  _lookRadius: 10
+  _lookRadius: 0
   KingController: {fileID: 0}
   _attackState: 5
   _defaultState: 0

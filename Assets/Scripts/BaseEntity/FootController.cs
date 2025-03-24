@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEngine;
 
 namespace BaseEntity
@@ -77,6 +78,12 @@ namespace BaseEntity
                     _footPos = _foot.transform.position;
                 else
                     _foot.transform.position = _footPos;
+            }
+
+            public void Reset()
+            {
+                IsStepping = false;
+                _footPos = _foot.transform.position;
             }
 
             public void Show()
@@ -175,11 +182,20 @@ namespace BaseEntity
             _leftFoot.Update(Time.deltaTime, FootLeftStartPos);
         }
 
+        public void SetFootStartPosition()
+        {
+            _footLeft.transform.position = FootLeftStartPos;
+            _footRight.transform.position = FootRightStartPos;
+            _leftFoot.Reset();
+            _rightFoot.Reset();
+        }
+
         public void HideLeftFoot()
         {
             _leftFoot.Hide();
         }
 
+        
         public void HideRightFoot()
         {
             _rightFoot.Hide();

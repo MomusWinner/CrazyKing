@@ -11,7 +11,7 @@ namespace Servant.Archer.Upgrades
         public float Speed;
         public int Health;
         public int Damage;
-        public int LookRadius;
+        public float LookRadius;
         public string ArrowPath;
     }
 }

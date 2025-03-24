@@ -160,6 +160,11 @@ namespace UI.Upgrade.ServantTab
             }
             ShowServantUpgradeData();
         }
+
+        public void OnDestroy()
+        {
+            _servantStorage.OnUpgradeServant -= OnUpgradeServant;
+        }
         
         private void ShowServantUpgradeData()
         {

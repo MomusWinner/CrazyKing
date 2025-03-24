@@ -251,7 +251,7 @@ MonoBehaviour:
   _waitTime: 2
   _wanderRadius: 4
   _kickParticle: Particles/ChickenKickParicle
-  _explosionForce: 25
+  _explosionForce: 15
   _explosionParticle: Particles/ChickenKickParicle
   _explosionTime: 3
   _explosionDamage: 50

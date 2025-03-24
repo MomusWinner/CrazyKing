@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using BaseEntity;
 using Health;
 using Servant;
 using UnityEngine;
@@ -17,9 +18,13 @@ public class StartCage : MonoBehaviour, IDamageable
     {
         if (_servantManager._isInitialized && !_servantIsCaptured)
         {
+            _servantIsCaptured = true;
+            if (!_servantManager.Servants.Any())
+                return;
             _servant = _servantManager.Servants.First();
             _servant.transform.position = transform.position;
-            _servantIsCaptured = true;
+            var footController = _servant.GetComponentInChildren<FootController>();
+            footController.SetFootStartPosition();
         }
     }
 
