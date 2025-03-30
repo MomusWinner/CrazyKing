@@ -64,7 +64,9 @@ public class Chicken : EntityController, IThrowable
         
         var entities = Physics2D.OverlapCircleAll(transform.position, _explosionRadius);
 
+        Destroy(gameObject);
         foreach (var entity in entities)
+        {
             if (entity.TryGetComponent(out IDamageable damageable))
             {
                 bool objectDestroyed = damageable.Damage(_explosionDamage);
@@ -73,13 +75,11 @@ public class Chicken : EntityController, IThrowable
                     throwable.Throw(entity.transform.position - transform.position, _explosionForce);
                 }
             }
-        
-        Destroy(gameObject);
+        }
     }
 
     public override bool Damage(int damage)
     {
-        if (_isExploding) return true;
         _isExploding = true;
         Explode();
         return true;
