@@ -18,7 +18,7 @@ public class BootstrapScope : LifetimeScope
     [SerializeField] private ServantsSO _servantsSO;
     [SerializeField] private ServantStatesSO servantStatesSo;
     [SerializeField] private KingParametersSO _kingParametersSO;
-    [SerializeField] private LevelSO _levelSO;
+    [SerializeField] private LevelsSO _levelSO;
     [SerializeField] private InputActionAsset _actionAsset;
     [SerializeField] private SoundSO _soundSO;
 

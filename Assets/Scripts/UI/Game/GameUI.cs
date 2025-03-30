@@ -1,4 +1,7 @@
-﻿using Controllers;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Controllers;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using VContainer;
@@ -7,6 +10,7 @@ namespace UI.Game
 {
     public class GameUI : MonoBehaviour
     {
+        [SerializeField] private TMP_Text _titleText;
         [SerializeField] private TMP_Text _castleCounterText;
         [SerializeField] private TMP_Text _enemyCounterText;
         [SerializeField] private GameEndPanel _gameEndPanel;
@@ -20,6 +24,18 @@ namespace UI.Game
         {
             _castleCounterText.text = (_castleManager.CastleCount - _castleManager.CompletedCastlesCount).ToString();
             _enemyCounterText.text = _enemyManager.EnemyCount.ToString();
+        }
+
+
+        public void ShowTitleText(string text, float duration)
+        {
+            Color startColor = _titleText.color;
+            Color endColor = startColor; 
+            endColor.a = 1;
+            var sequence = DOTween.Sequence();
+            sequence.Append(_titleText.DOColor(endColor, 0.3f));
+            sequence.AppendInterval(duration);
+            sequence.Append(_titleText.DOColor(startColor, 0.2f));
         }
 
         public void OpenLevelEndPanel()

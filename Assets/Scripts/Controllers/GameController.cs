@@ -28,6 +28,9 @@ namespace Controllers
             _castleManager.OnCastlesCaptured += SuccessLevelComplete;
             _kingController.OnDeath += FailureLevelComplete;
             _coinsManager.OnIncrease += (_, coins)  => _earnedCoins += coins;
+            
+            
+            _gameUI.ShowTitleText("До босса осталось n уровней", 5);
         }
 
         public void SuccessLevelComplete()

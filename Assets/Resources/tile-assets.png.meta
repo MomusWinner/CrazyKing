@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tile-assets_0
+      name: mushroom_2
       rect:
         serializedVersion: 2
         x: 1448
@@ -148,7 +148,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_1
+      name: goblin_castle_floor
       rect:
         serializedVersion: 2
         x: 3
@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_2
+      name: log_h
       rect:
         serializedVersion: 2
         x: 559
@@ -200,7 +200,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_3
+      name: log_v
       rect:
         serializedVersion: 2
         x: 903
@@ -256,7 +256,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_5
+      name: mushroom_1
       rect:
         serializedVersion: 2
         x: 1351
@@ -278,11 +278,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_6
+      name: stump
       rect:
         serializedVersion: 2
-        x: 1547
-        y: 2929
+        x: 1549
+        y: 2925
         width: 154
         height: 148
       alignment: 0
@@ -300,7 +300,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_7
+      name: tree_1
       rect:
         serializedVersion: 2
         x: 1701
@@ -322,7 +322,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_8
+      name: tree_3
       rect:
         serializedVersion: 2
         x: 2409
@@ -344,7 +344,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_9
+      name: tree_4
       rect:
         serializedVersion: 2
         x: 2727
@@ -366,7 +366,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_10
+      name: tree_5
       rect:
         serializedVersion: 2
         x: 3097
@@ -388,7 +388,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_11
+      name: tree_6
       rect:
         serializedVersion: 2
         x: 3397
@@ -410,7 +410,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_12
+      name: stone_1
       rect:
         serializedVersion: 2
         x: 1052
@@ -432,11 +432,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_13
+      name: tree_2
       rect:
         serializedVersion: 2
         x: 2057
-        y: 2729
+        y: 2726
         width: 352
         height: 351
       alignment: 0
@@ -1302,7 +1302,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_51
+      name: box
       rect:
         serializedVersion: 2
         x: 3080
@@ -1324,7 +1324,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile-assets_52
+      name: goblin_castle_roof
       rect:
         serializedVersion: 2
         x: 3333
@@ -1751,19 +1751,21 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      tile-assets_0: -498481669
-      tile-assets_1: -1518184200
-      tile-assets_10: 1235562511
-      tile-assets_11: -2146258171
-      tile-assets_12: 2032110213
-      tile-assets_13: -325668086
+      box: -810228698
+      goblin_castle_floor: -1518184200
+      goblin_castle_roof: -2015407627
+      log_h: 73359144
+      log_v: 684614934
+      mushroom_1: 2023032311
+      mushroom_2: -498481669
+      stone_1: 2032110213
+      stump: 1235835718
       tile-assets_14: 1858655687
       tile-assets_15: 1754488261
       tile-assets_16: -840829508
       tile-assets_17: 1666320013
       tile-assets_18: 664628309
       tile-assets_19: -2124072365
-      tile-assets_2: 73359144
       tile-assets_20: 725137379
       tile-assets_21: 890819745
       tile-assets_22: 1134729126
@@ -1774,7 +1776,6 @@ TextureImporter:
       tile-assets_27: 2026732963
       tile-assets_28: 1578597912
       tile-assets_29: 1192058444
-      tile-assets_3: 684614934
       tile-assets_30: 119075678
       tile-assets_31: -408626227
       tile-assets_32: -163204195
@@ -1796,10 +1797,7 @@ TextureImporter:
       tile-assets_47: 1772380780
       tile-assets_48: -676404285
       tile-assets_49: 939935781
-      tile-assets_5: 2023032311
       tile-assets_50: 413580307
-      tile-assets_51: -810228698
-      tile-assets_52: -2015407627
       tile-assets_53: 2077459770
       tile-assets_54: -1364316901
       tile-assets_55: 142119340
@@ -1807,7 +1805,6 @@ TextureImporter:
       tile-assets_57: -2039047648
       tile-assets_58: 1669721083
       tile-assets_59: -947844297
-      tile-assets_6: 1235835718
       tile-assets_60: 1923900075
       tile-assets_61: -854592460
       tile-assets_62: -1855910228
@@ -1816,9 +1813,12 @@ TextureImporter:
       tile-assets_65: -2035169098
       tile-assets_66: -1184288519
       tile-assets_67: -1130681215
-      tile-assets_7: 1312357756
-      tile-assets_8: 1503708839
-      tile-assets_9: -1460333567
+      tree_1: 1312357756
+      tree_2: -325668086
+      tree_3: 1503708839
+      tree_4: -1460333567
+      tree_5: 1235562511
+      tree_6: -2146258171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

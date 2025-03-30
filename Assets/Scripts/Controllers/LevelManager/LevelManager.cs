@@ -9,7 +9,7 @@ namespace Controllers
         public int Level { get; private set; }
         [Inject] private SaveManager _saveManager;
         [Inject] private SceneLoader _sceneLoader;
-        [Inject] private LevelSO _levelSO;
+        [Inject] private LevelsSO _levelSO;
         
         public void Start()
         {
