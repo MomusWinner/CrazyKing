@@ -1,20 +1,17 @@
 ﻿using System;
-using UnityEngine;
+using TriInspector;
 
 namespace Controllers
 {
-    /*[Serializable]
+    [Serializable]
     public class LevelSO
     {
         public string SceneName;
-        
-        
 
-    }*/
-    
-    [CreateAssetMenu(menuName = "Game/LevelSO")]
-    public class LevelsSO : ScriptableObject
-    {
-        public string[] levels;
+        public bool CustomStartText;
+        [ShowIf(nameof(CustomStartText))]
+        public string StartText;
+
+        public bool BossLevel;
     }
 }

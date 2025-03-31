@@ -18,6 +18,7 @@ namespace Controllers
         [Inject] private CoinsManager _coinsManager;
         [Inject] private GameUI _gameUI;
         [Inject] private KingController _kingController;
+        [Inject] private LevelManager _levelManager;
 
         private bool _successComplete;
 
@@ -28,9 +29,12 @@ namespace Controllers
             _castleManager.OnCastlesCaptured += SuccessLevelComplete;
             _kingController.OnDeath += FailureLevelComplete;
             _coinsManager.OnIncrease += (_, coins)  => _earnedCoins += coins;
-            
-            
-            _gameUI.ShowTitleText("До босса осталось n уровней", 5);
+
+            LevelSO levelSO = _levelManager.GetCurrentLevelData();
+            if (levelSO.CustomStartText)
+                _gameUI.ShowTitleText(levelSO.StartText, 5);
+            else
+                _gameUI.ShowTitleText($"До босса осталось {_levelManager.LevelsToBoss()} уровней", 5);
         }
 
         public void SuccessLevelComplete()

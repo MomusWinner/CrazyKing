@@ -10,7 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9de5adb352c429eb005beb184fe003f, type: 3}
-  m_Name: LevelSO
+  m_Name: LevelsSO
   m_EditorClassIdentifier: 
-  levels:
-  - Tutorial
+  Levels:
+  - SceneName: Tutorial
+    CustomStartText: 1
+    StartText: "\u041E\u0441\u0432\u043E\u0431\u043E\u0434\u0438 \u0440\u044B\u0446\u0430\u0440\u044F"
+    BossLevel: 0

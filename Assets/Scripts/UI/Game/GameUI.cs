@@ -30,6 +30,7 @@ namespace UI.Game
         public void ShowTitleText(string text, float duration)
         {
             Color startColor = _titleText.color;
+            _titleText.text = text;
             Color endColor = startColor; 
             endColor.a = 1;
             var sequence = DOTween.Sequence();
