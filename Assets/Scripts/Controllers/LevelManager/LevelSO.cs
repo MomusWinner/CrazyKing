@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace Controllers
 {
-    [Serializable]
+    /*[Serializable]
     public class LevelSO
     {
         public string SceneName;
         
         
 
-    }
+    }*/
     
     [CreateAssetMenu(menuName = "Game/LevelSO")]
     public class LevelsSO : ScriptableObject

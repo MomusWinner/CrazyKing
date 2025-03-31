@@ -129,8 +129,8 @@ TextureImporter:
       name: mushroom_2
       rect:
         serializedVersion: 2
-        x: 1448
-        y: 2971
+        x: 3012
+        y: 3372
         width: 96
         height: 106
       alignment: 0
@@ -151,8 +151,8 @@ TextureImporter:
       name: goblin_castle_floor
       rect:
         serializedVersion: 2
-        x: 3
-        y: 2539
+        x: 1566
+        y: 2939
         width: 554
         height: 538
       alignment: 0
@@ -173,8 +173,8 @@ TextureImporter:
       name: log_h
       rect:
         serializedVersion: 2
-        x: 559
-        y: 2919
+        x: 2118
+        y: 3314
         width: 342
         height: 158
       alignment: 0
@@ -203,8 +203,8 @@ TextureImporter:
       name: log_v
       rect:
         serializedVersion: 2
-        x: 903
-        y: 2745
+        x: 2464
+        y: 3144
         width: 148
         height: 332
       alignment: 0
@@ -233,8 +233,8 @@ TextureImporter:
       name: tile-assets_4
       rect:
         serializedVersion: 2
-        x: 1209
-        y: 2943
+        x: 2773
+        y: 3343
         width: 142
         height: 134
       alignment: 0
@@ -259,8 +259,8 @@ TextureImporter:
       name: mushroom_1
       rect:
         serializedVersion: 2
-        x: 1351
-        y: 2971
+        x: 2913
+        y: 3369
         width: 96
         height: 106
       alignment: 0
@@ -281,8 +281,8 @@ TextureImporter:
       name: stump
       rect:
         serializedVersion: 2
-        x: 1549
-        y: 2925
+        x: 3111
+        y: 3329
         width: 154
         height: 148
       alignment: 0
@@ -303,8 +303,8 @@ TextureImporter:
       name: tree_1
       rect:
         serializedVersion: 2
-        x: 1701
-        y: 2721
+        x: 3264
+        y: 3120
         width: 357
         height: 358
       alignment: 0
@@ -325,8 +325,8 @@ TextureImporter:
       name: tree_3
       rect:
         serializedVersion: 2
-        x: 2409
-        y: 2763
+        x: 0
+        y: 2562
         width: 318
         height: 314
       alignment: 0
@@ -347,8 +347,8 @@ TextureImporter:
       name: tree_4
       rect:
         serializedVersion: 2
-        x: 2727
-        y: 2725
+        x: 317
+        y: 2520
         width: 368
         height: 352
       alignment: 0
@@ -369,8 +369,8 @@ TextureImporter:
       name: tree_5
       rect:
         serializedVersion: 2
-        x: 3097
-        y: 2758
+        x: 687
+        y: 2551
         width: 300
         height: 319
       alignment: 0
@@ -391,8 +391,8 @@ TextureImporter:
       name: tree_6
       rect:
         serializedVersion: 2
-        x: 3397
-        y: 2883
+        x: 988
+        y: 2675
         width: 184
         height: 194
       alignment: 0
@@ -413,8 +413,8 @@ TextureImporter:
       name: stone_1
       rect:
         serializedVersion: 2
-        x: 1052
-        y: 2943
+        x: 2616
+        y: 3340
         width: 156
         height: 134
       alignment: 0
@@ -435,8 +435,8 @@ TextureImporter:
       name: tree_2
       rect:
         serializedVersion: 2
-        x: 2057
-        y: 2726
+        x: 3621
+        y: 3126
         width: 352
         height: 351
       alignment: 0
@@ -1305,8 +1305,8 @@ TextureImporter:
       name: box
       rect:
         serializedVersion: 2
-        x: 3080
-        y: 3431
+        x: 528
+        y: 3225
         width: 250
         height: 250
       alignment: 0
@@ -1327,13 +1327,13 @@ TextureImporter:
       name: goblin_castle_roof
       rect:
         serializedVersion: 2
-        x: 3333
-        y: 3076
-        width: 610
+        x: 959
+        y: 2871
+        width: 609
         height: 607
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 4, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -1516,9 +1516,9 @@ TextureImporter:
       - - {x: 98, y: 98}
         - {x: -98, y: 98}
         - {x: -98, y: -98}
-        - {x: 32, y: -98}
-        - {x: 53, y: -54}
-        - {x: 98, y: -37}
+        - {x: 82, y: -98}
+        - {x: 86, y: -81}
+        - {x: 98, y: -70}
       tessellationDetail: 0
       bones: []
       spriteID: 4eafe628dfe33e745b796fe07db6e012
@@ -1541,10 +1541,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape:
-      - - {x: 98, y: 98}
+      - - {x: 82, y: 98}
         - {x: -98, y: 98}
-        - {x: -98, y: -39}
-        - {x: 98, y: -39}
+        - {x: -98, y: -71}
+        - {x: 61, y: -55}
       tessellationDetail: 0
       bones: []
       spriteID: 6d47b5851228fd94fb0843f07f2e7295
@@ -1568,11 +1568,9 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: 98, y: 98}
-        - {x: -98, y: 98}
-        - {x: -98, y: -38}
-        - {x: -57, y: -59}
-        - {x: -30, y: -98}
-        - {x: 98, y: -98}
+        - {x: -72, y: 98}
+        - {x: -38, y: -57}
+        - {x: 98, y: -73}
       tessellationDetail: 0
       bones: []
       spriteID: 01cb23c5975998344b2931c299224668
@@ -1595,10 +1593,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape:
-      - - {x: 36, y: 98}
-        - {x: -98, y: 98}
+      - - {x: 74, y: 60}
+        - {x: -98, y: 81}
         - {x: -98, y: -98}
-        - {x: 36, y: -98}
+        - {x: 78, y: -98}
       tessellationDetail: 0
       bones: []
       spriteID: 7a8b874d797c71044bef8d1a4827f108
@@ -1620,7 +1618,11 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 98, y: 78}
+        - {x: -61, y: 62}
+        - {x: -70, y: -98}
+        - {x: 98, y: -98}
       tessellationDetail: 0
       bones: []
       spriteID: ec1990e7587a68f4ead0dd2b6fda10f3
@@ -1644,9 +1646,9 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: 98, y: 98}
-        - {x: -32, y: 98}
-        - {x: -32, y: -98}
-        - {x: 98, y: -98}
+        - {x: -98, y: 98}
+        - {x: -98, y: -71}
+        - {x: 98, y: -71}
       tessellationDetail: 0
       bones: []
       spriteID: 7dec8927053515442b900db65dc56756
@@ -1669,10 +1671,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape:
-      - - {x: 98, y: 52}
-        - {x: -98, y: 52}
+      - - {x: 85, y: 98}
+        - {x: -98, y: 98}
         - {x: -98, y: -98}
-        - {x: 98, y: -98}
+        - {x: 85, y: -98}
       tessellationDetail: 0
       bones: []
       spriteID: f6d2eaad5f1e9f343a0d58aff6c1b70a
@@ -1695,11 +1697,10 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape:
-      - - {x: 98, y: 51}
-        - {x: 53, y: 51}
-        - {x: 35, y: 98}
+      - - {x: 98, y: 98}
         - {x: -98, y: 98}
-        - {x: -98, y: -98}
+        - {x: -98, y: -71.66431}
+        - {x: -69.55005, y: -98}
         - {x: 98, y: -98}
       tessellationDetail: 0
       bones: []
@@ -1724,15 +1725,251 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: 98, y: 98}
-        - {x: -30, y: 98}
-        - {x: -42, y: 54}
-        - {x: -98, y: 50}
+        - {x: -98, y: 98}
         - {x: -98, y: -98}
         - {x: 98, y: -98}
       tessellationDetail: 0
       bones: []
       spriteID: a982f54893c8e9f48afcef98a1dfa6c3
       internalID: -1130681215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile-assets_0
+      rect:
+        serializedVersion: 2
+        x: 3082
+        y: 3483
+        width: 196
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 98, y: 98}
+        - {x: -68, y: 98}
+        - {x: -69, y: -98}
+        - {x: 98, y: -98}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31c073315f2ef7b47b9535157432e219
+      internalID: -63381106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile-assets_1
+      rect:
+        serializedVersion: 2
+        x: 3287
+        y: 3483
+        width: 196
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 98, y: 77.61621}
+        - {x: 81.23535, y: 98}
+        - {x: -98, y: 98}
+        - {x: -98, y: -98}
+        - {x: 98, y: -98}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dce579aba8cea94281265975e70b77d
+      internalID: 469898943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile-assets_2
+      rect:
+        serializedVersion: 2
+        x: 3492
+        y: 3483
+        width: 196
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 98, y: 79}
+        - {x: -98, y: 78}
+        - {x: -98, y: -98}
+        - {x: 98, y: -98}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ee062371ff5f8448b0fdfdda6ca041e
+      internalID: 1385883311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile-assets_3
+      rect:
+        serializedVersion: 2
+        x: 3697
+        y: 3483
+        width: 196
+        height: 196
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape:
+      - - {x: 98, y: 98}
+        - {x: -69.55005, y: 98}
+        - {x: -98, y: 80}
+        - {x: -98, y: -98}
+        - {x: 98, y: -98}
+      tessellationDetail: 0
+      bones: []
+      spriteID: a48ec6179988df043b3ae2e1c7e39032
+      internalID: -1101688640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cage
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 3121
+        width: 349
+        height: 354
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9517bb966e2395e4e92ed5259b87a100
+      internalID: -1770128132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chain
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 3418
+        width: 41
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eedab17d5d5cfe145a4a1e921926fe45
+      internalID: 1828982603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chain_post
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 3340
+        width: 139
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba77bd2a688d1f45841171aa7be5826
+      internalID: -1945164755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile-assets_5
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 3306
+        width: 49
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68f39fc1d8ef78c4586de0e9fafcc89a
+      internalID: 1033893717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile-assets_6
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 3357
+        width: 74
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9770f02799e5f35458d56e9df6a04346
+      internalID: -984300006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile-assets_7
+      rect:
+        serializedVersion: 2
+        x: 479
+        y: 3326
+        width: 47
+        height: 151
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1399be24c649fd4a8e564ced1acf2f4
+      internalID: 834016141
       vertices: []
       indices: 
       edges: []
@@ -1751,7 +1988,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      Cage: -1770128132
       box: -810228698
+      chain: 1828982603
+      chain_post: -1945164755
       goblin_castle_floor: -1518184200
       goblin_castle_roof: -2015407627
       log_h: 73359144
@@ -1760,12 +2000,15 @@ TextureImporter:
       mushroom_2: -498481669
       stone_1: 2032110213
       stump: 1235835718
+      tile-assets_0: -63381106
+      tile-assets_1: 469898943
       tile-assets_14: 1858655687
       tile-assets_15: 1754488261
       tile-assets_16: -840829508
       tile-assets_17: 1666320013
       tile-assets_18: 664628309
       tile-assets_19: -2124072365
+      tile-assets_2: 1385883311
       tile-assets_20: 725137379
       tile-assets_21: 890819745
       tile-assets_22: 1134729126
@@ -1776,6 +2019,7 @@ TextureImporter:
       tile-assets_27: 2026732963
       tile-assets_28: 1578597912
       tile-assets_29: 1192058444
+      tile-assets_3: -1101688640
       tile-assets_30: 119075678
       tile-assets_31: -408626227
       tile-assets_32: -163204195
@@ -1797,6 +2041,7 @@ TextureImporter:
       tile-assets_47: 1772380780
       tile-assets_48: -676404285
       tile-assets_49: 939935781
+      tile-assets_5: 1033893717
       tile-assets_50: 413580307
       tile-assets_53: 2077459770
       tile-assets_54: -1364316901
@@ -1805,6 +2050,7 @@ TextureImporter:
       tile-assets_57: -2039047648
       tile-assets_58: 1669721083
       tile-assets_59: -947844297
+      tile-assets_6: -984300006
       tile-assets_60: 1923900075
       tile-assets_61: -854592460
       tile-assets_62: -1855910228
@@ -1813,6 +2059,7 @@ TextureImporter:
       tile-assets_65: -2035169098
       tile-assets_66: -1184288519
       tile-assets_67: -1130681215
+      tile-assets_7: 834016141
       tree_1: 1312357756
       tree_2: -325668086
       tree_3: 1503708839
