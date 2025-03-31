@@ -13,9 +13,21 @@ MonoBehaviour:
   m_Name: CoinsSO
   m_EditorClassIdentifier: 
   CoinPrices:
+  - Price: 500
+    CoinPath: Coins/Coin_Gold_3
+  - Price: 200
+    CoinPath: Coins/Coin_Gold_2
+  - Price: 100
+    CoinPath: Coins/Coin_Gold_1
+  - Price: 50
+    CoinPath: Coins/Coin_Silver_3
+  - Price: 20
+    CoinPath: Coins/Coin_Silver_2
+  - Price: 10
+    CoinPath: Coins/Coin_Silver_1
   - Price: 5
-    CoinPath: Coins/Coin5
+    CoinPath: "Coins/Coin_\u0421opper_3"
   - Price: 2
-    CoinPath: Coins/Coin2
+    CoinPath: "Coins/Coin_\u0421opper_2"
   - Price: 1
-    CoinPath: Coins/Coin1
+    CoinPath: "Coins/Coin_\u0421opper_1"
