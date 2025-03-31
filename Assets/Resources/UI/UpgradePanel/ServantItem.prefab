@@ -699,6 +699,9 @@ MonoBehaviour:
   _progressBar: {fileID: 5983781501410899893}
   _buttonText: {fileID: 3866254042703416795}
   _paramParent: {fileID: 7201793273944179763}
+  _enableButtonSprite: {fileID: 1902264620, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}
+  _disableButtonSprite: {fileID: -626250148, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}
+  _mergeButtonSprite: {fileID: 1496195532, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}
 --- !u!1 &7407049297894688770
 GameObject:
   m_ObjectHideFlags: 0

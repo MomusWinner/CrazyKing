@@ -39,6 +39,21 @@ namespace Controllers.Coins
             Debug.Log("Initialize CoinsController");
         }
 
+        public static string Short(long coin, int digits = 2)
+        {
+            switch (coin)
+            {
+                case >= 1000000:
+                    return $"{Math.Round(coin / 1000000f, digits)}m";
+                case >= 1000:
+                    if (digits > 2)
+                        return coin.ToString();
+                    return $"{Math.Round(coin / 1000f, digits)}k";
+                default:
+                    return coin.ToString();
+            }
+        }
+
         public bool TryGetCoins(int coins)
         {
             if (CurrentCoins < coins) return false;

@@ -1,10 +1,10 @@
-﻿using Controllers;
-using Controllers.Coins;
+﻿using Controllers.Coins;
 using Controllers.SoundManager;
 using King;
 using King.Upgrades.Parameters;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using VContainer;
 
 namespace UI.Upgrade.KingParameters
@@ -15,12 +15,19 @@ namespace UI.Upgrade.KingParameters
         [SerializeField] private TMP_Text _title;
         [SerializeField] private TMP_Text _description;
         [SerializeField] private TMP_Text _price;
+        [SerializeField] private Button _buyButton;
+        [SerializeField] private Sprite _enableButtonSprite;
+        [SerializeField] private Sprite _disableButtonSprite;
+        
         [Inject] private KingParameterManager _kingParameterManager;
         [Inject] private CoinsManager _coinsManager;
         [Inject] private SoundManager _soundManager;
+        
         private KingParameter _kingParameter; 
         private int _currentLevel;
         private KingParameterUp _currentUpgradeData; 
+        private bool _isDisable;
+        
         public void Setup(KingParameter kingParameter)
         {
             _currentLevel = _kingParameterManager.GetParameterLevel(kingParameter.type);
@@ -29,19 +36,46 @@ namespace UI.Upgrade.KingParameters
             _progressBar.SetUp(kingParameter.Upgrades.Count);
             _progressBar.SetCurrentValue(1);
             ShowUpgradeData();
+        
+            CheckBuyState(_coinsManager.CurrentCoins, 0);
+            _coinsManager.OnIncrease += CheckBuyState;
+            _coinsManager.OnDecrease += CheckBuyState;
         }
 
+        private void CheckBuyState(int coins, int _)
+        {
+            if (IsMaxLevel()) return;
+            if (_currentUpgradeData.price > coins)
+                DisableBuyButton();
+            else
+                EnableBuyButton();
+        }
+
+        public void DisableBuyButton()
+        {
+            if (_isDisable) return;
+            _buyButton.image.sprite = _disableButtonSprite;
+        }
+
+        public void EnableBuyButton()
+        {
+            if (!_isDisable) return;
+            _buyButton.image.sprite = _enableButtonSprite;
+        }
+        
         private void ShowUpgradeData()
         {
             if (IsMaxLevel())
             {
                 _progressBar.SetFullValue();
-                _description.text = ". . .";
-                _price.text = "-";
+                _description.text = "";
+                _price.text = "MAX";
+                DisableBuyButton();
                 return;
             }
+            
             _currentUpgradeData = _kingParameter.Upgrades[_currentLevel];
-            _price.text = _currentUpgradeData.price.ToString();
+            _price.text = CoinsManager.Short(_currentUpgradeData.price);
             _description.text = _currentUpgradeData.description;
             _progressBar.SetCurrentValue(_currentLevel + 1);
         }

@@ -57,6 +57,9 @@ MonoBehaviour:
   description: {fileID: 2688111202463743350}
   price: {fileID: 8773463812270745382}
   avatar: {fileID: 6897515450652206343}
+  _buyButton: {fileID: 2262816884258609177}
+  _enableButtonSprite: {fileID: 1902264620, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}
+  _disableButtonSprite: {fileID: -626250148, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}
 --- !u!1 &2820394677758192490
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,8 +202,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0420\u044B\u0446\u0430\u0440\u044C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: eac1bd23c4266b544aad943e75a23d98, type: 2}
+  m_sharedMaterial: {fileID: 4440023715131847071, guid: eac1bd23c4266b544aad943e75a23d98, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -326,7 +329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6981132, g: 0.3679946, b: 0.02963687, a: 0.392}
+  m_Color: {r: 0.8000001, g: 0.5137255, b: 0.3019608, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -683,8 +686,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 1902264620, guid: de717fbc9183cd6498cde96a35ce2fb0, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -712,7 +715,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 0.34792483, g: 0.8207547, b: 0.081301175, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

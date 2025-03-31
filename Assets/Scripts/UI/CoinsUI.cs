@@ -16,44 +16,43 @@ namespace UI
 
         public void Start()
         {
-            coinText.text = _coinsManager.CurrentCoins.ToString();
+            coinText.text = CoinsManager.Short(_coinsManager.CurrentCoins, 3);
             _coinsManager.OnIncrease += OnIncrease;
             _coinsManager.OnDecrease += OnDecrease;
         }
 
         private void OnIncrease(int coinsAmount, int increaseAmount)
         {
-            coinText.text = coinsAmount.ToString();
+            coinText.text = CoinsManager.Short(coinsAmount);
             coinText.transform
                 .DOScale(Vector3.one * 1.2f, _animDuration)
-                .SetEase(Ease.OutBounce).OnComplete((() =>
+                .SetEase(Ease.OutBounce).OnComplete(() =>
                 {
                     coinText.transform.DOScale(Vector3.one, _animDuration/2);
-                }));
+                });
             
             coinText.DOColor(_increaseColor, _animDuration)
-                .SetEase(Ease.OutBounce).OnComplete((() =>
+                .SetEase(Ease.OutBounce).OnComplete(() =>
                 {
                     coinText.DOColor(Color.white, _animDuration/2);
-                }));
+                });
         }
 
         private void OnDecrease(int coinsAmount, int decreaseAmount)
         {
-            coinText.text = coinsAmount.ToString();
-            coinText.text = coinsAmount.ToString();
+            coinText.text = CoinsManager.Short(coinsAmount, 3);
             coinText.transform
                 .DOScale(Vector3.one * 1.2f, _animDuration)
-                .SetEase(Ease.OutBounce).OnComplete((() =>
+                .SetEase(Ease.OutBounce).OnComplete(() =>
                 {
                     coinText.transform.DOScale(Vector3.one, _animDuration/2);
-                }));
+                });
             
             coinText.DOColor(_decreaseColor, _animDuration)
-                .SetEase(Ease.OutBounce).OnComplete((() =>
+                .SetEase(Ease.OutBounce).OnComplete(() =>
                 {
                     coinText.DOColor(Color.white, _animDuration/2);
-                }));
+                });
         }
 
         public void OnDestroy()

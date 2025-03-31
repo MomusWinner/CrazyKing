@@ -33,6 +33,10 @@ namespace UI.Upgrade.ServantTab
         [SerializeField] private TMP_Text _buttonText;
         [SerializeField] private RectTransform _paramParent;
         
+        [SerializeField] private Sprite _enableButtonSprite;
+        [SerializeField] private Sprite _disableButtonSprite;
+        [SerializeField] private Sprite _mergeButtonSprite;
+
         [Inject] private ServantsSO _servantsSO;
         [Inject] private ServantStorage _servantStorage;
         [Inject] private CoinsManager _coinsManager;
@@ -46,6 +50,7 @@ namespace UI.Upgrade.ServantTab
         private List<ServantData> _sameServants;
         private readonly List<ServantParameterUI> _params = new();
         private RectTransform _rectTransform;
+        private bool _isMergeUpgrade => NextUpgrade.isMergeUpgrade;
         
         public void Setup(ServantData servantData)
         {
@@ -85,6 +90,18 @@ namespace UI.Upgrade.ServantTab
                 CheckMergeAvailable();
             }
             ShowServantUpgradeData();
+
+            CheckBuyState(_coinsManager.CurrentCoins, 0);
+            _coinsManager.OnIncrease += CheckBuyState;
+            _coinsManager.OnDecrease += CheckBuyState;
+        }
+
+        private void CheckBuyState(int coins, int _)
+        {
+            if (_isMergeUpgrade)
+                _actionButton.image.sprite = _canByMerged ? _mergeButtonSprite : _disableButtonSprite;
+            else
+                _actionButton.image.sprite = coins < NextUpgrade.price ? _disableButtonSprite : _enableButtonSprite;
         }
 
         private void UpdateServantParams()
@@ -103,6 +120,7 @@ namespace UI.Upgrade.ServantTab
                 
                 param.UpdateText(value);
             }
+            CheckBuyState(_coinsManager.CurrentCoins, 0);
         }
 
         public void OpenParameters()
@@ -123,7 +141,7 @@ namespace UI.Upgrade.ServantTab
 
         public void Upgrade()
         {
-            if (NextUpgrade.isMergeUpgrade)
+            if (_isMergeUpgrade)
             {
                 if (!_canByMerged)
                 {
@@ -164,6 +182,8 @@ namespace UI.Upgrade.ServantTab
         public void OnDestroy()
         {
             _servantStorage.OnUpgradeServant -= OnUpgradeServant;
+            _coinsManager.OnIncrease -= CheckBuyState;
+            _coinsManager.OnDecrease -= CheckBuyState;
         }
         
         private void ShowServantUpgradeData()
@@ -187,7 +207,7 @@ namespace UI.Upgrade.ServantTab
             if (NextUpgrade.isMergeUpgrade)
                 _buttonText.text = "MERGE " + NextUpgrade.mergeAmount;
             else
-                _buttonText.text = NextUpgrade.price.ToString();
+                _buttonText.text = CoinsManager.Short(NextUpgrade.price);
         }
 
         private void OnUpgradeServant(ServantData data)

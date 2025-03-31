@@ -675,6 +675,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: buy_button
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 450
+        width: 151
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a0ee1e37e927a94e93125ec9d5efbc5
+      internalID: 1902264620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: disable_buy_button
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 450
+        width: 151
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f14fbd79413a9442ba07b53496b535b
+      internalID: -626250148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -692,6 +736,7 @@ TextureImporter:
       acher_1: -2998579584471748655
       acher_2: 1848337442
       archer_3: -382557
+      buy_button: 1902264620
       char-icon-assets_10: 1661749189
       char-icon-assets_3: -849319093
       char-icon-assets_4: -1381340638
@@ -699,6 +744,7 @@ TextureImporter:
       coin_1: -1667879286
       coin_2: 585379438
       coin_3: -601596692
+      disable_buy_button: -626250148
       king: -581257419
       knight_1: -998387988
       knight_2: 464905424
