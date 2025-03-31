@@ -11,6 +11,7 @@ public class StartCage : MonoBehaviour, IDamageable
     public int MaxHealth => 1;
 
     [Inject] private ServantManager _servantManager;
+    [SerializeField] private string _particlePath;
     private ServantController _servant;
     private bool _servantIsCaptured;
     
@@ -35,6 +36,8 @@ public class StartCage : MonoBehaviour, IDamageable
 
     public bool Damage(int damage)
     {
+        GameObject particleObj = Resources.Load<GameObject>(_particlePath);
+        Instantiate(particleObj, transform.position, Quaternion.identity);
         Destroy(gameObject);
         return true;
     }

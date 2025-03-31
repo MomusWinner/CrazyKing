@@ -237,11 +237,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_3
+      name: goblin_1
       rect:
         serializedVersion: 2
-        x: 716
-        y: 1888
+        x: 1072
+        y: 1897
         width: 279
         height: 147
       alignment: 0
@@ -259,11 +259,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_4
+      name: goblin_2
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 1877
+        x: 1352
+        y: 1878
         width: 277
         height: 166
       alignment: 0
@@ -281,11 +281,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_5
+      name: king
       rect:
         serializedVersion: 2
-        x: 1506
-        y: 1770
+        x: 3
+        y: 1473
         width: 238
         height: 276
       alignment: 0
@@ -303,11 +303,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_6
+      name: knight_1
       rect:
         serializedVersion: 2
-        x: 1828
-        y: 1846
+        x: 324
+        y: 1547
         width: 174
         height: 202
       alignment: 0
@@ -325,11 +325,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_7
+      name: knight_2
       rect:
         serializedVersion: 2
-        x: 4
-        y: 1535
+        x: 503
+        y: 1533
         width: 173
         height: 213
       alignment: 0
@@ -347,11 +347,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_8
+      name: knight_3
       rect:
         serializedVersion: 2
-        x: 180
-        y: 1522
+        x: 677
+        y: 1525
         width: 200
         height: 227
       alignment: 0
@@ -369,10 +369,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_9
+      name: arrow_1
       rect:
         serializedVersion: 2
-        x: 572
+        x: 1071
         y: 1613
         width: 35
         height: 134
@@ -391,11 +391,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_10
+      name: arrow_2
       rect:
         serializedVersion: 2
-        x: 609
-        y: 1600
+        x: 1108
+        y: 1598
         width: 40
         height: 148
       alignment: 0
@@ -413,11 +413,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_11
+      name: arrow_3
       rect:
         serializedVersion: 2
-        x: 652
-        y: 1599
+        x: 1154
+        y: 1595
         width: 40
         height: 148
       alignment: 0
@@ -438,8 +438,8 @@ TextureImporter:
       name: archer_1_bow
       rect:
         serializedVersion: 2
-        x: 696
-        y: 1664
+        x: 1194
+        y: 1665
         width: 195
         height: 83
       alignment: 0
@@ -460,8 +460,8 @@ TextureImporter:
       name: archer_2_bow
       rect:
         serializedVersion: 2
-        x: 893
-        y: 1655
+        x: 1392
+        y: 1656
         width: 220
         height: 92
       alignment: 0
@@ -482,7 +482,7 @@ TextureImporter:
       name: archer_3_bow
       rect:
         serializedVersion: 2
-        x: 1113
+        x: 1616
         y: 1648
         width: 251
         height: 99
@@ -501,11 +501,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_15
+      name: goblin_1_bow
       rect:
         serializedVersion: 2
-        x: 1366
-        y: 1675
+        x: 4
+        y: 1396
         width: 214
         height: 70
       alignment: 0
@@ -523,11 +523,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_16
+      name: goblin_2_bow
       rect:
         serializedVersion: 2
-        x: 1587
-        y: 1665
+        x: 222
+        y: 1389
         width: 224
         height: 80
       alignment: 0
@@ -545,11 +545,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_17
+      name: goblin_3_bow
       rect:
         serializedVersion: 2
-        x: 1812
-        y: 1668
+        x: 446
+        y: 1391
         width: 221
         height: 78
       alignment: 0
@@ -567,11 +567,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_18
+      name: goblin_sword_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 1395
+        x: 671
+        y: 1353
         width: 71
         height: 117
       alignment: 0
@@ -589,11 +589,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_19
+      name: goblin_sword_2
       rect:
         serializedVersion: 2
-        x: 78
-        y: 1359
+        x: 747
+        y: 1311
         width: 71
         height: 160
       alignment: 0
@@ -611,11 +611,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_20
+      name: goblin_sword_3
       rect:
         serializedVersion: 2
-        x: 150
-        y: 1321
+        x: 818
+        y: 1271
         width: 85
         height: 199
       alignment: 0
@@ -633,11 +633,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_21
+      name: arrow_goblin_1
       rect:
         serializedVersion: 2
-        x: 240
-        y: 1413
+        x: 908
+        y: 1365
         width: 44
         height: 104
       alignment: 0
@@ -655,11 +655,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_22
+      name: arrow_goblin_2
       rect:
         serializedVersion: 2
-        x: 286
-        y: 1408
+        x: 955
+        y: 1364
         width: 44
         height: 107
       alignment: 0
@@ -677,11 +677,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_23
+      name: arrow_goblin_3
       rect:
         serializedVersion: 2
-        x: 334
-        y: 1386
+        x: 1002
+        y: 1338
         width: 39
         height: 131
       alignment: 0
@@ -699,11 +699,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_24
+      name: king_weapon
       rect:
         serializedVersion: 2
-        x: 375
-        y: 1298
+        x: 1044
+        y: 1251
         width: 69
         height: 219
       alignment: 0
@@ -721,11 +721,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_25
+      name: kngiht_sword_1
       rect:
         serializedVersion: 2
-        x: 584
-        y: 1286
+        x: 1255
+        y: 1240
         width: 104
         height: 229
       alignment: 9
@@ -743,11 +743,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_26
+      name: kngiht_sword_2
       rect:
         serializedVersion: 2
-        x: 692
-        y: 1357
+        x: 1361
+        y: 1310
         width: 82
         height: 160
       alignment: 9
@@ -765,11 +765,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_27
+      name: kngiht_sword_3
       rect:
         serializedVersion: 2
-        x: 778
-        y: 1330
+        x: 1447
+        y: 1280
         width: 88
         height: 191
       alignment: 9
@@ -787,11 +787,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_28
+      name: kngiht_sword_4
       rect:
         serializedVersion: 2
-        x: 869
-        y: 1307
+        x: 1537
+        y: 1259
         width: 105
         height: 211
       alignment: 9
@@ -812,10 +812,10 @@ TextureImporter:
       name: boot
       rect:
         serializedVersion: 2
-        x: 448
-        y: 1347
+        x: 1115
+        y: 1298
         width: 135
-        height: 167
+        height: 171
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -831,11 +831,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: characters-assets_29
+      name: king_foot
       rect:
         serializedVersion: 2
-        x: 1746
-        y: 1953
+        x: 244
+        y: 1655
         width: 79
         height: 92
       alignment: 0
@@ -856,7 +856,7 @@ TextureImporter:
       name: knight_1_foot
       rect:
         serializedVersion: 2
-        x: 383
+        x: 882
         y: 1671
         width: 60
         height: 75
@@ -900,8 +900,8 @@ TextureImporter:
       name: AngryDog
       rect:
         serializedVersion: 2
-        x: 1279
-        y: 1749
+        x: 1632
+        y: 1753
         width: 177
         height: 295
       alignment: 0
@@ -922,7 +922,7 @@ TextureImporter:
       name: AngryDog_Foot
       rect:
         serializedVersion: 2
-        x: 1459
+        x: 1811
         y: 2003
         width: 43
         height: 41
@@ -944,8 +944,8 @@ TextureImporter:
       name: knight_2_foot
       rect:
         serializedVersion: 2
-        x: 446
-        y: 1671
+        x: 944
+        y: 1672
         width: 60
         height: 75
       alignment: 0
@@ -966,8 +966,8 @@ TextureImporter:
       name: knight_3_foot
       rect:
         serializedVersion: 2
-        x: 509
-        y: 1671
+        x: 1008
+        y: 1672
         width: 60
         height: 75
       alignment: 0
@@ -1028,6 +1028,94 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: chicken_body
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 1912
+        width: 106
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f95c4e5c346abc479d35d2c15df1d5f
+      internalID: -1998704712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_foot
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 1988
+        width: 52
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ade194642e01acf4eb4facf4f8046733
+      internalID: 374039737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_head
+      rect:
+        serializedVersion: 2
+        x: 879
+        y: 1932
+        width: 108
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5905f097d4d57ea408a87f0f7abb123f
+      internalID: 931794331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: chicken_bomb
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 1909
+        width: 82
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e04b00db93d08c49a065c679e6e3a9d
+      internalID: -2057337745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -1053,33 +1141,37 @@ TextureImporter:
       archer_3_body: -6981357453106134528
       archer_3_bow: 4878745169271556188
       archer_3_foot: 1648769915
+      arrow_1: -7569114588537362091
+      arrow_2: -4933350240115804654
+      arrow_3: 4100396856696042465
+      arrow_goblin_1: 1117866502
+      arrow_goblin_2: 658212869
+      arrow_goblin_3: 607429889
       boot: -1622337456
-      characters-assets_10: -4933350240115804654
-      characters-assets_11: 4100396856696042465
-      characters-assets_15: 8569100232774277522
-      characters-assets_16: -237243492
-      characters-assets_17: 1207137289
-      characters-assets_18: 1297820489
-      characters-assets_19: -1388607078
-      characters-assets_20: -507336415
-      characters-assets_21: 1117866502
-      characters-assets_22: 658212869
-      characters-assets_23: 607429889
-      characters-assets_24: -713122689
-      characters-assets_25: 967664710
-      characters-assets_26: -1811119092
-      characters-assets_27: -1106544103
-      characters-assets_28: -389384938
-      characters-assets_29: 1039985874
-      characters-assets_3: -4082326445067122455
-      characters-assets_4: 1139451769480317190
-      characters-assets_5: -2953191621876879684
-      characters-assets_6: -3562287391057781892
-      characters-assets_7: -8352591621406767392
-      characters-assets_8: 424796007678112533
-      characters-assets_9: -7569114588537362091
+      chicken_body: -1998704712
+      chicken_bomb: -2057337745
+      chicken_foot: 374039737
+      chicken_head: 931794331
+      goblin_1: -4082326445067122455
+      goblin_1_bow: 8569100232774277522
+      goblin_2: 1139451769480317190
+      goblin_2_bow: -237243492
+      goblin_3_bow: 1207137289
+      goblin_sword_1: 1297820489
+      goblin_sword_2: -1388607078
+      goblin_sword_3: -507336415
+      king: -2953191621876879684
+      king_foot: 1039985874
+      king_weapon: -713122689
+      kngiht_sword_1: 967664710
+      kngiht_sword_2: -1811119092
+      kngiht_sword_3: -1106544103
+      kngiht_sword_4: -389384938
+      knight_1: -3562287391057781892
       knight_1_foot: -190552511
+      knight_2: -8352591621406767392
       knight_2_foot: 959454776
+      knight_3: 424796007678112533
       knight_3_foot: -1951976171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

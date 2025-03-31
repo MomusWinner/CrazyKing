@@ -75,6 +75,10 @@ public class Chicken : EntityController, IThrowable
                     throwable.Throw(entity.transform.position - transform.position, _explosionForce);
                 }
             }
+            else if (entity.TryGetComponent(out Rigidbody2D rb))
+            {
+                rb.AddForce((entity.transform.position - transform.position) * _explosionForce, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -93,9 +97,6 @@ public class Chicken : EntityController, IThrowable
             _wanderState.Dispose();
         }
             
-        GameObject particlePref = Resources.Load<GameObject>(_kickParticle);
-        Instantiate(particlePref, transform.position, Quaternion.identity);
-        
         RigidBody.AddForce(direction * force, ForceMode2D.Impulse);
         _isExploding = true;
     }

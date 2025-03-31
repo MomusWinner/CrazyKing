@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 0.3
   healthController: {fileID: 7511607842695725057}
-  DamageColorizer: {fileID: 0}
+  DamageColorizer: {fileID: 8413690461985193744}
   maxHealth: 200
   rotationSpeed: 0
   speed: 0
