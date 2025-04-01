@@ -67,6 +67,7 @@ public class Chicken : EntityController, IThrowable
         Destroy(gameObject);
         foreach (var entity in entities)
         {
+            if (entity.gameObject == gameObject) continue;
             if (entity.TryGetComponent(out IDamageable damageable))
             {
                 bool objectDestroyed = damageable.Damage(_explosionDamage);
