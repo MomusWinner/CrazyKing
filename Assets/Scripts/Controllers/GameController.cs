@@ -1,4 +1,5 @@
 ﻿using Controllers.Coins;
+using Cysharp.Threading.Tasks;
 using King;
 using UI.Game;
 using VContainer;
@@ -26,8 +27,8 @@ namespace Controllers
         {
             _startCastleAmount = _castleManager.CastleCount;
             _enemyManager.OnEnemyDies += () => _killedEnemies++;
-            _castleManager.OnCastlesCaptured += SuccessLevelComplete;
-            _kingController.OnDeath += FailureLevelComplete;
+            _castleManager.OnCastlesCaptured += () => _ = SuccessLevelComplete();
+            _kingController.OnDeath += () => _ = FailureLevelComplete();
             _coinsManager.OnIncrease += (_, coins)  => _earnedCoins += coins;
 
             LevelSO levelSO = _levelManager.GetCurrentLevelData();
@@ -37,23 +38,25 @@ namespace Controllers
                 _gameUI.ShowTitleText($"До босса осталось {_levelManager.LevelsToBoss()} уровней", 5);
         }
 
-        public void SuccessLevelComplete()
+        public async UniTask SuccessLevelComplete()
         {
             _capturedCastles = _startCastleAmount - (_startCastleAmount - _castleManager.CastleCount);
             
             _gameUI.DisablePausePanel();
+            await UniTask.Delay(1000);
             _gameUI.OpenLevelEndPanel();
             _gameUI.SetupGameEndPanel("Победа!!", _earnedCoins, _capturedCastles, _killedEnemies);
             _successComplete = true;
         }
 
-        public void FailureLevelComplete()
+        public async UniTask FailureLevelComplete()
         {
             if(_successComplete) return;
             
             _capturedCastles = _startCastleAmount - (_startCastleAmount - _castleManager.CastleCount);
             
             _gameUI.DisablePausePanel();
+            await UniTask.Delay(1000);
             _gameUI.OpenLevelEndPanel();
             _gameUI.SetupGameEndPanel("Поражение :(", _earnedCoins, _capturedCastles, _killedEnemies);
         }

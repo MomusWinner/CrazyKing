@@ -2763,6 +2763,7 @@ MonoBehaviour:
   _enemyCounterText: {fileID: 1225012915072292705}
   _gameEndPanel: {fileID: 1182801764667897556}
   _pausePanel: {fileID: 4743809846446250339}
+  _pauseButton: {fileID: 1604836879098326813}
 --- !u!1 &6939625868140326697
 GameObject:
   m_ObjectHideFlags: 0

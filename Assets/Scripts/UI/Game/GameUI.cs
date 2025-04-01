@@ -4,6 +4,7 @@ using Controllers;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using VContainer;
 
 namespace UI.Game
@@ -15,6 +16,7 @@ namespace UI.Game
         [SerializeField] private TMP_Text _enemyCounterText;
         [SerializeField] private GameEndPanel _gameEndPanel;
         [SerializeField] private GameObject _pausePanel;
+        [SerializeField] private Button _pauseButton;
 
         [Inject] private EnemyManager _enemyManager;
         [Inject] private CastleManager _castleManager;
@@ -68,7 +70,7 @@ namespace UI.Game
 
         public void DisablePausePanel()
         {
-            
+            _pauseButton.gameObject.SetActive(false);
         }
     }
 }
