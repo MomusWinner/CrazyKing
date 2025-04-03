@@ -20,14 +20,14 @@ namespace Controllers
         public async UniTask LoadLevel()
         {
             if (_levelsSO.IsTestingMode)
-                await _sceneLoader.LoadScene(_levelsSO.Levels[0].SceneName);
-            
-            await _sceneLoader.LoadScene(_levelsSO.Levels[Level - 1].SceneName);
+                await _sceneLoader.LoadScene(_levelsSO.Levels[_levelsSO.TestLevel - 1].SceneName);
+            else
+                await _sceneLoader.LoadScene(_levelsSO.Levels[Level - 1].SceneName);
         }
 
         public LevelSO GetCurrentLevelData()
         {
-            if (_levelsSO.IsTestingMode) return _levelsSO.Levels[0];
+            if (_levelsSO.IsTestingMode) return _levelsSO.Levels[_levelsSO.TestLevel - 1];
             return _levelsSO.Levels[Level - 1];
         }
 

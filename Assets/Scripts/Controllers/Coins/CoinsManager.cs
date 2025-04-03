@@ -8,27 +8,26 @@ namespace Controllers.Coins
 {
     public class CoinsManager: IStartable
     {
+        private readonly int _startingCoins;
         public int CurrentCoins { get; private set; }
         public Action<int, int> OnIncrease;
         public Action<int, int> OnDecrease;
 
         [Inject] private IObjectResolver _container;
         [Inject] private CoinsSO _coinsSO;
+        [Inject] private SaveManager _saveManager;
         private CoinPrice[] _coinPrices;
         
         public CoinsManager(int startingCoins)
         {
-            if (!PlayerPrefs.HasKey("Coins"))
-            {
-                CurrentCoins = startingCoins;
-                SaveCoins();
-            }
-            else
-                CurrentCoins = PlayerPrefs.GetInt("Coins");
+            _startingCoins = startingCoins;
         }
         
         public void Start()
         {
+            if (_saveManager.GameData.IsFirstStarting)
+                CurrentCoins = _startingCoins;
+            
             _coinPrices = _coinsSO.CoinPrices;
             Array.Sort(_coinPrices, (a, b) =>
             {
@@ -96,9 +95,8 @@ namespace Controllers.Coins
             return coin;
         }
         
-        private void SaveCoins()
-        {
-            PlayerPrefs.SetInt("Coins", CurrentCoins);
+        private void SaveCoins() {
+            _saveManager.GameData.Coins = CurrentCoins;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Controllers.Coins;
 using Cysharp.Threading.Tasks;
 using King;
+using PlayablesStudio.Plugins.YandexGamesSDK.Runtime.Types;
 using UI.Game;
 using VContainer;
 using VContainer.Unity;
@@ -20,6 +21,7 @@ namespace Controllers
         [Inject] private GameUI _gameUI;
         [Inject] private KingController _kingController;
         [Inject] private LevelManager _levelManager;
+        [Inject] private SaveManager _saveManager;
 
         private bool _successComplete;
 
@@ -43,9 +45,11 @@ namespace Controllers
             _capturedCastles = _startCastleAmount - (_startCastleAmount - _castleManager.CastleCount);
             
             _gameUI.DisablePausePanel();
+            _saveManager.Save();
             await UniTask.Delay(1000);
             _gameUI.OpenLevelEndPanel();
             _gameUI.SetupGameEndPanel("Победа!!", _earnedCoins, _capturedCastles, _killedEnemies);
+            _levelManager.CompleteLevel();
             _successComplete = true;
         }
 
@@ -56,6 +60,7 @@ namespace Controllers
             _capturedCastles = _startCastleAmount - (_startCastleAmount - _castleManager.CastleCount);
             
             _gameUI.DisablePausePanel();
+            _saveManager.Save();
             await UniTask.Delay(1000);
             _gameUI.OpenLevelEndPanel();
             _gameUI.SetupGameEndPanel("Поражение :(", _earnedCoins, _capturedCastles, _killedEnemies);

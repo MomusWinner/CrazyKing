@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TriInspector;
+using UnityEngine;
 
 namespace Controllers
 {
@@ -6,6 +7,8 @@ namespace Controllers
     public class LevelsSO : ScriptableObject
     {
         public bool IsTestingMode;
+        [ShowIf(nameof(IsTestingMode))]
+        public int TestLevel;
         public LevelSO[] Levels;
     }
 }
