@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections;
 using Agent;
-using Finders;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using Random = UnityEngine.Random;
 
 namespace BaseEntity.States
 {
@@ -15,12 +13,12 @@ namespace BaseEntity.States
         private IArcher _archer;
         private PhysicAgent _agent;
         private BaseEntityController _target;
-        private EntityFinder _entityFinder;
         private bool _isAttacking;
-        private bool _isAiming;
         private float _attackTimOut;
+        private const float StartDelay = 0.5f;
 
         private float _attackTimOutLeft;
+        private bool _isFirstAttack = true;
 
         private IEnumerator _findTargetCoroutine;
         
@@ -30,62 +28,34 @@ namespace BaseEntity.States
             _archer = Entity.GetComponent<IArcher>();
             _agent = Entity.GetComponent<PhysicAgent>();
             _attackTimOut = _archer.AttackTimeOut;
-            _entityFinder = Entity.TargetFinder;
             _findTargetCoroutine = FindNewTarget();
             Entity.StartCoroutine(_findTargetCoroutine);
+            Entity.Animator.SetBool(_aimAnim, true);
         }
         
         public override void Update()
         {
             if (Entity == null) return;
 
-            if (_isAttacking)
-            {
-                if (_attackTimOutLeft <= 0)
-                    Entity.StartCoroutine(ShootDelay());     
-                else
-                    _attackTimOutLeft -= Time.deltaTime;
-            }
+            if (_isAttacking || _target == null) return;
+            Entity.StartCoroutine(StartAttack());
         }
 
         public override void FixedUpdate()
-        { 
-            if (_target == null) return;
-            Entity.Rotate(_target.transform.position - Entity.transform.position, Time.fixedDeltaTime);
-            if (_isAiming && IsAimed())
-            {
-                StartAttack();
-            }
-
-            if (!_isAttacking)
-            {
-                _agent.Stop();
-                if (!_isAiming)
-                {
-                    Entity.Animator.SetBool(_aimAnim, true);
-                    _isAiming = true;
-                }
-            }
+        {
+            if (_target != null)
+                RotateToTarget();
         }
+
 
         public override void Dispose()
         {
-            if (Entity != null)
-            {
-                _isAiming = false;
-                _isAttacking = false;
-                OnComplete = null;
-                Entity.StopCoroutine(_findTargetCoroutine);
-                Entity.Animator.SetBool(_aimAnim, false);
-                _findTargetCoroutine = null;
-            }
-        }
-
-        private void StartAttack()
-        { 
-            _isAiming = false;
-            _isAttacking = true;
-            _attackTimOutLeft = _attackTimOut;
+            if (Entity == null) return;
+            _isAttacking = false;
+            OnComplete = null;
+            Entity.StopCoroutine(_findTargetCoroutine);
+            Entity.Animator.SetBool(_aimAnim, false);
+            _findTargetCoroutine = null;
         }
 
         private void Shoot()
@@ -100,18 +70,36 @@ namespace BaseEntity.States
             arrow.Setup(_archer.ArrowData, dir);
         }
 
-        private IEnumerator ShootDelay()
+        private IEnumerator StartAttack()
         {
+            _isAttacking = true;
+            _agent.Stop();
+
+            float aimingTime = 0;
+            while (_target != null && !IsAimed())
+            {
+                aimingTime += Time.deltaTime;
+                yield return null;
+            }
+            
+            if (_isFirstAttack && aimingTime > 0  && aimingTime < StartDelay)
+                yield return new WaitForSeconds(StartDelay - aimingTime);
+            _isFirstAttack = false;
+            
+            
+            if (_target != null)
+                Shoot();
+                
+            yield return new WaitForSeconds(_attackTimOut);
             _isAttacking = false;
-            yield return new WaitForSeconds(Random.Range(0f, 0.5f));
-            Shoot();
         }
 
         private bool IsAimed()
         {
             Vector2 dir = _target.transform.position - Entity.transform.position;
             dir.Normalize();
-            if (dir.SqrMagnitude() - MathUtils.AngleToVector2(_target.transform.rotation.z).SqrMagnitude() < 0.001f)
+            Vector2 entityDir = Entity.transform.right;
+            if ((entityDir - dir).sqrMagnitude < 0.01f)
                 return true;
             return false;
         }
@@ -124,8 +112,13 @@ namespace BaseEntity.States
                 if (_target == null)
                     OnComplete?.Invoke();
 
-                yield return new WaitForSeconds(1f);
+                yield return new WaitForSeconds(0.5f);
             }
+        }
+
+        private void RotateToTarget()
+        {
+            Entity.Rotate(_target.transform.position - Entity.transform.position, Time.fixedDeltaTime);
         }
     }
 
