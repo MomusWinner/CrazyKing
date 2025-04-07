@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: attackDamage
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2263768197551025937, guid: 779bc13e03033c2488258d3eba775cf7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2263768197551025937, guid: 779bc13e03033c2488258d3eba775cf7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3264004522685862450, guid: 779bc13e03033c2488258d3eba775cf7, type: 3}
       propertyPath: m_Name
       value: HarmlessGoblinWarrior
