@@ -50,12 +50,14 @@ namespace UI.Upgrade.ServantShop
         public void DisableBuyButton()
         {
             if (_isDisable) return;
+            _isDisable = true;
             _buyButton.image.sprite = _disableButtonSprite;
         }
 
         public void EnableBuyButton()
         {
             if (!_isDisable) return;
+            _isDisable = false;
             _buyButton.image.sprite = _enableButtonSprite;
         }
 

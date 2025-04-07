@@ -42,6 +42,34 @@ namespace UI.Upgrade.KingParameters
             _coinsManager.OnDecrease += CheckBuyState;
         }
 
+        public void OnDestroy()
+        {
+            _coinsManager.OnIncrease -= CheckBuyState;
+            _coinsManager.OnDecrease -= CheckBuyState;
+        }
+
+
+        public void DisableBuyButton()
+        {
+            if (_isDisable) return;
+            _isDisable = true;
+            _buyButton.image.sprite = _disableButtonSprite;
+        }
+
+        public void EnableBuyButton()
+        {
+            if (!_isDisable) return;
+            _isDisable = false;
+            _buyButton.image.sprite = _enableButtonSprite;
+        }
+        
+        public void UpgradeLevel()
+        {
+            if (IsMaxLevel()) return;
+            UpgradeParamLevel(_kingParameter.type);
+            ShowUpgradeData();
+        }
+
         private void CheckBuyState(int coins, int _)
         {
             if (IsMaxLevel()) return;
@@ -50,17 +78,22 @@ namespace UI.Upgrade.KingParameters
             else
                 EnableBuyButton();
         }
-
-        public void DisableBuyButton()
+        
+        private bool IsMaxLevel()
         {
-            if (_isDisable) return;
-            _buyButton.image.sprite = _disableButtonSprite;
+            return _kingParameter.Upgrades.Count <= _currentLevel;
         }
-
-        public void EnableBuyButton()
+        
+        private void UpgradeParamLevel(KingParameterType parameterType) 
         {
-            if (!_isDisable) return;
-            _buyButton.image.sprite = _enableButtonSprite;
+            if (!_coinsManager.TryGetCoins(_currentUpgradeData.price))
+            {
+                Debug.LogWarning("No coins available for upgrade");
+                return;
+            }
+            _soundManager.StartMusic("Buy", SoundChannel.UI);
+            _kingParameterManager.UpgradeParameter(_kingParameter.type);
+            _currentLevel = _kingParameterManager.GetParameterLevel(parameterType);
         }
         
         private void ShowUpgradeData()
@@ -80,28 +113,5 @@ namespace UI.Upgrade.KingParameters
             _progressBar.SetCurrentValue(_currentLevel + 1);
         }
         
-        public void UpgradeLevel()
-        {
-            if (IsMaxLevel()) return;
-            UpgradeParamLevel(_kingParameter.type);
-            ShowUpgradeData();
-        }
-
-        private bool IsMaxLevel()
-        {
-            return _kingParameter.Upgrades.Count <= _currentLevel;
-        }
-        
-        private void UpgradeParamLevel(KingParameterType parameterType) 
-        {
-            if (!_coinsManager.TryGetCoins(_currentUpgradeData.price))
-            {
-                Debug.LogWarning("No coins available for upgrade");
-                return;
-            }
-            _soundManager.StartMusic("Buy", SoundChannel.UI);
-            _kingParameterManager.UpgradeParameter(_kingParameter.type);
-            _currentLevel = _kingParameterManager.GetParameterLevel(parameterType);
-        }
     }
 }

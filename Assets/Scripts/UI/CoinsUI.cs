@@ -23,7 +23,7 @@ namespace UI
 
         private void OnIncrease(int coinsAmount, int increaseAmount)
         {
-            coinText.text = CoinsManager.Short(coinsAmount);
+            coinText.text = CoinsManager.Short(coinsAmount, 3);
             coinText.transform
                 .DOScale(Vector3.one * 1.2f, _animDuration)
                 .SetEase(Ease.OutBounce).OnComplete(() =>
