@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9de5adb352c429eb005beb184fe003f, type: 3}
   m_Name: LevelsSO
   m_EditorClassIdentifier: 
-  IsTestingMode: 1
+  IsTestingMode: 0
   TestLevel: 1
   Levels:
   - SceneName: Tutorial
