@@ -8,22 +8,23 @@ namespace UI.Upgrade
 {
     public class UpgradePanel : MonoBehaviour
     {
-        [SerializeField] private GameObject positioningTab;
-        [SerializeField] private GameObject upgradeTab;
+        [SerializeField] private UpgradeTab _positioningTab;
+        [SerializeField] private UpgradeTab _upgradeTab;
         [SerializeField] private GameObject _settingPanel;
         [SerializeField] private GameObject[] _showInDebugMode;
         [Inject] private CoinsManager _coinsManager;
         [Inject] private LevelManager _levelManager;
         [Inject] private SoundManager _soundManager;
         
-        private GameObject _currentTab;
+        private UpgradeTab _currentTab;
 
         public void Start()
         {
             _soundManager.StartMusic("UpgradeMenuMusic", SoundChannel.Background);
-            positioningTab.SetActive(false);
-            upgradeTab.SetActive(false);
-            OpenTab(upgradeTab);
+            _upgradeTab.gameObject.SetActive(true);
+            _positioningTab.gameObject.SetActive(true);
+            _positioningTab.HideNoAnim();
+            OpenTab(_upgradeTab);
 
 #if DEBUG
             foreach (var o in _showInDebugMode)
@@ -49,15 +50,15 @@ namespace UI.Upgrade
             _levelManager.LoadLevel();
         }
 
-        public void OpenUpgradesTab() => OpenTab(upgradeTab);
+        public void OpenUpgradesTab() => OpenTab(_upgradeTab);
 
-        public void OpenPositioningTab() => OpenTab(positioningTab);
+        public void OpenPositioningTab() => OpenTab(_positioningTab);
         
-        private void OpenTab(GameObject tab)
+        private void OpenTab(UpgradeTab tab)
         {
-            _currentTab?.SetActive(false);
+            _currentTab?.Hide();
             _currentTab = tab;
-            _currentTab.SetActive(true);
+            _currentTab.Show();
         }
 
         public void OpenSettings() => _settingPanel.SetActive(true);

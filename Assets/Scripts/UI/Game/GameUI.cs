@@ -17,6 +17,7 @@ namespace UI.Game
         [SerializeField] private GameEndPanel _gameEndPanel;
         [SerializeField] private GameObject _pausePanel;
         [SerializeField] private Button _pauseButton;
+        [SerializeField] private Button _goToUpgradeMenuButton;
 
         [Inject] private EnemyManager _enemyManager;
         [Inject] private CastleManager _castleManager;
@@ -71,6 +72,11 @@ namespace UI.Game
         public void DisablePausePanel()
         {
             _pauseButton.gameObject.SetActive(false);
+        }
+
+        public void DisableGoToUpgradeMenuButton()
+        {
+            _goToUpgradeMenuButton.gameObject.SetActive(false);
         }
     }
 }

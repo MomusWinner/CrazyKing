@@ -10,14 +10,10 @@ namespace UI.Upgrade.ServantShop
 {
     public class ServantShopItem : MonoBehaviour
     {
-        [SerializeField] private TMP_Text servantName;
-        [SerializeField] private TMP_Text description;
-        [SerializeField] private TMP_Text price;
-        [SerializeField] private Image avatar;
-        [SerializeField] private Button _buyButton;
-        
-        [SerializeField] private Sprite _enableButtonSprite;
-        [SerializeField] private Sprite _disableButtonSprite;
+        [SerializeField] private TMP_Text _servantName;
+        [SerializeField] private TMP_Text _description;
+        [SerializeField] private Image _avatar;
+        [SerializeField] private BuyButton _buyButton;
         
         [Inject] private CoinsManager _coinsManager;
         [Inject] private ServantStorage _servantStorage;
@@ -29,14 +25,20 @@ namespace UI.Upgrade.ServantShop
         public void SetUp(ServantSO servant)
         {
             _servant = servant;
-            servantName.text = servant.servantName;
-            description.text = servant.description;
-            price.text = CoinsManager.Short(servant.price);
-            avatar.sprite = servant.GetAvatarByLevel(0);
+            _servantName.text = servant.servantName;
+            _description.text = servant.description;
+            _buyButton.SetText(CoinsManager.Short(servant.price));
+            _avatar.sprite = servant.GetAvatarByLevel(0);
             
             CheckBuyState(_coinsManager.CurrentCoins, 0);
             _coinsManager.OnIncrease += CheckBuyState;
             _coinsManager.OnDecrease += CheckBuyState;
+        }
+        
+        public void OnDestroy()
+        {
+            _coinsManager.OnIncrease -= CheckBuyState;
+            _coinsManager.OnDecrease -= CheckBuyState;
         }
 
         private void CheckBuyState(int coins, int _)
@@ -51,14 +53,14 @@ namespace UI.Upgrade.ServantShop
         {
             if (_isDisable) return;
             _isDisable = true;
-            _buyButton.image.sprite = _disableButtonSprite;
+            _buyButton.SetState(BuyButtonState.Disable);
         }
 
         public void EnableBuyButton()
         {
             if (!_isDisable) return;
             _isDisable = false;
-            _buyButton.image.sprite = _enableButtonSprite;
+            _buyButton.SetState(BuyButtonState.Enable);
         }
 
         public void Buy()

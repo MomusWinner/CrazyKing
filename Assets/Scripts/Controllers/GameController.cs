@@ -33,6 +33,9 @@ namespace Controllers
             _kingController.OnDeath += () => _ = FailureLevelComplete();
             _coinsManager.OnIncrease += (_, coins)  => _earnedCoins += coins;
 
+            if (_levelManager.Level == 1)
+                _gameUI.DisableGoToUpgradeMenuButton();
+
             LevelSO levelSO = _levelManager.GetCurrentLevelData();
             if (levelSO.CustomStartText)
                 _gameUI.ShowTitleText(levelSO.StartText, 5);
