@@ -21,6 +21,13 @@ namespace UI.Upgrade.ServantTab
             _servantStorage.OnAddServant += AddNewServant;
             _servantStorage.OnRemoveServant += RemoveServant;
         }
+        
+        // [Inject] private EvolutionPanel _evolutionPanel;
+        // [Inject] private ServantsSO _servantsSO;
+        // private void Evolution()
+        // {
+        //     _evolutionPanel.StartAnim(_servantsSO.GetServantByType(ServantType.Archer), new int[] {5, 5, 5});
+        // }
 
         public void OnDestroy()
         {

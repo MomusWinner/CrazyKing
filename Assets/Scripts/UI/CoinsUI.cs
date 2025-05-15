@@ -23,6 +23,7 @@ namespace UI
 
         private void OnIncrease(int coinsAmount, int increaseAmount)
         {
+            DOTween.Kill(coinText.gameObject);
             coinText.text = CoinsManager.Short(coinsAmount, 3);
             coinText.transform
                 .DOScale(Vector3.one * 1.2f, _animDuration)
@@ -40,6 +41,7 @@ namespace UI
 
         private void OnDecrease(int coinsAmount, int decreaseAmount)
         {
+            DOTween.Kill(coinText.gameObject);
             coinText.text = CoinsManager.Short(coinsAmount, 3);
             coinText.transform
                 .DOScale(Vector3.one * 1.2f, _animDuration)

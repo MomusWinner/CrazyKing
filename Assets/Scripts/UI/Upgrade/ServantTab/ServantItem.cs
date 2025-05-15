@@ -26,21 +26,16 @@ namespace UI.Upgrade.ServantTab
         [SerializeField] private TMP_Text _name;
         [SerializeField] private TMP_Text _description;
         [SerializeField] private TMP_Text _lvText;
-        [SerializeField] private Image _actionButtonImage;
-        [SerializeField] private Button _actionButton;
+        [SerializeField] private BuyButton _actionButton;
         [SerializeField] private Image _icon;
         [SerializeField] private ProgressBarByCells _progressBar;
-        [SerializeField] private TMP_Text _buttonText;
         [SerializeField] private RectTransform _paramParent;
         
-        [SerializeField] private Sprite _enableButtonSprite;
-        [SerializeField] private Sprite _disableButtonSprite;
-        [SerializeField] private Sprite _mergeButtonSprite;
-
         [Inject] private ServantsSO _servantsSO;
         [Inject] private ServantStorage _servantStorage;
         [Inject] private CoinsManager _coinsManager;
         [Inject] private SoundManager _soundManager;
+        [Inject] private EvolutionPanel _evolutionPanel;
         
         private ServantData _servantData;
         private ServantSO _servantSo;
@@ -50,7 +45,7 @@ namespace UI.Upgrade.ServantTab
         private List<ServantData> _sameServants;
         private readonly List<ServantParameterUI> _params = new();
         private RectTransform _rectTransform;
-        private bool _isMergeUpgrade => NextUpgrade.isMergeUpgrade;
+        private bool _isMergeUpgrade => NextUpgrade is not null && NextUpgrade.isMergeUpgrade;
         
         public void Setup(ServantData servantData)
         {
@@ -86,7 +81,7 @@ namespace UI.Upgrade.ServantTab
             _progressBar.SetFullValue();
             if (!IsMaxLv())
             {
-                _servantStorage.OnUpgradeServant += OnUpgradeServant;
+                _servantStorage.OnUpgradeServant += OnUpgradeSomeServant;
                 CheckMergeAvailable();
             }
             ShowServantUpgradeData();
@@ -98,10 +93,12 @@ namespace UI.Upgrade.ServantTab
 
         private void CheckBuyState(int coins, int _)
         {
-            if (_isMergeUpgrade)
-                _actionButton.image.sprite = _canByMerged ? _mergeButtonSprite : _disableButtonSprite;
+            if (IsMaxLv())
+                _actionButton.SetState(BuyButtonState.Disable);
+            else if (_isMergeUpgrade)
+                _actionButton.SetState(_canByMerged ? BuyButtonState.Super : BuyButtonState.Disable);
             else
-                _actionButton.image.sprite = coins < NextUpgrade.price ? _disableButtonSprite : _enableButtonSprite;
+                _actionButton.SetState(coins < NextUpgrade.price ? BuyButtonState.Disable : BuyButtonState.Enable);
         }
 
         private void UpdateServantParams()
@@ -141,47 +138,55 @@ namespace UI.Upgrade.ServantTab
 
         public void Upgrade()
         {
+            if (IsMaxLv()) return;
             if (_isMergeUpgrade)
             {
                 if (!_canByMerged)
                 {
+                    UIHelper.ShakeButton(_actionButton.gameObject);
                     _soundManager.StartMusic("Block", SoundChannel.UI);
                     Debug.LogWarning("Can't merge servants.");
                     return;
                 }
 
+                int[] mergeLevels = new int[NextUpgrade.mergeAmount];
+                for (int i = 0; i < mergeLevels.Length; i++)
+                    mergeLevels[i] = _servantData.Lv;
+                
                 if (_servantStorage.TryMergeServants(_sameServants
                         .Select(s => s.ID)
                         .ToList()
                         .GetRange(0, NextUpgrade.mergeAmount)))
                 {
+                    UIHelper.ScaleButton(_actionButton.gameObject);
                     _soundManager.StartMusic("Buy", SoundChannel.UI);
                     UpdateServantParams();
+
+                    _evolutionPanel.StartAnim(_servantSo, mergeLevels);
                 }
             }
             else
             {
                 if (!_coinsManager.TryGetCoins(NextUpgrade.price))
                 {
+                    UIHelper.ShakeButton(_actionButton.gameObject);
                     _soundManager.StartMusic("Block", SoundChannel.UI);
                     Debug.LogWarning("Not enough coins.");
                     return;
                 } 
+                UIHelper.ScaleButton(_actionButton.gameObject);
                 _soundManager.StartMusic("Buy", SoundChannel.UI);
                 _servantStorage.UpgradeServant(_servantData.ID);
                 UpdateServantParams();
             }
 
-            if (IsMaxLv())
-            {
-                _servantStorage.OnUpgradeServant -= OnUpgradeServant;
-            }
+            CheckBuyState(_coinsManager.CurrentCoins, 0);
             ShowServantUpgradeData();
         }
 
         public void OnDestroy()
         {
-            _servantStorage.OnUpgradeServant -= OnUpgradeServant;
+            _servantStorage.OnUpgradeServant -= OnUpgradeSomeServant;
             _coinsManager.OnIncrease -= CheckBuyState;
             _coinsManager.OnDecrease -= CheckBuyState;
         }
@@ -194,9 +199,8 @@ namespace UI.Upgrade.ServantTab
             SetProgressBarValue(_servantData.Lv);
             if (IsMaxLv())
             {
-                _buttonText.text = "MAX";
+                _actionButton.SetText("MAX");
                 _description.text = "max lv";
-                _actionButton.interactable = false;
                 if (_servantData.Lv % _servantsSO.IntervalOfEvolutionLevels == 0)
                 {
                     _progressBar.SetFullValue();
@@ -205,18 +209,19 @@ namespace UI.Upgrade.ServantTab
             }
             _description.text = NextUpgrade.description;
             if (NextUpgrade.isMergeUpgrade)
-                _buttonText.text = "MERGE " + NextUpgrade.mergeAmount;
+                _actionButton.SetText("MERGE " + NextUpgrade.mergeAmount);
             else
-                _buttonText.text = CoinsManager.Short(NextUpgrade.price);
+                _actionButton.SetText(CoinsManager.Short(NextUpgrade.price));
         }
 
-        private void OnUpgradeServant(ServantData data)
+        private void OnUpgradeSomeServant(ServantData data)
         {
             if (data.ID == ServantData.ID)
             { 
                 ShowServantUpgradeData();                   
             }
             CheckMergeAvailable();
+            CheckBuyState(_coinsManager.CurrentCoins, 0);
         }
 
         private void SetProgressBarValue(int lv)

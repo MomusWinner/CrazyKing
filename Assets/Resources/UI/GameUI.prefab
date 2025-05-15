@@ -2764,6 +2764,7 @@ MonoBehaviour:
   _gameEndPanel: {fileID: 1182801764667897556}
   _pausePanel: {fileID: 4743809846446250339}
   _pauseButton: {fileID: 1604836879098326813}
+  _goToUpgradeMenuButton: {fileID: 7055546758386912121}
 --- !u!1 &6939625868140326697
 GameObject:
   m_ObjectHideFlags: 0

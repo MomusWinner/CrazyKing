@@ -22,7 +22,7 @@ namespace UI.Upgrade.PositioningTab
         {
             IsEmpty = false;
             _currentCard = card;
-            card.transform.SetParent(transform);
+            card.transform.SetParent(transform, false);
         }
 
         public void OnDrop(PointerEventData eventData)

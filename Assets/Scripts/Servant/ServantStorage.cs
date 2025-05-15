@@ -78,8 +78,9 @@ namespace Servant
             Save();
         }
  
-        public bool TryMergeServants(List<int> ids)
+        public bool TryMergeServants(List<int> idsToMerge)
         {
+            List<int> ids = new List<int>(idsToMerge);
             int upServantId = ids.First();
             ids.Remove(upServantId);
             foreach (var id in ids)
