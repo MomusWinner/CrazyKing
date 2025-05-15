@@ -45,9 +45,9 @@ namespace UI.Upgrade
             _coinsManager.AddCoins(1000);
         }
 
-        public void StartGame()
+        public async void StartGame()
         {
-            _levelManager.LoadLevel();
+            await _levelManager.LoadLevel();
         }
 
         public void OpenUpgradesTab() => OpenTab(_upgradeTab);

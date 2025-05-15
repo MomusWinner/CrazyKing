@@ -5,7 +5,6 @@ namespace Entity.King
 {
     public class FollowToKingCamera : MonoBehaviour
     {
-        private float _distanceAtTarget = 1f;
         [Inject] private KingController _king;
 
         private void LateUpdate()

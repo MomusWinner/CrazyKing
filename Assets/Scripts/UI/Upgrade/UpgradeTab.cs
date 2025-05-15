@@ -12,7 +12,6 @@ namespace UI.Upgrade
         private Vector3 _leftStartPosition;
         private Vector3 _rightStartPosition;
         private bool _isShow = true;
-        private bool _isAnimating;
 
         public void Awake()
         {
@@ -23,10 +22,8 @@ namespace UI.Upgrade
         public void Show()
         {
             if (_isShow) return;
-            _isAnimating = true;
             _leftPart.DOMove(_leftStartPosition, 0.5f).SetEase(Ease.OutBack);
-            _rightPart.DOMove(_rightStartPosition, 0.5f).SetEase(Ease.OutBack)
-            .OnComplete(()=> _isAnimating = false);
+            _rightPart.DOMove(_rightStartPosition, 0.5f).SetEase(Ease.OutBack);
             _isShow = true;
         }
 
@@ -35,10 +32,8 @@ namespace UI.Upgrade
             if (!_isShow) return;
             _leftStartPosition = _leftPart.position;
             _rightStartPosition = _rightPart.position;
-            _isAnimating = true;
             _leftPart.DOMove(_closePointL.position, 0.5f);
-            _rightPart.DOMove(_closePointR.position, 0.5f)
-            .OnComplete(()=> _isAnimating = false);
+            _rightPart.DOMove(_closePointR.position, 0.5f);
             _isShow = false;
         }
         

@@ -35,7 +35,7 @@ namespace Entity.Servant
                 ignoreMask: LayerMasks.King | LayerMasks.LowBarrier | LayerMasks.Default);
         }
 
-        public void Start()
+        protected override void Start()
         {
             FSM.Setup(this, _attackState, _defaultState);
         }

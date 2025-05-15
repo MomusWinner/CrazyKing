@@ -58,12 +58,12 @@ namespace Entity.King.FSM
             }
         }
 
-        public override void Message(string name, object obj)
+        public override async void Message(string name, object obj)
         {
             switch (name)
             {
                 case "set_damage":
-                    SetDamage();
+                    await SetDamage();
                     break;
                 case "next_state":
                     _nextState = (Type)obj;
