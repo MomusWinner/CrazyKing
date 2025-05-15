@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using DG.Tweening;
+using Entity.Servant;
 using Servant;
 using UnityEngine;
 using UnityEngine.UI;

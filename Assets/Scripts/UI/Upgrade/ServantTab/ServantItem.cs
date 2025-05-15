@@ -4,6 +4,7 @@ using System.Linq;
 using Controllers.Coins;
 using Controllers.SoundManager;
 using DG.Tweening;
+using Entity.Servant;
 using Servant;
 using Servant.Upgrade;
 using TMPro;

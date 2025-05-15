@@ -1,7 +1,7 @@
 ﻿using Controllers.Coins;
 using Controllers.SoundManager;
-using King;
-using King.Upgrades.Parameters;
+using Entity.King;
+using Entity.King.Upgrades.Parameters;
 using TMPro;
 using UnityEngine;
 using VContainer;

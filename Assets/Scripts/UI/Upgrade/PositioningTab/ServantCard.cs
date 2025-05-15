@@ -1,4 +1,5 @@
 ﻿using System;
+using Entity.Servant;
 using Servant;
 using TMPro;
 using UnityEngine;

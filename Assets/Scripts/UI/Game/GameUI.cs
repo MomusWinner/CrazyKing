@@ -52,9 +52,9 @@ namespace UI.Game
             _gameEndPanel.Setup(title, coins, capturedCastles, killedEnemies);
         }
 
-        public void MoveToUpgradeScene()
+        public async void MoveToUpgradeScene()
         {
-            _sceneLoader.LoadScene("UpgradeMenu");
+            await _sceneLoader.LoadScene("UpgradeMenu");
         }
 
         public void OpenPausePanel()

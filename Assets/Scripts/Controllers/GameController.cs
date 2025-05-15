@@ -1,7 +1,6 @@
 ﻿using Controllers.Coins;
 using Cysharp.Threading.Tasks;
-using King;
-using PlayablesStudio.Plugins.YandexGamesSDK.Runtime.Types;
+using Entity.King;
 using UI.Game;
 using VContainer;
 using VContainer.Unity;

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
-using BaseEntity;
+using Entity;
+using Entity.Servant;
 using Health;
 using Servant;
 using UnityEngine;

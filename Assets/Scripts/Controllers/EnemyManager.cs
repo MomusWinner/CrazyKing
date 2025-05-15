@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Enemy;
+using Entity.Enemy;
 using UnityEngine;
 using VContainer.Unity;
 using Object = UnityEngine.Object;

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using King;
-using King.Upgrades.Parameters;
-using Servant;
+using Entity.King;
+using Entity.King.Upgrades.Parameters;
+using Entity.Servant;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

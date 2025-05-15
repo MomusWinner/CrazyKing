@@ -10,8 +10,6 @@ namespace Health
         [SerializeField] private float _flashTime = 0.25f;
         [SerializeField] private ParticleSystem _damageParticle;
 
-        private SpriteRenderer[] _spriteRenderers;
-        private Material[] _materials;
         private Coroutine _flashCoroutine;
 
         protected override void Awake()

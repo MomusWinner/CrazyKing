@@ -1,4 +1,5 @@
-﻿using Servant;
+﻿using Entity.Servant;
+using Servant;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

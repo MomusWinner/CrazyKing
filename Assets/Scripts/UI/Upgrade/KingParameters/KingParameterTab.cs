@@ -1,4 +1,4 @@
-﻿using King.Upgrades.Parameters;
+﻿using Entity.King.Upgrades.Parameters;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
