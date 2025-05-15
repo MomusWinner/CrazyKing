@@ -1,5 +1,6 @@
 ﻿using Controllers;
 using Cysharp.Threading.Tasks;
+using Entity.Servant;
 using Servant;
 using UnityEngine;
 using VContainer;

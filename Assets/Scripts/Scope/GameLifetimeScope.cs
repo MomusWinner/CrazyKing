@@ -1,10 +1,10 @@
-using BaseEntity.States;
 using Controllers;
-using Enemy.FSM;
-using King;
-using King.FSM;
-using Servant;
-using Servant.FSM;
+using Entity.Enemy;
+using Entity.King;
+using Entity.King.FSM;
+using Entity.Servant;
+using Entity.Servant.FSM;
+using Entity.States;
 using UI.Game;
 using UnityEngine;
 using VContainer;

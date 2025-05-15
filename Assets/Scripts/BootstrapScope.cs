@@ -1,10 +1,10 @@
 ﻿using Controllers;
 using Controllers.Coins;
 using Controllers.SoundManager;
-using King;
-using King.Upgrades.Parameters;
-using Servant;
-using Servant.FSM;
+using Entity.King;
+using Entity.King.Upgrades.Parameters;
+using Entity.Servant;
+using Entity.Servant.FSM;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using VContainer;

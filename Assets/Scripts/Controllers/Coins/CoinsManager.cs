@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entity;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using King;
-using King.Upgrades.Parameters;
-using Servant;
+using Entity.King;
+using Entity.King.Upgrades.Parameters;
+using Entity.Servant;
 
 namespace Controllers
 {

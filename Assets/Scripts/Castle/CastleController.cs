@@ -1,5 +1,5 @@
 ﻿using DG.Tweening;
-using King;
+using Entity.King;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -1,5 +1,6 @@
 ﻿using Controllers.Coins;
 using Controllers.SoundManager;
+using Entity.Servant;
 using Servant;
 using TMPro;
 using UnityEngine;
