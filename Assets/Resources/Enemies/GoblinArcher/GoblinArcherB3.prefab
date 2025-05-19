@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3808773140360106254, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
       propertyPath: attackDamage
-      value: 60
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: -3808773140360106254, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
       propertyPath: ArrowPrefPath
@@ -30,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3264004522685862450, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
       propertyPath: m_Name
-      value: GoblinArcherB2
+      value: GoblinArcherB3
       objectReference: {fileID: 0}
     - target: {fileID: 5392369417156241115, guid: f200997421ca98e47b6069372ed6a4a0, type: 3}
       propertyPath: m_LocalScale.x
