@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: acher_1
+      name: archer_1
       rect:
         serializedVersion: 2
         x: 0
@@ -148,7 +148,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: acher_2
+      name: archer_2
       rect:
         serializedVersion: 2
         x: 200
@@ -684,7 +684,7 @@ TextureImporter:
         width: 151
         height: 149
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -706,7 +706,7 @@ TextureImporter:
         width: 151
         height: 149
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -733,8 +733,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      acher_1: -2998579584471748655
-      acher_2: 1848337442
+      archer_1: -2998579584471748655
+      archer_2: 1848337442
       archer_3: -382557
       buy_button: 1902264620
       char-icon-assets_10: 1661749189
