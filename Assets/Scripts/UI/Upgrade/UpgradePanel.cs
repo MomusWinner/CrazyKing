@@ -56,6 +56,9 @@ namespace UI.Upgrade
         
         private void OpenTab(UpgradeTab tab)
         {
+            if (_currentTab != null && (_currentTab.IsAnimating || _currentTab == tab))
+                return;
+            
             _currentTab?.Hide();
             _currentTab = tab;
             _currentTab.Show();

@@ -44,7 +44,6 @@ namespace UI.Upgrade.KingParameters
             _coinsManager.OnDecrease -= CheckBuyState;
         }
 
-
         public void DisableBuyButton()
         {
             if (_isDisable) return;
