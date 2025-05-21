@@ -1,6 +1,7 @@
 ﻿using Controllers.Coins;
 using Cysharp.Threading.Tasks;
 using Entity.King;
+using Entity.Servant;
 using UI.Game;
 using VContainer;
 using VContainer.Unity;
@@ -13,7 +14,8 @@ namespace Controllers
         private int _capturedCastles;
         private int _killedEnemies;
         private int _startCastleAmount;
-        
+
+        [Inject] private ServantManager _servantManager;
         [Inject] private EnemyManager _enemyManager;
         [Inject] private CastleManager _castleManager;
         [Inject] private CoinsManager _coinsManager;
@@ -47,10 +49,16 @@ namespace Controllers
             _capturedCastles = _startCastleAmount - (_startCastleAmount - _castleManager.CastleCount);
             
             _gameUI.DisablePausePanel();
+            
+            _servantManager.AddCaptiveServants();
+            _servantManager.ClearCaptiveServants();
             _saveManager.Save();
+            
             await UniTask.Delay(1000);
+            
             _gameUI.OpenLevelEndPanel();
             _gameUI.SetupGameEndPanel("Победа!!", _earnedCoins, _capturedCastles, _killedEnemies);
+            
             _levelManager.CompleteLevel();
             _successComplete = true;
         }
@@ -62,8 +70,12 @@ namespace Controllers
             _capturedCastles = _startCastleAmount - (_startCastleAmount - _castleManager.CastleCount);
             
             _gameUI.DisablePausePanel();
+            
+            _servantManager.ClearCaptiveServants();
             _saveManager.Save();
+            
             await UniTask.Delay(1000);
+            
             _gameUI.OpenLevelEndPanel();
             _gameUI.SetupGameEndPanel("Поражение :(", _earnedCoins, _capturedCastles, _killedEnemies);
         }

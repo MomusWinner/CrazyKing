@@ -26,8 +26,16 @@ namespace Entity.Servant
         public override void Initialize()
         {
             base.Initialize();
-            if (KingController.TryGetPoint(ServantData.PointId, out IPoint point)) Point = point;
-            else Debug.LogError($"ServantPoint ID:{ServantData.PointId} already busy.");
+            if (ServantData.IsUsed)
+            {
+                if (KingController.TryGetPoint(ServantData.PointId, out IPoint point)) Point = point;
+                else Debug.LogError($"ServantPoint ID:{ServantData.PointId} already busy.");
+            }
+            else
+            {
+                if (KingController.TryGetFreePoint(out IPoint point)) Point = point;
+                else if (ServantData.IsUsed) Debug.LogError($"ServantPoint ID:{ServantData.PointId} already busy.");
+            }
             ID = ServantData.ID;
             KingController.AddServant(this);
             TargetFinder = new EntityFinder(LookRadius,

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Controllers;
+using NUnit.Framework;
+using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
@@ -19,6 +21,7 @@ namespace Entity.Servant
         public IReadOnlyCollection<ServantData> Servants => _servants.AsReadOnly();
         
         private List<ServantData> _servants;
+        
         [Inject] private ServantsSO _servantsSO;
         [Inject] private SaveManager _saveManager; 
         
@@ -39,11 +42,44 @@ namespace Entity.Servant
         
         public void AddServant(ServantData servantData)
         {
-            servantData.ID = _servants.Any() ? _servants.Last().ID + 1 : 0;
+            if (servantData.ID == -1)
+                servantData.ID = GetNextId();
+            
             _servants.Add(servantData);
             Save();
             OnServantsUpdated?.Invoke(Servants);
             OnAddServant?.Invoke(servantData);
+        }
+
+        public ServantData CreateServantData(ServantType type, int lv = 1)
+        {
+            bool isUsed = _servants.Count < _servantsSO.MaxUsedServants;
+            int pointId = -1;
+
+            if (isUsed)
+            {
+                pointId = GetFreePointId();
+                if (pointId == -1)
+                {
+                    Debug.LogError("Incorrect point id generation");
+                }
+            }
+
+            var data = new ServantData()
+            {
+                ID = GetNextId(),
+                IsUsed = isUsed,
+                Lv = lv,
+                Type = type,
+                PointId = pointId,
+            };
+            
+            return data;
+        }
+
+        public int GetNextId()
+        { // TODO: IMPORTANT
+            return _servants.Any() ? _servants.Last().ID + 1 : 0;
         }
 
         public void UpgradeServant(int id)
@@ -87,8 +123,21 @@ namespace Entity.Servant
                 RemoveServant(id);
             UpgradeServant(upServantId);
             return true;
-        }       
-        
+        }
+
+        public string GetInfo()
+        {
+            string result = string.Empty;
+            
+            foreach (var servant in _servants)
+            {
+                result += "---------------\n";
+                result += servant.ToString();
+            }
+
+            return result;
+        }
+
         private void Save()
         {
             _saveManager.Save();
@@ -98,15 +147,47 @@ namespace Entity.Servant
         {
             return _servants.FindIndex(x => x.ID == id);
         }
+
+        private int GetFreePointId()
+        {
+            if (_servants.Count >= _servantsSO.MaxUsedServants) return -1;
+
+            if (!_servants.Any())
+                return 0;
+            
+            var sortedServants = _servants.OrderByDescending(x => x.PointId).Reverse().ToArray();
+
+            for (int i = 1; i < sortedServants.Count(); i++)
+            {
+                if (sortedServants[i].PointId - sortedServants[i - 1].PointId > 1)
+                    return sortedServants[i].PointId + 1;
+            }
+            if (sortedServants.Last().PointId < _servantsSO.MaxUsedServants - 1)
+                return sortedServants.Last().PointId + 1;
+            
+            return -1;
+        }
     }
 
     [Serializable]
     public class ServantData
     {
-        public int ID;
+        public int ID = -1;
         public int Lv = 1;
         public bool IsUsed;
         public ServantType Type;
         public int PointId;
+
+        public override string ToString()
+        {
+            string result = string.Empty;
+            result += "Type: " + Type + "\n";
+            result += "Level: " + Lv + "\n";
+            result += "IsUsed: " + IsUsed + "\n";
+            result += "PointId: " + PointId + "\n";
+
+            return result;
+
+        }
     }
 }

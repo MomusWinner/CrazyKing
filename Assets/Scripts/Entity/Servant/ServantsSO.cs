@@ -18,6 +18,7 @@ namespace Entity.Servant
     {
         public int IntervalOfEvolutionLevels = 5;
         public List<ServantSO> AvailableServants;
+        public int MaxUsedServants;
         public List<ServantsRing> Rings;
         public List<ServantParameterSO> Parameters;
 

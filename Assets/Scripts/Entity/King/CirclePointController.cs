@@ -76,6 +76,13 @@ namespace Entity.King
             _freePoints.Add(newPoint);
         }
 
+        public bool TryGetFreePoint(out IPoint freePoint)
+        {
+            freePoint = null;
+            if (!_freePoints.Any()) return false;
+            return TryGetPoint(_freePoints.First().Id, out freePoint);
+        }
+
         public bool TryGetPoint(int id, out IPoint point)
         {
             point = null;
@@ -108,7 +115,6 @@ namespace Entity.King
         
         void OnDrawGizmos()
         {
-            // Draw a yellow sphere at the transform's position
             Gizmos.color = Color.green;
             foreach (var point in _freePoints)
             {

@@ -7,7 +7,6 @@ using VContainer;
 
 public class Bootstrap : MonoBehaviour
 {
-    [SerializeField] private ServantData _startServantData;
     [Inject] private SceneLoader _sceneLoader;
     [Inject] private IYandexManager _yandexManager;
     [Inject] private SaveManager _saveManager;
@@ -19,7 +18,7 @@ public class Bootstrap : MonoBehaviour
         
         if (_saveManager.GameData.IsFirstStarting)
         {
-            _servantStorage.AddServant(_startServantData); 
+            // TODO: some logic
         }
         await _sceneLoader.LoadScene("Menu");
         

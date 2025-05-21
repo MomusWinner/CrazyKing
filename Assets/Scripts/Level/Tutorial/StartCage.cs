@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using Entity;
-using Entity.Servant;
+﻿using Entity.Servant;
 using Health;
-using Servant;
 using UnityEngine;
 using VContainer;
 
@@ -13,6 +10,7 @@ public class StartCage : MonoBehaviour, IDamageable
 
     [Inject] private ServantManager _servantManager;
     [SerializeField] private string _particlePath;
+    [SerializeField] private ServantType _servantType;
     private ServantController _servant;
     private bool _servantIsCaptured;
     
@@ -21,18 +19,12 @@ public class StartCage : MonoBehaviour, IDamageable
         if (_servantManager._isInitialized && !_servantIsCaptured)
         {
             _servantIsCaptured = true;
-            if (!_servantManager.Servants.Any())
-                return;
-            _servant = _servantManager.Servants.First();
-            _servant.transform.position = transform.position;
-            var footController = _servant.GetComponentInChildren<FootController>();
-            footController.SetFootStartPosition();
+            ServantController servant = _servantManager.CreateCaptiveServant(_servantType, transform.position);
         }
     }
 
     public void ChangeMaxHealth(int maxHealth)
     {
-        
     }
 
     public bool Damage(int damage)

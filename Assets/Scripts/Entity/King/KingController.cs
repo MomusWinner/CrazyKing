@@ -98,6 +98,9 @@ namespace Entity.King
         {
             return _servants.Remove(servant);
         }
+
+        public bool TryGetFreePoint(out IPoint freePoint)
+            => _pointController.TryGetFreePoint(out freePoint);
         
         public bool TryGetPoint(int pointId, out IPoint point)
             => _pointController.TryGetPoint(pointId, out point);
