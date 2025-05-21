@@ -23,8 +23,8 @@ namespace Entity
 
         public void Open()
         {
-            _leftSide.DORotate(new Vector3(0, 0, 90), 1f).SetEase(Ease.OutBounce);
-            _rightSide.DORotate(new Vector3(0, 0, -90), 1f).SetEase(Ease.OutBounce);
+            _leftSide.DOLocalRotate(new Vector3(0, 0, 90), 1f).SetEase(Ease.OutBounce);
+            _rightSide.DOLocalRotate(new Vector3(0, 0, -90), 1f).SetEase(Ease.OutBounce);
             
         }
 
