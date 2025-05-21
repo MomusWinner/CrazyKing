@@ -16,6 +16,7 @@ MonoBehaviour:
   AvailableServants:
   - {fileID: 11400000, guid: 0106507f49750364b94fb5d61320eb7a, type: 2}
   - {fileID: 11400000, guid: 30fe46246c5e2ce43b6e240d6766a8ac, type: 2}
+  MaxUsedServants: 12
   Rings:
   - quantity: 4
     angleOffset: 0
@@ -26,6 +27,9 @@ MonoBehaviour:
   - quantity: 10
     angleOffset: 0
     radius: 3
+  - quantity: 15
+    angleOffset: 0
+    radius: 3.5
   Parameters:
   - FriendlyName: "\u0423\u0440\u043E\u043D"
     FieldName: Damage
