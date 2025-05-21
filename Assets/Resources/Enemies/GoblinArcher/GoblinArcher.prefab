@@ -216,7 +216,7 @@ MonoBehaviour:
   animator: {fileID: 3948156043672189180}
   _lookRadius: 10
   _attackState: 5
-  _defaultState: 3
+  _defaultState: 1
   _priceMin: 10
   _priceMax: 20
   attackDamage: 20
